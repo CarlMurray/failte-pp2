@@ -51,6 +51,11 @@ const positionMarker = async () => {
     }
 }
 
-initMap();
-fetchData();
-positionMarker();
+// main function to run app
+const main = async () => {
+    initMap();
+    await fetchData();
+    positionMarker();
+}
+
+main();
