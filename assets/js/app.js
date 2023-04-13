@@ -51,15 +51,27 @@ async function fetchData() {
 // Function loops through all data points and get lat lng arguments for createMarker function
 const positionMarker = async () => {
     // await fetchData(); // ********* FOR TESTING PURPOSES **********
-    for (let i = 0; i < data.length; i++){
+    
+    // define markerArray to use for marker clusterer
+    const markerArray = [];
 
+    for (let i = 0; i < data.length; i++){
         //destructure each array obj to define lat lng arguments
         const {Latitude: lat, Longitude: lng} = data[i];
-        console.log(lat, lng);
+        // console.log(lat, lng);
 
+        // create marker position object for array
+        const markerPos = {lat, lng}
+        console.log(markerPos)
+
+        // add current iteration of markerPos to array
+        markerArray.push(markerPos)
         //call function to plot markers on map
         createMarker(lat, lng);
+
     }
+
+    console.log(markerArray)
 }
 
 // main function to run app
@@ -79,3 +91,11 @@ main();
 // }
 
 // testFunction()
+
+
+//TODO
+// add site elements and styling
+// add marker popups with info 
+// add search
+// add filters
+// add marker clusters
