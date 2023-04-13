@@ -7,7 +7,6 @@ async function initMap() {
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
 
   // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
@@ -15,12 +14,17 @@ async function initMap() {
     center: position,
   });
 
-//   // The marker, positioned at Uluru
-//   const marker = new AdvancedMarkerView({
-//     map: map,
-//     position: position,
-//     title: "Uluru",
-//   });
 }
 
+// function to add marker to map, code copied from Maps API documentation and modified
+const addMarker = async () => {
+    // The marker, positioned at Ireland
+    const { Marker } = await google.maps.importLibrary("marker");
+    const marker = new Marker({
+      map: map,
+      position: { lat: 53.4152431, lng: -7.9559668 },
+    });
+  }
+
 initMap();
+addMarker();
