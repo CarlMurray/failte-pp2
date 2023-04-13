@@ -1,4 +1,5 @@
 const API_URL = 'https://failteireland.azure-api.net/opendata-api/v1/attractions';
+const CSV_PATH = '/assets/data/attractions.json'
 
 // Initialize and add the map, code copied from Maps API documentation
 let map;
@@ -28,11 +29,21 @@ const createMarker = async (lat, lng) => {
     });
   }
 
+//   COMMENTED OUT, FETCHING CSV AS API IS PAGINATED, NEW FUNCTION BELOW
 // function to fetch attraction data from Failte Ireland API
+// async function fetchData() {
+//     const getData = await fetch(API_URL);
+//     const responseData = await getData.json();
+//     data = responseData.results;
+//     console.log(data);
+//     return data;
+// }
+
+// function to fetch attraction data from Failte Ireland *** CSV ***
 async function fetchData() {
-    const getData = await fetch(API_URL);
-    const responseData = await getData.json();
-    data = responseData.results;
+    const getData = await fetch(CSV_PATH);
+    data = await getData.json();
+    // data = responseData.results;
     console.log(data);
     return data;
 }
@@ -40,10 +51,10 @@ async function fetchData() {
 // Function loops through all data points and get lat lng arguments for createMarker function
 const positionMarker = async () => {
     // await fetchData(); // ********* FOR TESTING PURPOSES **********
-    for (i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++){
 
         //destructure each array obj to define lat lng arguments
-        const {latitude: lat, longitude: lng} = data[i].geo;
+        const {Latitude: lat, Longitude: lng} = data[i];
         console.log(lat, lng);
 
         //call function to plot markers on map
@@ -59,3 +70,12 @@ const main = async () => {
 }
 
 main();
+
+// const testFunction = async () => {
+//     const fetchJson = await fetch('/assets/js/csvjson.json')
+//     const responseJson = await fetchJson.json();
+//     console.log(responseJson);
+
+// }
+
+// testFunction()
