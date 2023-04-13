@@ -19,13 +19,12 @@ async function initMap() {
 
 }
 
-// function to add marker to map, code copied from Maps API documentation and modified
-const addMarker = async () => {
-    // The marker, positioned at Ireland
+// function takes lat lng parameters which are defined in positionMarker function, code copied from Maps API documentation and modified
+const createMarker = async (lat, lng) => {
     const { Marker } = await google.maps.importLibrary("marker");
     const marker = new Marker({
       map: map,
-      position: { lat: 53.4152431, lng: -7.9559668 },
+      position: { lat: lat, lng: lng },
     });
   }
 
@@ -38,6 +37,20 @@ async function fetchData() {
     return data;
 }
 
+// Function loops through all data points and get lat lng arguments for createMarker function
+const positionMarker = async () => {
+    // await fetchData(); // ********* FOR TESTING PURPOSES **********
+    for (i = 0; i < data.length; i++){
+
+        //destructure each array obj to define lat lng arguments
+        const {latitude: lat, longitude: lng} = data[i].geo;
+        console.log(lat, lng);
+
+        //call function to plot markers on map
+        createMarker(lat, lng);
+    }
+}
+
 initMap();
-addMarker();
 fetchData();
+positionMarker();
