@@ -127,6 +127,29 @@ const main = async () => {
 
 main();
 
+
+
+const searchBar = document.querySelector('#search');
+searchBar.addEventListener('input', function() {
+  const searchQuery = searchBar.value;
+  console.log(searchQuery);
+  return searchQuery;
+})
+
+
+
+
+// const searchInput = (query) => {
+//   const searchBar = document.querySelector('#search')
+//   const newevent = searchBar.addEventListener('search', function(event){
+//     console.log(event.type);
+//     console.log(event.value);
+//   } );
+//   console.log(query);
+// }
+
+// searchInput()
+
 // const testFunction = async () => {
 //     const fetchJson = await fetch('/assets/js/csvjson.json')
 //     const responseJson = await fetchJson.json();
