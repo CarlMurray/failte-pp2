@@ -6,7 +6,7 @@ let map;
 let data;
 
 async function initMap() {
-  // The location of Uluru
+  // The location of Ireland
   const position = { lat: 53.4152431, lng: -7.9559668 };
   // Request needed libraries.
   //@ts-ignore
@@ -28,14 +28,18 @@ async function fetchData() {
   console.log(data);
   return data;
 }
+const markers = [];
 
 // Function loops through all data points and get lat lng arguments for createMarker function
 const positionMarker = async (searchQuery) => {
   // await fetchData(); // ********* FOR TESTING PURPOSES **********
-
+  // initMap()
   // define markerArray to use for marker clusterer
-  const markerArray = [];
-  const markers = [];
+  // const markerArray = [];
+  for (marker of markers) {
+    marker.setMap(null);
+  }
+  markers.length = 0;
 
   for (let i = 0; i < data.length; i++) {
     //destructure each array obj to define lat lng arguments
@@ -67,11 +71,11 @@ const positionMarker = async (searchQuery) => {
       console.log(Tags)
 
       // add current iteration of markerPos to array
-      markerArray.push(markerPos)
+      // markerArray.push(markerPos)
       //call function to plot markers on map
       const { Marker } = await google.maps.importLibrary("marker");
       const marker = new Marker({
-        map: map,
+        // map: map,
         position: { lat: lat, lng: lng },
         title: Name,
         icon: markerIcon
@@ -99,6 +103,10 @@ const positionMarker = async (searchQuery) => {
   //DONT DELETE, MARKER CLUSTERING
   // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
+
+  for (marker of markers) {
+    marker.setMap(map);
+  }
 }
 
 let searchQuery;
