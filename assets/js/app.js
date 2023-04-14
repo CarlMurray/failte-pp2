@@ -69,15 +69,16 @@ const positionMarker = async () => {
         const markerAddress = `${AddressLocality}, ${AddressRegion}`
         
         let markerIcon;
-        // define custom icons
-        if(Tags.includes('Castle')) markerIcon = 'assets/img/icons/european-castle.png'
-        else if(Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/art.png'
-        else if(Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/mountain.png'
-        else if(Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/coffee.png'
-        else if(Tags.includes('Church')) markerIcon = 'assets/img/icons/church.png'
-        else if(Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/fountain.png'
-        else if(Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-castle.png'
-        else if(Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-castle.png'
+        // define custom icons 
+        // TODO set correct tag criteria for icon types
+        if(Tags.includes('Castle')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/icon-museum.png'
+        else if(Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-hiking.png'
+        else if(Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/icon-restaurant.png'
+        else if(Tags.includes('Church')) markerIcon = 'assets/img/icons/icon-landmark.png'
+        else if(Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/icon-landmark.png'
+        else if(Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
+        else if(Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
 
         // create marker position object for array
         const markerPos = {lat, lng}
@@ -112,7 +113,8 @@ const positionMarker = async () => {
 
     // console.log(markers)
     }
-  const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
+    //DONT DELETE, MARKER CLUSTERING
+    // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
 }
 
