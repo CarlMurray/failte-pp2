@@ -21,13 +21,13 @@ async function initMap() {
 }
 
 // function takes lat lng parameters which are defined in positionMarker function, code copied from Maps API documentation and modified
-const createMarker = async (lat, lng) => {
-    const { Marker } = await google.maps.importLibrary("marker");
-    const marker = new Marker({
-      map: map,
-      position: { lat: lat, lng: lng },
-    });
-  }
+// const createMarker = async (lat, lng) => {
+//     const { Marker } = await google.maps.importLibrary("marker");
+//     const marker = new Marker({
+//       map: map,
+//       position: { lat: lat, lng: lng },
+//     });
+//   }
 
 //   COMMENTED OUT, FETCHING CSV AS API IS PAGINATED, NEW FUNCTION BELOW
 // function to fetch attraction data from Failte Ireland API
@@ -54,6 +54,7 @@ const positionMarker = async () => {
     
     // define markerArray to use for marker clusterer
     const markerArray = [];
+    const markers = [];
 
     for (let i = 0; i < data.length; i++){
         //destructure each array obj to define lat lng arguments
@@ -67,11 +68,18 @@ const positionMarker = async () => {
         // add current iteration of markerPos to array
         markerArray.push(markerPos)
         //call function to plot markers on map
-        createMarker(lat, lng);
+        const { Marker } = await google.maps.importLibrary("marker");
+        const marker = new Marker({
+        map: map,
+        position: { lat: lat, lng: lng },
+        }
+        )
+        markers.push(marker)
 
+    console.log(markers)
     }
+  const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
-    console.log(markerArray)
 }
 
 // main function to run app
