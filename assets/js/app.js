@@ -58,12 +58,18 @@ const positionMarker = async () => {
 
     for (let i = 0; i < data.length; i++){
         //destructure each array obj to define lat lng arguments
-        const {Latitude: lat, Longitude: lng} = data[i];
+        const { Latitude: lat, 
+                Longitude: lng, 
+                Name,
+                AddressLocality,
+                AddressRegion
+              } = data[i];
         // console.log(lat, lng);
+        const markerAddress = `${AddressLocality}, ${AddressRegion}`
 
         // create marker position object for array
         const markerPos = {lat, lng}
-        console.log(markerPos)
+        // console.log(markerAddress)
 
         // add current iteration of markerPos to array
         markerArray.push(markerPos)
@@ -72,11 +78,12 @@ const positionMarker = async () => {
         const marker = new Marker({
         map: map,
         position: { lat: lat, lng: lng },
+        title: Name
         }
         )
         markers.push(marker)
 
-    console.log(markers)
+    // console.log(markers)
     }
   const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
