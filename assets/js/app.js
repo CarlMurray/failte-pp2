@@ -1,5 +1,5 @@
 const API_URL = 'https://failteireland.azure-api.net/opendata-api/v1/attractions';
-const CSV_PATH = '/assets/data/attractions.json'
+const CSV_PATH = 'assets/data/attractions.json'
 
 // Initialize and add the map, code copied from Maps API documentation
 let map;
