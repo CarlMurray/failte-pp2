@@ -49,7 +49,7 @@ async function fetchData() {
 }
 
 // Function loops through all data points and get lat lng arguments for createMarker function
-const positionMarker = async () => {
+const positionMarker = async (searchQuery) => {
     // await fetchData(); // ********* FOR TESTING PURPOSES **********
     
     // define markerArray to use for marker clusterer
@@ -80,6 +80,7 @@ const positionMarker = async () => {
         else if(Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
         else if(Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
 
+      if (Tags.includes(searchQuery)){
         // create marker position object for array
         const markerPos = {lat, lng}
         console.log(Tags)
@@ -112,29 +113,32 @@ const positionMarker = async () => {
         markers.push(marker)
 
     // console.log(markers)
-    }
+    }}
     //DONT DELETE, MARKER CLUSTERING
     // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
 }
 
+let searchQuery;
+const searchBar = document.querySelector('#search');
+
+const performSearch = (callback) => {
+searchBar.addEventListener('input', function() {
+searchQuery = searchBar.value;
+console.log(searchQuery);
+callback(searchQuery);
+})}
+
 // main function to run app
 const main = async () => {
     initMap();
     await fetchData();
-    positionMarker();
-}
+    performSearch((searchQuery) => positionMarker(searchQuery));
+  }
 
 main();
 
 
-
-const searchBar = document.querySelector('#search');
-searchBar.addEventListener('input', function() {
-  const searchQuery = searchBar.value;
-  console.log(searchQuery);
-  return searchQuery;
-})
 
 
 
