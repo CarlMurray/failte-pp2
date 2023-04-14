@@ -4,6 +4,7 @@ const CSV_PATH = 'assets/data/attractions.json'
 // Initialize and add the map, code copied from Maps API documentation
 let map;
 let data;
+let activeInfoWindow = false;
 
 async function initMap() {
   // The location of Ireland
@@ -89,6 +90,13 @@ const positionMarker = async (searchQuery) => {
       });
 
       marker.addListener("click", () => {
+        // close active info window if new info window opened
+        if (activeInfoWindow){
+          activeInfoWindow.close()
+        };
+
+        activeInfoWindow = infowindow;
+
         infowindow.open({
           anchor: marker,
           map,
