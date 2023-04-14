@@ -62,14 +62,26 @@ const positionMarker = async () => {
                 Longitude: lng, 
                 Name,
                 AddressLocality,
-                AddressRegion
+                AddressRegion,
+                Tags
               } = data[i];
         // console.log(lat, lng);
         const markerAddress = `${AddressLocality}, ${AddressRegion}`
+        
+        let markerIcon;
+        // define custom icons
+        if(Tags.includes('Castle')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Church')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-castle.png'
+        else if(Tags.includes('Embarkation Point') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-castle.png'
 
         // create marker position object for array
         const markerPos = {lat, lng}
-        // console.log(markerAddress)
+        console.log(Tags)
 
         // add current iteration of markerPos to array
         markerArray.push(markerPos)
@@ -78,7 +90,8 @@ const positionMarker = async () => {
         const marker = new Marker({
         map: map,
         position: { lat: lat, lng: lng },
-        title: Name
+        title: Name,
+        icon: markerIcon
         }
         )
 
