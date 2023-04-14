@@ -81,6 +81,20 @@ const positionMarker = async () => {
         title: Name
         }
         )
+
+        // add infowindow to markers
+        const infowindow = new google.maps.InfoWindow({
+          content: "test",
+          ariaLabel: `${Name}`,
+        });
+            
+        marker.addListener("click", () => {
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+        });
+
         markers.push(marker)
 
     // console.log(markers)
