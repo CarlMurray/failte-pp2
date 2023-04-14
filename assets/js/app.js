@@ -20,102 +20,84 @@ async function initMap() {
 
 }
 
-// function takes lat lng parameters which are defined in positionMarker function, code copied from Maps API documentation and modified
-// const createMarker = async (lat, lng) => {
-//     const { Marker } = await google.maps.importLibrary("marker");
-//     const marker = new Marker({
-//       map: map,
-//       position: { lat: lat, lng: lng },
-//     });
-//   }
-
-//   COMMENTED OUT, FETCHING CSV AS API IS PAGINATED, NEW FUNCTION BELOW
-// function to fetch attraction data from Failte Ireland API
-// async function fetchData() {
-//     const getData = await fetch(API_URL);
-//     const responseData = await getData.json();
-//     data = responseData.results;
-//     console.log(data);
-//     return data;
-// }
-
 // function to fetch attraction data from Failte Ireland *** CSV ***
 async function fetchData() {
-    const getData = await fetch(CSV_PATH);
-    data = await getData.json();
-    // data = responseData.results;
-    console.log(data);
-    return data;
+  const getData = await fetch(CSV_PATH);
+  data = await getData.json();
+  // data = responseData.results;
+  console.log(data);
+  return data;
 }
 
 // Function loops through all data points and get lat lng arguments for createMarker function
 const positionMarker = async (searchQuery) => {
-    // await fetchData(); // ********* FOR TESTING PURPOSES **********
-    
-    // define markerArray to use for marker clusterer
-    const markerArray = [];
-    const markers = [];
+  // await fetchData(); // ********* FOR TESTING PURPOSES **********
 
-    for (let i = 0; i < data.length; i++){
-        //destructure each array obj to define lat lng arguments
-        const { Latitude: lat, 
-                Longitude: lng, 
-                Name,
-                AddressLocality,
-                AddressRegion,
-                Tags
-              } = data[i];
-        // console.log(lat, lng);
-        const markerAddress = `${AddressLocality}, ${AddressRegion}`
-        
-        let markerIcon;
-        // define custom icons 
-        // TODO set correct tag criteria for icon types
-        if(Tags.includes('Castle')) markerIcon = 'assets/img/icons/icon-castle.png'
-        else if(Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/icon-museum.png'
-        else if(Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-hiking.png'
-        else if(Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/icon-restaurant.png'
-        else if(Tags.includes('Church')) markerIcon = 'assets/img/icons/icon-landmark.png'
-        else if(Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/icon-landmark.png'
-        else if(Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
-        else if(Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
+  // define markerArray to use for marker clusterer
+  const markerArray = [];
+  const markers = [];
 
-      if (Tags.includes(searchQuery)){
-        // create marker position object for array
-        const markerPos = {lat, lng}
-        console.log(Tags)
+  for (let i = 0; i < data.length; i++) {
+    //destructure each array obj to define lat lng arguments
+    const { Latitude: lat,
+      Longitude: lng,
+      Name,
+      AddressLocality,
+      AddressRegion,
+      Tags
+    } = data[i];
+    // console.log(lat, lng);
+    const markerAddress = `${AddressLocality}, ${AddressRegion}`
 
-        // add current iteration of markerPos to array
-        markerArray.push(markerPos)
-        //call function to plot markers on map
-        const { Marker } = await google.maps.importLibrary("marker");
-        const marker = new Marker({
+    let markerIcon;
+    // define custom icons 
+    // TODO set correct tag criteria for icon types
+    if (Tags.includes('Castle')) markerIcon = 'assets/img/icons/icon-castle.png'
+    else if (Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/icon-museum.png'
+    else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-hiking.png'
+    else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/icon-restaurant.png'
+    else if (Tags.includes('Church')) markerIcon = 'assets/img/icons/icon-landmark.png'
+    else if (Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/icon-landmark.png'
+    else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
+    else if (Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
+
+    if (Tags.includes(searchQuery)) {
+      // create marker position object for array
+      const markerPos = { lat, lng }
+      console.log(Tags)
+
+      // add current iteration of markerPos to array
+      markerArray.push(markerPos)
+      //call function to plot markers on map
+      const { Marker } = await google.maps.importLibrary("marker");
+      const marker = new Marker({
         map: map,
         position: { lat: lat, lng: lng },
         title: Name,
         icon: markerIcon
-        }
-        )
+      }
+      )
 
-        // add infowindow to markers
-        const infowindow = new google.maps.InfoWindow({
-          content: "test",
-          ariaLabel: `${Name}`,
+      // add infowindow to markers
+      const infowindow = new google.maps.InfoWindow({
+        content: "test",
+        ariaLabel: `${Name}`,
+      });
+
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
         });
-            
-        marker.addListener("click", () => {
-          infowindow.open({
-            anchor: marker,
-            map,
-          });
-        });
+      });
 
-        markers.push(marker)
+      markers.push(marker)
 
-    // console.log(markers)
-    }}
-    //DONT DELETE, MARKER CLUSTERING
-    // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
+      // console.log(markers)
+    }
+  }
+  //DONT DELETE, MARKER CLUSTERING
+  // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
 }
 
@@ -123,18 +105,19 @@ let searchQuery;
 const searchBar = document.querySelector('#search');
 
 const performSearch = (callback) => {
-searchBar.addEventListener('input', function() {
-searchQuery = searchBar.value;
-console.log(searchQuery);
-callback(searchQuery);
-})}
+  searchBar.addEventListener('input', function () {
+    searchQuery = searchBar.value;
+    console.log(searchQuery);
+    callback(searchQuery);
+  })
+}
 
 // main function to run app
 const main = async () => {
-    initMap();
-    await fetchData();
-    performSearch((searchQuery) => positionMarker(searchQuery));
-  }
+  initMap();
+  await fetchData();
+  performSearch((searchQuery) => positionMarker(searchQuery));
+}
 
 main();
 
@@ -162,6 +145,25 @@ main();
 // }
 
 // testFunction()
+
+// function takes lat lng parameters which are defined in positionMarker function, code copied from Maps API documentation and modified
+// const createMarker = async (lat, lng) => {
+//     const { Marker } = await google.maps.importLibrary("marker");
+//     const marker = new Marker({
+//       map: map,
+//       position: { lat: lat, lng: lng },
+//     });
+//   }
+
+//   COMMENTED OUT, FETCHING CSV AS API IS PAGINATED, NEW FUNCTION BELOW
+// function to fetch attraction data from Failte Ireland API
+// async function fetchData() {
+//     const getData = await fetch(API_URL);
+//     const responseData = await getData.json();
+//     data = responseData.results;
+//     console.log(data);
+//     return data;
+// }
 
 
 //TODO
