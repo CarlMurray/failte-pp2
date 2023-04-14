@@ -65,7 +65,7 @@ const positionMarker = async (searchQuery) => {
     else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
     else if (Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
 
-    if (Tags.toLowerCase().includes(searchQuery) || Name.toLowerCase().includes(searchQuery)) {
+    if (Tags.toLowerCase().includes(searchQuery) || Name.toLowerCase().includes(searchQuery) || markerAddress.toLowerCase().includes(searchQuery)) {
       // create marker position object for array
       const markerPos = { lat, lng }
       // console.log(Tags)
