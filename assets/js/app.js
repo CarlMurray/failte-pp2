@@ -107,6 +107,8 @@ const initMarkers = async () => {
 }}
 
 const markers = [];
+const searchContainer = document.querySelector('#search-container');
+let attractionListInfo;
 
 // Function loops through all data points and get lat lng arguments for createMarker function
 const positionMarker = async (searchQuery) => {
@@ -118,6 +120,13 @@ const positionMarker = async (searchQuery) => {
     marker.setMap(null);
   }
   markers.length = 0;
+
+  let clearAttractionsList = document.querySelectorAll('.attractionListInfoDiv')
+  if (clearAttractionsList){
+    for(attractions of clearAttractionsList){
+  attractions.remove();
+  }
+  }
 
   for (let i = 0; i < data.length; i++) {
     //destructure each array obj to define lat lng arguments
@@ -235,7 +244,16 @@ const positionMarker = async (searchQuery) => {
           map,
         });
       });
-
+      attractionListInfo = document.createElement('div');
+      attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div>
+        <a href = ${Url} target="_blank">Website</a>
+        <a href = tel:+${Telephone}>Call</a>
+        <a href = ${directionsURL} target="_blank">Directions</a>
+      </div>`;
+      searchContainer.append(attractionListInfo)
       markers.push(marker)
 
       // console.log(markers)
