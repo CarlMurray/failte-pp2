@@ -56,7 +56,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(var(--unit-100vh) - 200px);
+    height: calc(var(--unit-100vh) - 200px); /* MINUS FOOTER HEIGHT */
     /* border: 2px solid red; */
     /* align-items: stretch; */
 }
@@ -152,9 +152,34 @@ footer a {
     margin-inline: 15px;
 }
 
+#drawer-chevron-container {
+    display: none;
+}
+
+/* TABLET */
 @media (max-width: 1024px) {
     nav {
         width: 45%;
+    }
+
+    header {
+        height: 65px;
+    }
+
+    main {
+        height: calc(var(--unit-100vh) - 130px); /* MINUS HEADER + FOOTER HEIGHT */
+    }
+
+    footer {
+        height: 65px;
+    }
+    
+    #container-header {
+        width: 90%;
+    }
+    
+    #container-content {
+        width: 90%;
     }
 }
 
@@ -174,24 +199,20 @@ footer a {
         width: 55%;
     } */
 
-    #container-header {
-        width: 90%;
-    }
-
     header {
-        height: 60px;
+        height: 50px;
     }
 
     nav ul {
-        font-size: 0.8em;
+        font-size: 1em;
     }
 
     #nav-logo {
-        font-size: 2em;
+        font-size: 1.6em;
     }
 
     footer {
-        height: 60px;
+        height: 50px;
         box-shadow: 0px -4px 12px 1px rgba(0, 0, 0, 0.25);
         z-index: 1;
     }
@@ -201,7 +222,7 @@ footer a {
     }
 
     main {
-        height: calc(var(--unit-100vh) - 120px);
+        height: calc(var(--unit-100vh) - 100px); /* MINUS HEADER + FOOTER HEIGHT */
     }
 
     /* REPOSITION SEARCH CONTAINER TO MAKE DRAWER */
@@ -240,10 +261,17 @@ footer a {
 
     #drawer-chevron-container {
         margin: auto;
+        display: block;
     }
 
     #drawer-chevron {
         height: 30px;
     } 
 
+}
+
+@media (max-width: 395px) {
+    nav ul {
+        font-size: 0.8em;
+    }
 }
