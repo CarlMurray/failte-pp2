@@ -12,7 +12,8 @@
     --colour-primary-teal-gradient: #008080, #003838;
     --font-family-header: 'Lilita One', cursive;
     --colour-white: #fff;
-    --container-width: min(80%, 1700px); /* width will be 80% or 1440px max */
+    --container-width: min(80%, 1700px);
+    /* width will be 80% or 1440px max */
 }
 
 #container {
@@ -140,4 +141,71 @@ footer {
 
 footer a {
     margin-inline: 15px;
+}
+
+@media (max-width: 1024px) {
+    nav {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* nav {
+        width: 55%;
+    } */
+    nav ul {
+        font-size: 1.2em;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 550px) {
+    /* nav {
+        width: 55%;
+    } */
+
+    header {
+        height: 60px;
+    }
+
+    nav ul {
+        font-size: 0.8em;
+    }
+
+    #nav-logo {
+        font-size: 2em;
+    }
+
+    footer {
+        height: 60px;
+    }
+
+    main {
+        height: calc(100vh - 120px);
+    }
+
+    #search-container {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        background-color: var(--colour-white);
+        width: 100%;
+        height: 15%;
+    }
+
+    #container-content {
+        width: 100%;
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    .gmnoprint,
+    .gm-control-active,
+    .gm-fullscreen-control {
+        display: none;
+    }
 }
