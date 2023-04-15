@@ -106,3 +106,11 @@ footer {
     height: 30px;
     width: 400px;
 }
+
+.footer-icon {
+    height: 35px;
+}
+
+footer a {
+    margin-inline: 15px;
+}
