@@ -102,9 +102,14 @@ footer {
     border: 1px solid black;
 }
 
+#search-container {
+    height: 90%;
+    border: 1px solid red;
+}
+
 #search {
     height: 30px;
-    width: 400px;
+    width: 250px;
 }
 
 .footer-icon {
