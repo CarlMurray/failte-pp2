@@ -12,7 +12,7 @@
     --colour-primary-teal-gradient: #008080, #003838;
     --font-family-header: 'Lilita One', cursive;
     --colour-white: #fff;
-    --container-width: min(80%, 1440px); /* width will be 80% or 1440px max */
+    --container-width: min(80%, 1700px); /* width will be 80% or 1440px max */
 }
 
 #container {
@@ -121,12 +121,13 @@ footer {
 }
 
 #search {
-    height: 30px;
+    height: 45px;
     width: 250px;
     border-radius: 100px;
     border: 1px solid var(--colour-primary-teal);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.18);
     padding-inline: 15px;
+    font-size: 16px;
 }
 
 #search:focus-visible {
