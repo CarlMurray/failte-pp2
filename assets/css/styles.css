@@ -1,3 +1,10 @@
+#container {
+    width: min(80%, 1440px); /* width will be 80% or 1440px max */
+    margin: auto;
+    height: 100vh;
+    position: relative;
+}
+
 #map {
     height: 600px;
     width: 100%;
