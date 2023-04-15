@@ -15,6 +15,7 @@ async function initMap() {
 
   // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
+    mapId: "47f8f1437cc57452",
     zoom: 7,
     center: position,
   });
@@ -68,7 +69,55 @@ const positionMarker = async (searchQuery) => {
     else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
     else if (Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
 
-    if (Tags.toLowerCase().includes(searchQuery) || Name.toLowerCase().includes(searchQuery) || markerAddress.toLowerCase().includes(searchQuery)) {
+
+    if (searchQuery === undefined || searchQuery === null) {
+      const markerPos = { lat, lng }
+      // console.log(Tags)
+
+      // add current iteration of markerPos to array
+      // markerArray.push(markerPos)
+      //call function to plot markers on map
+      const { Marker } = await google.maps.importLibrary("marker");
+      const marker = new Marker({
+        // map: map,
+        position: { lat: lat, lng: lng },
+        title: Name,
+        icon: markerIcon
+      }
+      )
+      const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
+      // add infowindow to markers
+      const infowindow = new google.maps.InfoWindow({
+        content: `<h4>${Name}</h4>
+        ${markerAddress}
+        <div>
+          <a href = ${Url} target="_blank">Website</a>
+          <a href = tel:+${Telephone}>Call</a>
+          <a href = ${directionsURL} target="_blank">Directions</a>
+        </div>`,
+        ariaLabel: `${Name}`,
+      });
+
+      marker.addListener("click", () => {
+        // close active info window if new info window opened
+        if (activeInfoWindow){
+          activeInfoWindow.close()
+        };
+
+        activeInfoWindow = infowindow;
+
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+      });
+
+      markers.push(marker)
+
+    }
+
+
+    else if (Tags.toLowerCase().includes(searchQuery) || Name.toLowerCase().includes(searchQuery) || markerAddress.toLowerCase().includes(searchQuery)) {
       // create marker position object for array
       const markerPos = { lat, lng }
       // console.log(Tags)
