@@ -181,10 +181,15 @@ footer a {
         height: 60px;
     }
 
+    .footer-icon {
+        height: 25px;
+    }
+
     main {
         height: calc(100vh - 120px);
     }
 
+    /* REPOSITION SEARCH CONTAINER TO MAKE DRAWER */
     #search-container {
         position: absolute;
         bottom: 0;
@@ -198,11 +203,13 @@ footer a {
         width: 100%;
     }
 
+    /* EXTEND MAP SIZE FOR SMALL SCREENS */
     #map {
         width: 100%;
         height: 100%;
     }
 
+    /* REMOVE MAP CONTROLS FOR SMALL SCREENS */
     .gmnoprint,
     .gm-control-active,
     .gm-fullscreen-control {
