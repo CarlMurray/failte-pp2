@@ -30,6 +30,82 @@ async function fetchData() {
   console.log(data);
   return data;
 }
+
+// function to intialise and plot ALL markers on page load
+const initMarkers = async () => {
+  await fetchData();
+  for (let i = 0; i < data.length; i++) {
+    //destructure each array obj to define lat lng arguments
+    const { Latitude: lat,
+      Longitude: lng,
+      Name,
+      AddressLocality,
+      AddressRegion,
+      Tags,
+      Url,
+      Telephone
+    } = data[i];
+    // console.log(lat, lng);
+    const markerAddress = `${AddressLocality}, ${AddressRegion}`
+
+    let markerIcon;
+    // define custom icons 
+    // TODO set correct tag criteria for icon types
+    if (Tags.includes('Castle')) markerIcon = 'assets/img/icons/icon-castle.png'
+    else if (Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/icon-museum.png'
+    else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-hiking.png'
+    else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/icon-restaurant.png'
+    else if (Tags.includes('Church')) markerIcon = 'assets/img/icons/icon-landmark.png'
+    else if (Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/icon-landmark.png'
+    else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
+    else if (Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
+
+
+      const markerPos = { lat, lng }
+      // console.log(Tags)
+
+      // add current iteration of markerPos to array
+      // markerArray.push(markerPos)
+      //call function to plot markers on map
+      const { Marker } = await google.maps.importLibrary("marker");
+      const marker = new Marker({
+        map: map,
+        position: { lat: lat, lng: lng },
+        title: Name,
+        icon: markerIcon
+      }
+      )
+      const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
+      // add infowindow to markers
+      const infowindow = new google.maps.InfoWindow({
+        content: `<h4>${Name}</h4>
+        ${markerAddress}
+        <div>
+          <a href = ${Url} target="_blank">Website</a>
+          <a href = tel:+${Telephone}>Call</a>
+          <a href = ${directionsURL} target="_blank">Directions</a>
+        </div>`,
+        ariaLabel: `${Name}`,
+      });
+
+      marker.addListener("click", () => {
+        // close active info window if new info window opened
+        if (activeInfoWindow){
+          activeInfoWindow.close()
+        };
+
+        activeInfoWindow = infowindow;
+
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+      });
+
+      markers.push(marker)
+
+}}
+
 const markers = [];
 
 // Function loops through all data points and get lat lng arguments for createMarker function
@@ -188,6 +264,7 @@ const performSearch = (callback) => {
 // main function to run app
 const main = async () => {
   initMap();
+  initMarkers();
   await fetchData();
   performSearch((searchQuery) => positionMarker(searchQuery));
 }
