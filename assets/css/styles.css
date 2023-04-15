@@ -68,9 +68,17 @@ main {
     color: var(--colour-white);
 }
 
+nav {
+    width: 30%;
+}
+
 nav ul {
     display: flex;
+    justify-content: space-between;
     list-style: none;
+    font: 1.5em var(--font-family-header);
+    color: var(--colour-white);
+    /* width: 500px; */
 }
 
 nav a {
