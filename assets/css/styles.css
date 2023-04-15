@@ -1,8 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased; /* remove webkit styles */
+    border: 1px solid black;
+}
+
 #container {
     width: min(80%, 1440px); /* width will be 80% or 1440px max */
     margin: auto;
     height: 100vh;
     position: relative;
+}
+
+header {
+    height: 100px;
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+footer {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
 }
 
 #map {
