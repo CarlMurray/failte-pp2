@@ -49,7 +49,9 @@ const positionMarker = async (searchQuery) => {
       Name,
       AddressLocality,
       AddressRegion,
-      Tags
+      Tags,
+      Url,
+      Telephone
     } = data[i];
     // console.log(lat, lng);
     const markerAddress = `${AddressLocality}, ${AddressRegion}`
@@ -82,10 +84,16 @@ const positionMarker = async (searchQuery) => {
         icon: markerIcon
       }
       )
-
+      const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
       // add infowindow to markers
       const infowindow = new google.maps.InfoWindow({
-        content: "test",
+        content: `<h4>${Name}</h4>
+        ${markerAddress}
+        <div>
+          <a href = ${Url} target="_blank">Website</a>
+          <a href = tel:+${Telephone}>Call</a>
+          <a href = ${directionsURL} target="_blank">Directions</a>
+        </div>`,
         ariaLabel: `${Name}`,
       });
 
