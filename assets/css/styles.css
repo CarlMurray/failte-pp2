@@ -2,12 +2,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased; /* remove webkit styles */
-    border: 1px solid black;
+    -webkit-font-smoothing: antialiased;
+    /* remove webkit styles */
+    /* border: 1px solid black; */
+}
+
+:root {
+    --colour-primary-teal: #008080;
+    --colour-primary-teal-gradient: #008080, #003838;
+    --font-family-header: 'Lilita One', cursive;
+    --colour-white: #fff;
+    --container-width: min(80%, 1440px); /* width will be 80% or 1440px max */
 }
 
 #container {
-    width: min(80%, 1440px); /* width will be 80% or 1440px max */
+    /* width: var(--container-width); width will be 80% or 1440px max */
     margin: auto;
     height: 100vh;
     position: relative;
@@ -15,10 +24,48 @@
 
 header {
     height: 100px;
-    background-color: grey;
+    background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
+}
+
+#content-wrapper {
+    /* padding-bottom: 100px; */
+    display: flex;
+    flex-direction: column;
+}
+
+#container-header {
+    width: var(--container-width);
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 200px);
+    /* border: 2px solid red; */
+    /* align-items: stretch; */
+}
+
+#container-content {
+    width: var(--container-width);
+    margin: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#nav-logo {
+    font: 3em var(--font-family-header)
+}
+
+#nav-logo a {
+    text-decoration: none;
+    color: var(--colour-white);
 }
 
 nav ul {
@@ -38,12 +85,13 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: grey;
+    background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
 }
 
 #map {
-    height: 600px;
+    height: 90%;
     width: 100%;
+    border: 1px solid black;
 }
 
 #search {
