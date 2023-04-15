@@ -19,7 +19,7 @@
 #container {
     /* width: var(--container-width); width will be 80% or 1440px max */
     margin: auto;
-    height: 100vh;
+    height: 100dvh;
     position: relative;
 }
 
@@ -47,7 +47,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 200px);
+    height: calc(100dvh - 200px);
     /* border: 2px solid red; */
     /* align-items: stretch; */
 }
@@ -192,7 +192,7 @@ footer a {
     }
 
     main {
-        height: calc(100vh - 120px);
+        height: calc(100dvh - 120px);
     }
 
     /* REPOSITION SEARCH CONTAINER TO MAKE DRAWER */
