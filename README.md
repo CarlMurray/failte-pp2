@@ -9,3 +9,20 @@
 ![Before and after screenshots of adding dvh units](assets/readme/img/bug-dvh.png "vh to dvh big fix")
 - After implementing the search functionality, I tested it on an iPhone XS Max and it would not return any search results. I found that the iPhone keyboard was automatically setting the first character to uppercase, and I had not made the search query function case-insensitive. This was fixed by simply adding `.toLowerCase()` to the `searchQuery` argument in my app.
 ![Code snippet showing bug fix](assets/readme/img/bug-search.png "Fixing search bug with .toLowerCase()")
+
+# Credits
+
+### Assets
+- Attraction data: [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv)
+- Map: [Google Maps API](https://developers.google.com/maps)
+- Map Marker Icons: [Geoapify](https://www.geoapify.com/free-map-icons)
+- Favicon: 
+- Misc. Icons: [Font Awesome](https://fontawesome.com/)
+- Code Snippet README Images: [Carbon](https://carbon.now.sh/)
+- Flow Diagram: [SmartDraw](https://cloud.smartdraw.com/)
+
+### Educational Resources
+- [MDN Documentation](https://developer.mozilla.org/en-US/)
+- [Working with Data and APIs in JavaScript, The Coding Train](https://www.youtube.com/watch?v=DbcLg8nRWEg&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X)
+- [Google Maps API JavaScript Tutorial, Traversy Media](https://www.youtube.com/watch?v=Zxf1mnP5zcw&ab_channel=TraversyMedia)
+- [The Web Developer Bootcamp 2023, Colt Steele](https://www.udemy.com/course/the-web-developer-bootcamp/)
