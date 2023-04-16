@@ -163,7 +163,7 @@ footer a {
 
 #search-container-results {
     height: inherit;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
 .attractionListInfoDiv {
