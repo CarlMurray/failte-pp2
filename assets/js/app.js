@@ -61,50 +61,61 @@ const initMarkers = async () => {
     else if (Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
 
 
-      const markerPos = { lat, lng }
-      // console.log(Tags)
+    const markerPos = { lat, lng }
+    // console.log(Tags)
 
-      // add current iteration of markerPos to array
-      // markerArray.push(markerPos)
-      //call function to plot markers on map
-      const { Marker } = await google.maps.importLibrary("marker");
-      const marker = new Marker({
-        map: map,
-        position: { lat: lat, lng: lng },
-        title: Name,
-        icon: markerIcon
-      }
-      )
-      const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
-      // add infowindow to markers
-      const infowindow = new google.maps.InfoWindow({
-        content: `<h4>${Name}</h4>
+    // add current iteration of markerPos to array
+    // markerArray.push(markerPos)
+    //call function to plot markers on map
+    const { Marker } = await google.maps.importLibrary("marker");
+    const marker = new Marker({
+      map: map,
+      position: { lat: lat, lng: lng },
+      title: Name,
+      icon: markerIcon
+    }
+    )
+    const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
+    // add infowindow to markers
+    const infowindow = new google.maps.InfoWindow({
+      content: `<h4>${Name}</h4>
         ${markerAddress}
         <div>
           <a href = ${Url} target="_blank">Website</a>
           <a href = tel:+${Telephone}>Call</a>
           <a href = ${directionsURL} target="_blank">Directions</a>
         </div>`,
-        ariaLabel: `${Name}`,
+      ariaLabel: `${Name}`,
+    });
+
+    marker.addListener("click", () => {
+      // close active info window if new info window opened
+      if (activeInfoWindow) {
+        activeInfoWindow.close()
+      };
+
+      activeInfoWindow = infowindow;
+
+      infowindow.open({
+        anchor: marker,
+        map,
       });
+    });
+    attractionListInfo = document.createElement('div');
+    attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
+    attractionListInfo.innerHTML = `<h4>${Name}</h4>
+    ${markerAddress}
+    <div>
+      <a href = ${Url} target="_blank">Website</a>
+      <a href = tel:+${Telephone}>Call</a>
+      <a href = ${directionsURL} target="_blank">Directions</a>
+    </div>`;
+    searchContainer.append(attractionListInfo)
 
-      marker.addListener("click", () => {
-        // close active info window if new info window opened
-        if (activeInfoWindow){
-          activeInfoWindow.close()
-        };
+    markers.push(marker)
 
-        activeInfoWindow = infowindow;
-
-        infowindow.open({
-          anchor: marker,
-          map,
-        });
-      });
-
-      markers.push(marker)
-
-}}
+  }
+}
 
 const markers = [];
 const searchContainer = document.querySelector('#search-container-results');
@@ -122,10 +133,10 @@ const positionMarker = async (searchQuery) => {
   markers.length = 0;
 
   let clearAttractionsList = document.querySelectorAll('.attractionListInfoDiv')
-  if (clearAttractionsList){
-    for(attractions of clearAttractionsList){
-  attractions.remove();
-  }
+  if (clearAttractionsList) {
+    for (attractions of clearAttractionsList) {
+      attractions.remove();
+    }
   }
 
   for (let i = 0; i < data.length; i++) {
@@ -185,7 +196,7 @@ const positionMarker = async (searchQuery) => {
 
       marker.addListener("click", () => {
         // close active info window if new info window opened
-        if (activeInfoWindow){
+        if (activeInfoWindow) {
           activeInfoWindow.close()
         };
 
@@ -233,7 +244,7 @@ const positionMarker = async (searchQuery) => {
 
       marker.addListener("click", () => {
         // close active info window if new info window opened
-        if (activeInfoWindow){
+        if (activeInfoWindow) {
           activeInfoWindow.close()
         };
 
@@ -273,7 +284,7 @@ const searchBar = document.querySelector('#search');
 
 const performSearch = (callback) => {
   searchBar.addEventListener('input', function () {
-    searchQuery = searchBar.value.toLowerCase(); 
+    searchQuery = searchBar.value.toLowerCase();
     console.log(searchQuery);
     callback(searchQuery);
   })
