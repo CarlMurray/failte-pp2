@@ -107,7 +107,7 @@ const initMarkers = async () => {
 }}
 
 const markers = [];
-const searchContainer = document.querySelector('#search-container');
+const searchContainer = document.querySelector('#search-container-results');
 let attractionListInfo;
 
 // Function loops through all data points and get lat lng arguments for createMarker function
@@ -286,6 +286,22 @@ const main = async () => {
   await fetchData();
   performSearch((searchQuery) => positionMarker(searchQuery));
 }
+
+// FUNCTION TO RUN WHEN CHEVRON CLICKED
+const openDrawer = () => {
+  const searchBar = document.querySelector('#search');
+  const searchContainer = document.querySelector('#search-container');
+  const searchContainerHeadChevron = document.querySelector('#drawer-chevron');
+  const searchContainerResults = document.querySelector('#search-container-results');
+  searchBar.classList.toggle('search-open')
+  searchContainer.classList.toggle('search-container-open')
+  searchContainerHeadChevron.classList.toggle('drawer-chevron-open')
+  searchContainerResults.classList.toggle('search-container-results-open')
+
+}
+// LISTEN FOR CLICK ON CHEVRON, THEN RUN ABOVE FUNCTION TO OPEN DRAWER
+const searchContainerOpener = document.querySelector('#drawer-chevron-container');
+searchContainerOpener.addEventListener('click', openDrawer);
 
 main();
 
