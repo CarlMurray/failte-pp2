@@ -78,14 +78,14 @@ const initMarkers = async () => {
     const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
     // add infowindow to markers
     const infowindow = new google.maps.InfoWindow({
-      content: `<h4>${Name}</h4>
-        ${markerAddress}
-        <div>
-          <a href = ${Url} target="_blank">Website</a>
-          <a href = tel:+${Telephone}>Call</a>
-          <a href = ${directionsURL} target="_blank">Directions</a>
-        </div>`,
-      ariaLabel: `${Name}`,
+      content: `<div class = "info-window-content-container"><h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+      </div></div>`,
+    ariaLabel: `${Name}`,
     });
 
     marker.addListener("click", () => {
@@ -105,10 +105,10 @@ const initMarkers = async () => {
     attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
     attractionListInfo.innerHTML = `<h4>${Name}</h4>
     ${markerAddress}
-    <div>
-      <a href = ${Url} target="_blank">Website</a>
-      <a href = tel:+${Telephone}>Call</a>
-      <a href = ${directionsURL} target="_blank">Directions</a>
+    <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
     </div>`;
     searchContainer.append(attractionListInfo)
 
@@ -184,13 +184,13 @@ const positionMarker = async (searchQuery) => {
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
       // add infowindow to markers
       const infowindow = new google.maps.InfoWindow({
-        content: `<h4>${Name}</h4>
+        content: `<div class = "info-window-content-container"><h4>${Name}</h4>
         ${markerAddress}
-        <div>
-          <a href = ${Url} target="_blank">Website</a>
-          <a href = tel:+${Telephone}>Call</a>
-          <a href = ${directionsURL} target="_blank">Directions</a>
-        </div>`,
+        <div class = "attraction-info-button-container">
+          <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+          <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+          <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div></div>`,
         ariaLabel: `${Name}`,
       });
 
@@ -232,13 +232,13 @@ const positionMarker = async (searchQuery) => {
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
       // add infowindow to markers
       const infowindow = new google.maps.InfoWindow({
-        content: `<h4>${Name}</h4>
+        content: `<div class = "info-window-content-container"><h4>${Name}</h4>
         ${markerAddress}
-        <div>
-          <a href = ${Url} target="_blank">Website</a>
-          <a href = tel:+${Telephone}>Call</a>
-          <a href = ${directionsURL} target="_blank">Directions</a>
-        </div>`,
+        <div class = "attraction-info-button-container">
+          <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+          <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+          <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div></div>`,
         ariaLabel: `${Name}`,
       });
 
@@ -259,12 +259,12 @@ const positionMarker = async (searchQuery) => {
       attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
       attractionListInfo.innerHTML = `<h4>${Name}</h4>
       ${markerAddress}
-      <div>
-        <a href = ${Url} target="_blank">Website</a>
-        <a href = tel:+${Telephone}>Call</a>
-        <a href = ${directionsURL} target="_blank">Directions</a>
-      </div>`;
-      searchContainer.append(attractionListInfo)
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+    </div>`,
+  searchContainer.append(attractionListInfo)
       markers.push(marker)
 
       // console.log(markers)
