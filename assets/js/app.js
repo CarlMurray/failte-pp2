@@ -51,14 +51,19 @@ const initMarkers = async () => {
     let markerIcon;
     // define custom icons 
     // TODO set correct tag criteria for icon types
-    if (Tags.includes('Castle')) markerIcon = 'assets/img/icons/icon-castle.png'
-    else if (Tags.includes('Museum') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/icons/icon-museum.png'
-    else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-hiking.png'
-    else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/icons/icon-restaurant.png'
-    else if (Tags.includes('Church')) markerIcon = 'assets/img/icons/icon-landmark.png'
-    else if (Tags.includes('Public Sculpture')) markerIcon = 'assets/img/icons/icon-landmark.png'
-    else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/icons/icon-shopping.png'
-    else if (Tags.includes('Embarkation Point') || Tags.includes('River')) markerIcon = 'assets/img/icons/icon-kayak.png'
+    if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
+    else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
+    else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
+    else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/map-icons/icon-restaurant.png'
+    else if (Tags.includes('Church')) markerIcon = 'assets/img/map-icons/icon-church.png'
+    else if (Tags.includes('Public Sculpture') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/map-icons/icon-art.png'
+    else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/map-icons/icon-shopping.png'
+    else if (Tags.includes('Beach') || Tags.includes('River')) markerIcon = 'assets/img/map-icons/icon-water.png'
+    else if (Tags.includes('Gaa') || Tags.includes('Sports') || Tags.includes('Stadium')) markerIcon = 'assets/img/map-icons/icon-sport.png'
+    else if (Tags.includes('Embarkation Point') || Tags.includes('Island')) markerIcon = 'assets/img/map-icons/icon-boat.png'
+    else if (Tags.includes('Literary') || Tags.includes('Library') || Tags.includes('Learning')) markerIcon = 'assets/img/map-icons/icon-book.png'
+    else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
+    else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
 
 
     const markerPos = { lat, lng }
@@ -85,7 +90,7 @@ const initMarkers = async () => {
         <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div></div>`,
-    ariaLabel: `${Name}`,
+      ariaLabel: `${Name}`,
     });
 
     marker.addListener("click", () => {
@@ -264,7 +269,7 @@ const positionMarker = async (searchQuery) => {
       <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
     </div>`,
-  searchContainer.append(attractionListInfo)
+        searchContainer.append(attractionListInfo)
       markers.push(marker)
 
       // console.log(markers)
