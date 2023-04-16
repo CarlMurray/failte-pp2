@@ -273,7 +273,7 @@ const searchBar = document.querySelector('#search');
 
 const performSearch = (callback) => {
   searchBar.addEventListener('input', function () {
-    searchQuery = searchBar.value;
+    searchQuery = searchBar.value.toLowerCase(); 
     console.log(searchQuery);
     callback(searchQuery);
   })
