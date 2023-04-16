@@ -181,7 +181,7 @@ footer a {
 }
 
 .attractionListInfoDiv {
-    font: 12px var(--font-family-Body);
+    font: 14px var(--font-family-Body);
     padding: 15px 5px;
     border-bottom: 1px solid #cecece;
 }
@@ -219,6 +219,7 @@ a.attraction-info-button {
     align-items: center;
     /* flex-direction: ; */
 }
+
 
 /* TABLET */
 @media (max-width: 1024px) {
@@ -381,4 +382,9 @@ a.attraction-info-button {
         font-size: 0.9em;
         gap: 25px;
     }
+}
+
+div a.attraction-info-button.grey {
+    color: #cecece;
+    /* background-color: #cecece; */
 }

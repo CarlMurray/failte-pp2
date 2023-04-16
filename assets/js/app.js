@@ -5,6 +5,7 @@ const CSV_PATH = 'assets/data/attractions.json'
 let map;
 let data;
 let activeInfoWindow = false;
+let linkIcon;
 
 async function initMap() {
   // The location of Ireland
@@ -46,7 +47,9 @@ const initMarkers = async () => {
       Telephone
     } = data[i];
     // console.log(lat, lng);
-    const markerAddress = `${AddressLocality}, ${AddressRegion}`
+    if (AddressLocality.length === 0) {
+      markerAddress = `${AddressRegion}`
+    } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
 
     let markerIcon;
     // define custom icons 
@@ -64,7 +67,6 @@ const initMarkers = async () => {
     else if (Tags.includes('Literary') || Tags.includes('Library') || Tags.includes('Learning')) markerIcon = 'assets/img/map-icons/icon-book.png'
     else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
     else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
-
 
     const markerPos = { lat, lng }
     // console.log(Tags)
@@ -119,6 +121,18 @@ const initMarkers = async () => {
 
     markers.push(marker)
 
+    // CHECK IF URL IS VALID, IF NOT MAKE ICONS UNUSABLE
+    if (Url.length === 0) {
+      linkIcon = document.querySelectorAll('.fa-link');
+      linkIcon[i].classList.add('grey')
+      linkIcon[i].removeAttribute('href', 'target');
+    }
+    // CHECK IF TELEPHONE IS VALID, IF NOT MAKE ICONS UNUSABLE
+    if (Telephone.length === 0) {
+      linkIcon = document.querySelectorAll('.fa-phone');
+      linkIcon[i].classList.add('grey')
+      linkIcon[i].removeAttribute('href');
+    }
   }
 }
 
@@ -156,7 +170,12 @@ const positionMarker = async (searchQuery) => {
       Telephone
     } = data[i];
     // console.log(lat, lng);
-    const markerAddress = `${AddressLocality}, ${AddressRegion}`
+    
+    if (AddressLocality.length === 0) {
+      markerAddress = `${AddressRegion}`
+    } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
+
+
 
     let markerIcon;
     // define custom icons 
@@ -375,3 +394,4 @@ main();
 // add search
 // add filters
 // add marker clusters
+
