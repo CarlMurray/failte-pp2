@@ -84,7 +84,7 @@ main {
 }
 
 nav {
-    width: 30%;
+    /* width: 30%; */
 }
 
 nav ul {
@@ -93,6 +93,7 @@ nav ul {
     list-style: none;
     font: 1.5em var(--font-family-header);
     color: var(--colour-white);
+    gap: 35px;
     /* width: 500px; */
 }
 
@@ -222,7 +223,7 @@ a.attraction-info-button {
 /* TABLET */
 @media (max-width: 1024px) {
     nav {
-        width: 45%;
+        /* width: 45%; */
     }
 
     header {
@@ -244,6 +245,10 @@ a.attraction-info-button {
 
     #container-content {
         width: 90%;
+    }
+
+    #nav-logo {
+        font-size: 2.3em;
     }
 }
 
@@ -373,6 +378,7 @@ a.attraction-info-button {
 
 @media (max-width: 395px) {
     nav ul {
-        font-size: 0.8em;
+        font-size: 0.9em;
+        gap: 25px;
     }
 }
