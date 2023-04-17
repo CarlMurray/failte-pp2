@@ -9,6 +9,22 @@
     /* border: 1px solid black; */
 }
 
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: #b8b8b8;
+    height: 35px;
+    border-radius: 100px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #747474;
+  }
+
 :root {
     --colour-primary-teal: #008080;
     --colour-primary-teal-gradient: #008080, #003838;
@@ -175,7 +191,8 @@ footer a {
 
 #search-container-results {
     /* height: inherit; */
-    overflow-x: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     align-items: stretch;
     border-bottom: 1px solid #cecece;
 }
