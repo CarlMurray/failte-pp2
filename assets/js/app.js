@@ -1,4 +1,4 @@
-const API_URL = 'https://failteireland.azure-api.net/opendata-api/v1/attractions';
+// const API_URL = 'https://failteireland.azure-api.net/opendata-api/v1/attractions';
 const CSV_PATH = 'assets/data/attractions.json'
 
 // Initialize and add the map, code copied from Maps API documentation
@@ -15,7 +15,6 @@ const checkIfVisited = () => {
     window.localStorage.setItem('visited', 'true')
     showFirstTimeVisitModal();
   }
-
 }
 
 // FUNCTION TO SHOW FIRST TIME VISIT MODAL
@@ -37,35 +36,33 @@ const showFirstTimeVisitModal = () => {
 }
 
 async function initMap() {
-  // The location of Ireland
+  // SET INIT POSITION AT IRELAND
   const position = { lat: 53.4152431, lng: -7.9559668 };
-  // Request needed libraries.
-  //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
-
-  // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
-    mapId: "47f8f1437cc57452",
+    mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
     zoom: 7,
     center: position,
   });
 
 }
 
-// function to fetch attraction data from Failte Ireland *** CSV ***
+// FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
   const getData = await fetch(CSV_PATH);
   data = await getData.json();
-  // data = responseData.results;
   console.log(data);
   return data;
 }
 
-// function to intialise and plot ALL markers on page load
+// PLOT ALL MARKERS ON MAP INITIALLY
 const initMarkers = async () => {
   await fetchData();
+
+  // ITERATE THROUGH ALL DATA POINTS, DEFINE VARIABLES, 
+  // DEFINE MARKER ICONS, DEFINE CONTENT
   for (let i = 0; i < data.length; i++) {
-    //destructure each array obj to define lat lng arguments
+    // DETRUCTURE OBJ TO DEFINE VARIABLES
     const { Latitude: lat,
       Longitude: lng,
       Name,
@@ -75,14 +72,14 @@ const initMarkers = async () => {
       Url,
       Telephone
     } = data[i];
-    // console.log(lat, lng);
+
+    // IF ADDRESS LOCAILTY DATA NON-EXISTANT, EXCLUDE 
     if (AddressLocality.length === 0) {
       markerAddress = `${AddressRegion}`
     } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
 
     let markerIcon;
-    // define custom icons 
-    // TODO set correct tag criteria for icon types
+    // CHECK ATTRACTION TAGS AND SET MARKER ICON
     if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
     else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
     else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
@@ -97,12 +94,7 @@ const initMarkers = async () => {
     else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
     else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
 
-    const markerPos = { lat, lng }
-    // console.log(Tags)
-
-    // add current iteration of markerPos to array
-    // markerArray.push(markerPos)
-    //call function to plot markers on map
+    //CREATE MAP MARKER
     const { Marker } = await google.maps.importLibrary("marker");
     const marker = new Marker({
       map: map,
@@ -111,21 +103,16 @@ const initMarkers = async () => {
       icon: markerIcon
     }
     )
+
+    // URL STRUCTURE TO GET DIRECTIONS ON GMAPS
     const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
-    // add infowindow to markers
+    // ADD INFOWINDOW TO MARKERS
     const infowindow = new google.maps.InfoWindow({
-      content: `<div class = "info-window-content-container"><h4>${Name}</h4>
-      ${markerAddress}
-      <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-      </div></div>`,
       ariaLabel: `${Name}`,
     });
 
+    // CLOSE ACTIVE MARKER INFOWINDOW IF NEW OPENED
     marker.addListener("click", () => {
-      // close active info window if new info window opened
       if (activeInfoWindow) {
         activeInfoWindow.close()
       };
@@ -137,19 +124,16 @@ const initMarkers = async () => {
         map,
       });
     });
+
+    // CREATE A DIV FOR ATTRACTION INFO AND APPEND TO SEARCH RESULTS CONTAINER
     attractionListInfo = document.createElement('div');
     attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
-    attractionListInfo.innerHTML = `<h4>${Name}</h4>
-    ${markerAddress}
-    <div class = "attraction-info-button-container">
-      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-    </div>`;
     searchContainer.append(attractionListInfo)
 
+    // ADD MARKER TO MARKERS ARRAY
     markers.push(marker)
 
+    // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
     if (Url.length < 5) {
       attractionListInfo.innerHTML = `<h4>${Name}</h4>
       ${markerAddress}
@@ -159,6 +143,8 @@ const initMarkers = async () => {
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
+
+    // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
     else if (Telephone.length < 5) {
       attractionListInfo.innerHTML = `<h4>${Name}</h4>
       ${markerAddress}
@@ -168,6 +154,8 @@ const initMarkers = async () => {
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
+
+    // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
     else if (Url.length < 5 && Telephone.length < 5) {
       attractionListInfo.innerHTML = `<h4>${Name}</h4>
       ${markerAddress}
@@ -177,6 +165,8 @@ const initMarkers = async () => {
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
+
+    // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
     else {
       attractionListInfo.innerHTML = `<h4>${Name}</h4>
       ${markerAddress}
@@ -186,25 +176,24 @@ const initMarkers = async () => {
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
+
+    // SET THE CONTENT OF MARKER INFOWINDOWS 
     infowindow.setContent(attractionListInfo.innerHTML)
-}
+  }
 }
 
 const markers = [];
 const searchContainer = document.querySelector('#search-container-results');
 let attractionListInfo;
 
-// Function loops through all data points and get lat lng arguments for createMarker function
 const positionMarker = async (searchQuery) => {
-  // await fetchData(); // ********* FOR TESTING PURPOSES **********
-  // initMap()
-  // define markerArray to use for marker clusterer
-  // const markerArray = [];
+  //CLEAR ALL EXISTING MARKERS
   for (marker of markers) {
     marker.setMap(null);
   }
   markers.length = 0;
 
+  //CLEAR ALL EXISTING SEARCH RESULTS
   let clearAttractionsList = document.querySelectorAll('.attractionListInfoDiv')
   if (clearAttractionsList) {
     for (attractions of clearAttractionsList) {
@@ -212,8 +201,10 @@ const positionMarker = async (searchQuery) => {
     }
   }
 
+  // ITERATE THROUGH ALL DATA POINTS, DEFINE VARIABLES, 
+  // DEFINE MARKER ICONS, DEFINE CONTENT
   for (let i = 0; i < data.length; i++) {
-    //destructure each array obj to define lat lng arguments
+    // DETRUCTURE OBJ TO DEFINE VARIABLES
     const { Latitude: lat,
       Longitude: lng,
       Name,
@@ -223,16 +214,14 @@ const positionMarker = async (searchQuery) => {
       Url,
       Telephone
     } = data[i];
-    // console.log(lat, lng);
 
+    // IF ADDRESS LOCAILTY DATA NON-EXISTANT, EXCLUDE 
     if (AddressLocality.length === 0) {
       markerAddress = `${AddressRegion}`
     } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
 
-
-
     let markerIcon;
-    // define custom icons 
+    // CHECK ATTRACTION TAGS AND SET MARKER ICON
     if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
     else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
     else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
@@ -247,13 +236,10 @@ const positionMarker = async (searchQuery) => {
     else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
     else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
 
+    // IF SEARCH IS EMPTY
     if (searchQuery === undefined || searchQuery === null) {
-      const markerPos = { lat, lng }
-      // console.log(Tags)
 
-      // add current iteration of markerPos to array
-      // markerArray.push(markerPos)
-      //call function to plot markers on map
+      //CREATE MAP MARKER
       const { Marker } = await google.maps.importLibrary("marker");
       const marker = new Marker({
         // map: map,
@@ -262,8 +248,9 @@ const positionMarker = async (searchQuery) => {
         icon: markerIcon
       }
       )
+      // URL STRUCTURE TO GET DIRECTIONS ON GMAPS
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
-      // add infowindow to markers
+      // ADD INFOWINDOW TO MARKERS
       const infowindow = new google.maps.InfoWindow({
         content: `<div class = "info-window-content-container"><h4>${Name}</h4>
         ${markerAddress}
@@ -275,33 +262,24 @@ const positionMarker = async (searchQuery) => {
         ariaLabel: `${Name}`,
       });
 
+      // CLOSE ACTIVE MARKER INFOWINDOW IF NEW OPENED
       marker.addListener("click", () => {
-        // close active info window if new info window opened
         if (activeInfoWindow) {
           activeInfoWindow.close()
         };
-
         activeInfoWindow = infowindow;
-
         infowindow.open({
           anchor: marker,
           map,
         });
       });
-
       markers.push(marker)
-
     }
 
-
+    // IF SEARCH QUERY MATCHES ATTRACTION DATA
     else if (Tags.toLowerCase().includes(searchQuery) || Name.toLowerCase().includes(searchQuery) || markerAddress.toLowerCase().includes(searchQuery)) {
-      // create marker position object for array
-      const markerPos = { lat, lng }
-      // console.log(Tags)
 
-      // add current iteration of markerPos to array
-      // markerArray.push(markerPos)
-      //call function to plot markers on map
+      const markerPos = { lat, lng }
       const { Marker } = await google.maps.importLibrary("marker");
       const marker = new Marker({
         // map: map,
@@ -311,13 +289,11 @@ const positionMarker = async (searchQuery) => {
       }
       )
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
-      // add infowindow to markers
       const infowindow = new google.maps.InfoWindow({
         ariaLabel: `${Name}`,
       });
 
       marker.addListener("click", () => {
-        // close active info window if new info window opened
         if (activeInfoWindow) {
           activeInfoWindow.close()
         };
@@ -331,7 +307,7 @@ const positionMarker = async (searchQuery) => {
       });
       attractionListInfo = document.createElement('div');
       attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
-
+      // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
       if (Url.length < 5) {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
@@ -341,6 +317,7 @@ const positionMarker = async (searchQuery) => {
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
+      // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
       else if (Telephone.length < 5) {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
@@ -350,6 +327,7 @@ const positionMarker = async (searchQuery) => {
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
+      // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
       else if (Url.length < 5 && Telephone.length < 5) {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
@@ -359,6 +337,7 @@ const positionMarker = async (searchQuery) => {
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
+      // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
       else {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
@@ -368,19 +347,15 @@ const positionMarker = async (searchQuery) => {
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
+      // SET THE CONTENT OF MARKER INFOWINDOWS
       infowindow.setContent(attractionListInfo.innerHTML)
+      // SET THE CONTENT OF SEARCH RESULTS
       searchContainer.append(attractionListInfo)
       markers.push(marker)
-
-      // console.log(markers)
     }
-
-
   }
-  //DONT DELETE, MARKER CLUSTERING
-  // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
 
-
+  // PLOT EACH MARKER ON MAP
   for (marker of markers) {
     marker.setMap(map);
   }
@@ -391,13 +366,13 @@ const searchBar = document.querySelector('#search');
 
 const performSearch = (callback) => {
   searchBar.addEventListener('input', function () {
-    searchQuery = searchBar.value.toLowerCase();
+    searchQuery = searchBar.value.toLowerCase(); //GET SEARCH INPUT
     console.log(searchQuery);
-    callback(searchQuery);
+    callback(searchQuery); //PASS searchQuery TO CALLBACK FUNCTION
   })
 }
 
-// main function to run app
+// MAIN FUNCTION TO RUN APP
 const main = async () => {
   checkIfVisited();
   initMap();
@@ -423,56 +398,3 @@ const searchContainerOpener = document.querySelector('#drawer-chevron-container'
 searchContainerOpener.addEventListener('click', openDrawer);
 
 main();
-
-
-
-
-
-
-// const searchInput = (query) => {
-//   const searchBar = document.querySelector('#search')
-//   const newevent = searchBar.addEventListener('search', function(event){
-//     console.log(event.type);
-//     console.log(event.value);
-//   } );
-//   console.log(query);
-// }
-
-// searchInput()
-
-// const testFunction = async () => {
-//     const fetchJson = await fetch('/assets/js/csvjson.json')
-//     const responseJson = await fetchJson.json();
-//     console.log(responseJson);
-
-// }
-
-// testFunction()
-
-// function takes lat lng parameters which are defined in positionMarker function, code copied from Maps API documentation and modified
-// const createMarker = async (lat, lng) => {
-//     const { Marker } = await google.maps.importLibrary("marker");
-//     const marker = new Marker({
-//       map: map,
-//       position: { lat: lat, lng: lng },
-//     });
-//   }
-
-//   COMMENTED OUT, FETCHING CSV AS API IS PAGINATED, NEW FUNCTION BELOW
-// function to fetch attraction data from Failte Ireland API
-// async function fetchData() {
-//     const getData = await fetch(API_URL);
-//     const responseData = await getData.json();
-//     data = responseData.results;
-//     console.log(data);
-//     return data;
-// }
-
-
-//TODO
-// add site elements and styling
-// add marker popups with info 
-// add search
-// add filters
-// add marker clusters
-
