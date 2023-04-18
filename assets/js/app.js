@@ -7,6 +7,28 @@ let data;
 let activeInfoWindow = false;
 let linkIcon;
 
+// CHECKS IS USER IS FIRST TIME VISITOR
+const checkIfVisited = () => {
+
+  if (window.localStorage.getItem('visited') === null) {
+    console.log("you haven't visited before!");
+    window.localStorage.setItem('visited', 'true')
+    showFirstTimeVisitModal();
+  }
+
+}
+
+// FUNCTION TO SHOW FIRST TIME VISIT MODAL
+const showFirstTimeVisitModal = () => {
+
+  const modalWindow = document.querySelector('.first-visit-modal');
+  const modalOverlay = document.querySelector('.modal-overlay');
+  const modalContainer = document.querySelector('.modal-container');
+  modalWindow.classList.add('modal-visible');
+  modalOverlay.classList.add('modal-overlay-visible');
+  modalContainer.classList.add('modal-container-visible');
+}
+
 async function initMap() {
   // The location of Ireland
   const position = { lat: 53.4152431, lng: -7.9559668 };
@@ -180,7 +202,7 @@ const positionMarker = async (searchQuery) => {
     let markerIcon;
     // define custom icons 
     if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
-    else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
+    // else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
     else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
     else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/map-icons/icon-restaurant.png'
     else if (Tags.includes('Church')) markerIcon = 'assets/img/map-icons/icon-church.png'
@@ -319,6 +341,7 @@ const performSearch = (callback) => {
 
 // main function to run app
 const main = async () => {
+  checkIfVisited();
   initMap();
   initMarkers();
   await fetchData();
