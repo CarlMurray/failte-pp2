@@ -27,6 +27,13 @@ const showFirstTimeVisitModal = () => {
   modalWindow.classList.add('modal-visible');
   modalOverlay.classList.add('modal-overlay-visible');
   modalContainer.classList.add('modal-container-visible');
+
+  // HIDE MODAL IF USER CLICKS OUTSIDE
+  modalContainer.addEventListener('click', () => {
+    modalWindow.classList.remove('modal-visible');
+    modalOverlay.classList.remove('modal-overlay-visible');
+    modalContainer.classList.remove('modal-container-visible');
+  })
 }
 
 async function initMap() {
