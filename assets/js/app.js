@@ -150,19 +150,44 @@ const initMarkers = async () => {
 
     markers.push(marker)
 
-    // CHECK IF URL IS VALID, IF NOT MAKE ICONS UNUSABLE
-    if (Url.length === 0) {
-      linkIcon = document.querySelectorAll('.fa-link');
-      linkIcon[i].classList.add('grey')
-      linkIcon[i].removeAttribute('href', 'target');
+    if (Url.length < 5) {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link grey" href = ${Url} target="_blank"></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+      </div>`;
     }
-    // CHECK IF TELEPHONE IS VALID, IF NOT MAKE ICONS UNUSABLE
-    if (Telephone.length === 0) {
-      linkIcon = document.querySelectorAll('.fa-phone');
-      linkIcon[i].classList.add('grey')
-      linkIcon[i].removeAttribute('href');
+    else if (Telephone.length < 5) {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+      <a class = "attraction-info-button fa-solid fa-phone grey" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+      </div>`;
     }
-  }
+    else if (Url.length < 5 && Telephone.length < 5) {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link grey" href = ${Url} target="_blank"></a>
+      <a class = "attraction-info-button fa-solid fa-phone grey" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+      </div>`;
+    }
+    else {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+      </div>`;
+    }
+    infowindow.setContent(attractionListInfo.innerHTML)
+}
 }
 
 const markers = [];
@@ -199,7 +224,7 @@ const positionMarker = async (searchQuery) => {
       Telephone
     } = data[i];
     // console.log(lat, lng);
-    
+
     if (AddressLocality.length === 0) {
       markerAddress = `${AddressRegion}`
     } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
@@ -288,13 +313,6 @@ const positionMarker = async (searchQuery) => {
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
       // add infowindow to markers
       const infowindow = new google.maps.InfoWindow({
-        content: `<div class = "info-window-content-container"><h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-          <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-          <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
-          <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-        </div></div>`,
         ariaLabel: `${Name}`,
       });
 
@@ -313,18 +331,51 @@ const positionMarker = async (searchQuery) => {
       });
       attractionListInfo = document.createElement('div');
       attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-      ${markerAddress}
-      <div class = "attraction-info-button-container">
-      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
-      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-    </div>`,
-        searchContainer.append(attractionListInfo)
+
+      if (Url.length < 5) {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link grey" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      else if (Telephone.length < 5) {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      else if (Url.length < 5 && Telephone.length < 5) {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link grey" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      else {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      infowindow.setContent(attractionListInfo.innerHTML)
+      searchContainer.append(attractionListInfo)
       markers.push(marker)
 
       // console.log(markers)
     }
+
+
   }
   //DONT DELETE, MARKER CLUSTERING
   // const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
