@@ -209,7 +209,7 @@ const positionMarker = async (searchQuery) => {
     let markerIcon;
     // define custom icons 
     if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
-    // else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
+    else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
     else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
     else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/map-icons/icon-restaurant.png'
     else if (Tags.includes('Church')) markerIcon = 'assets/img/map-icons/icon-church.png'
