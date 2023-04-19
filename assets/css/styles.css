@@ -11,19 +11,19 @@
 
 ::-webkit-scrollbar {
     width: 7px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background-color: #b8b8b8;
     height: 35px;
     border-radius: 100px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background-color: #747474;
-  }
+}
 
 :root {
     --colour-primary-teal: #008080;
@@ -108,13 +108,18 @@ nav ul {
     justify-content: space-between;
     list-style: none;
     font: 1.5em var(--font-family-header);
-    color: var(--colour-white);
     gap: 35px;
     /* width: 500px; */
 }
 
 nav a {
     text-decoration: none;
+    color: var(--colour-white);
+}
+
+.active-page {
+    text-decoration: underline;
+    text-underline-offset: 12px;
 }
 
 footer {
@@ -483,10 +488,12 @@ div a.attraction-info-button.grey {
 .modal-container-visible {
     display: flex;
 }
+
 .modal-visible {
     display: flex;
     opacity: 1;
 }
+
 .modal-overlay-visible {
     display: block;
     opacity: 0.4;
@@ -504,7 +511,7 @@ h3 {
     font-size: 1em;
     color: #3b3b3b;
     text-align: center;
-    margin: 0 15px 25px ;
+    margin: 0 15px 25px;
 }
 
 .gm-style-iw-d {
