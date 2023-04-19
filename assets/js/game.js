@@ -1,4 +1,5 @@
 const CSV_PATH = 'assets/data/attractions.json'
+let data;
 
 async function initMap() {
     // SET INIT POSITION AT IRELAND
@@ -13,14 +14,16 @@ async function initMap() {
 }
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
-async function fetchData() {
+async function fetchData(callback) {
     const getData = await fetch(CSV_PATH);
     data = await getData.json();
     console.log(data);
+    callback();
     return data;
 }
 
-function initialize() {
+// CODE FROM GOOGLE MAPS API DOCUMENTATION
+function initialise() {
     const position = { lat: 53.4152431, lng: -7.9559668 };
     const map = new google.maps.Map(document.getElementById("game-map-container"), {
         center: position,
@@ -38,4 +41,13 @@ function initialize() {
       );
 }
 
-window.initialize = initialize;
+async function locationArray() {
+    console.log(data);
+    const {Latitude, Longitude} = data[1];
+    console.log(Latitude, Longitude)
+    let streetPosition = {Latitude, Longitude}
+    return streetPosition;
+}
+
+initialise();
+fetchData(locationArray);
