@@ -47,7 +47,10 @@ function initialize(streetPosition) {
 
 async function locationArray() {
     // console.log(data);
-    const {Latitude, Longitude} = data[7];
+
+    let streetLocationIndex = Math.floor(Math.random()*622);
+    console.log(streetLocationIndex)
+    const {Name, Latitude, Longitude} = data[streetLocationIndex];
     console.log(Latitude, Longitude)
     let streetPosition = {lat: Latitude, lng: Longitude}
     initialize(streetPosition);
