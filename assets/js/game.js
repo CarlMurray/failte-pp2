@@ -1,7 +1,3 @@
-// (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-//     ({key: "AIzaSyCbslAH8fUvbb6O544Xyq0iJBzK50vvX08", v: "beta"});
-
-
 const CSV_PATH = 'assets/data/attractions.json'
 const MAX_STREET_VIEW_RADIUS = 50;
 
@@ -39,30 +35,40 @@ async function initStreetView() {
     let streetPosition = { lat: Latitude, lng: Longitude }
 
     // console.log(data);
+
+    // CREATE NEW STREET MAPS SERVICE
     let streetViewService = new google.maps.StreetViewService();
 
+    // DEFINE REQUEST TO BE PASSED TO getPanorama()
     let streetViewRequest = {
         location: streetPosition,
         radius: MAX_STREET_VIEW_RADIUS
     }
+    // CREATE NEW PANO WITH CONTAINER
     let newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'));
 
+    
     let streetViewObject = streetViewService.getPanorama(streetViewRequest, (streetViewData, streetViewStatus) => {
-        console.log(streetViewStatus)
-        console.log(streetViewData)
+        console.log(streetViewStatus) // LOGS STATUS OF REQUEST
+        console.log(streetViewData) // LOGS REQUEST OBJ
+        
+        // CHECK THAT STREET VIEW IS VALID AND SET VISIBLE
+        if (streetViewStatus === "OK") {
         newStreetViewPano.setPano(streetViewData.location.pano)
         newStreetViewPano.setVisible(true)
+        }
+
+        // IF NOT, TRY AGAIN
+        else {
+            console.log(streetViewStatus)
+            initStreetView();
+        };
 })}
     
-
-// window.initialize = initialize;
-// fetchData(locationArray);
-
 async function main() {
     await fetchData();
     await initMap();
     await initStreetView();
 }
 
-// window.initMap = initMap;
 main();
