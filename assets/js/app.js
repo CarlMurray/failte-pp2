@@ -11,7 +11,7 @@ let linkIcon;
 const checkIfVisited = () => {
 
   if (window.localStorage.getItem('visited') === null) {
-    console.log("you haven't visited before!");
+    // console.log("you haven't visited before!");
     window.localStorage.setItem('visited', 'true')
     showFirstTimeVisitModal();
   }
@@ -43,6 +43,7 @@ async function initMap() {
     mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
     zoom: 7,
     center: position,
+    clickableIcons: false //DISABLES NATIVE CLICKABLE PLACE ICONS
   });
 
 }
@@ -51,7 +52,7 @@ async function initMap() {
 async function fetchData() {
   const getData = await fetch(CSV_PATH);
   data = await getData.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
 
@@ -377,7 +378,7 @@ const searchBar = document.querySelector('#search');
 const performSearch = (callback) => {
   searchBar.addEventListener('input', function () {
     searchQuery = searchBar.value.toLowerCase(); //GET SEARCH INPUT
-    console.log(searchQuery);
+    // console.log(searchQuery);
     callback(searchQuery); //PASS searchQuery TO CALLBACK FUNCTION
   })
 }
