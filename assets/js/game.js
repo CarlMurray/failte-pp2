@@ -78,3 +78,26 @@ async function main() {
 }
 
 main();
+
+// DEFINE PLAY BUTTON
+let playBtn = document.querySelector('#game-play-button')
+let gameIntroHeader = document.querySelector('#game-text-content-header')
+let gameIntroText = document.querySelector('#game-text-content-paragraph')
+let gameIntroOverlay = document.querySelector('.game-container-overlay')
+
+let isClicked = false;
+
+playBtn.addEventListener('click', () => {
+    isClicked = !isClicked;
+    if (isClicked) {
+        gameIntroHeader.innerText = 'How to play'
+        gameIntroText.innerText = 'You are dropped at a random attraction on the island of Ireland. Guess the location by clicking the map - the closer you are, the more points you get!'
+        playBtn.innerText = 'Play'
+    }
+    else {
+        gameIntroHeader.classList.add('hidden')
+        gameIntroText.classList.add('hidden')
+        playBtn.classList.add('hidden')
+        gameIntroOverlay.classList.add('hidden')
+    }
+})
