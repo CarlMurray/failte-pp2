@@ -242,170 +242,6 @@ a.attraction-info-button {
     /* flex-direction: ; */
 }
 
-
-/* TABLET */
-@media (max-width: 1024px) {
-    nav {
-        /* width: 45%; */
-    }
-
-    header {
-        height: 65px;
-    }
-
-    main {
-        height: calc(var(--unit-100vh) - 130px);
-        /* MINUS HEADER + FOOTER HEIGHT */
-    }
-
-    footer {
-        height: 65px;
-    }
-
-    #container-header {
-        width: 90%;
-    }
-
-    #container-content {
-        width: 90%;
-    }
-
-    #nav-logo {
-        font-size: 2.3em;
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* nav {
-        width: 55%;
-    } */
-    nav ul {
-        font-size: 1.2em;
-    }
-}
-
-/* MOBILE */
-@media (max-width: 550px),
-(max-height: 550px) {
-    /* nav {
-        width: 55%;
-    } */
-
-    header {
-        height: 50px;
-    }
-
-    nav ul {
-        font-size: 1em;
-    }
-
-    #nav-logo {
-        font-size: 1.6em;
-    }
-
-    footer {
-        height: 50px;
-        box-shadow: 0px -4px 12px 1px rgba(0, 0, 0, 0.25);
-        z-index: 1;
-    }
-
-    .footer-icon {
-        height: 25px;
-    }
-
-    main {
-        height: calc(var(--unit-100vh) - 100px);
-        /* MINUS HEADER + FOOTER HEIGHT */
-    }
-
-    /* REPOSITION SEARCH CONTAINER TO MAKE DRAWER */
-    #search-container {
-        position: absolute;
-        bottom: 0;
-        z-index: 1;
-        background-color: var(--colour-white);
-        min-width: 100%;
-        height: 60px;
-        border-radius: 20px 20px 0px 0px;
-        box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
-        display: flex;
-        flex-direction: column;
-        transition: height 0.5s;
-        overflow: hidden;
-    }
-
-    #search-container-head {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #search-container.search-container-open {
-        height: 100%;
-    }
-
-    #search-container-results {
-        height: 0.1px;
-        transition: height 0.3s;
-    }
-
-    #search-container-results.search-container-results-open {
-        height: 100%;
-    }
-
-    #search {
-        display: none;
-    }
-
-    #search.search-open {
-        display: block;
-        margin: 10px 0;
-    }
-
-    #container-content {
-        width: 100%;
-    }
-
-    /* EXTEND MAP SIZE FOR SMALL SCREENS */
-    #map {
-        width: 100%;
-        height: 100%;
-        border-radius: 0px;
-    }
-
-    /* REMOVE MAP CONTROLS FOR SMALL SCREENS */
-    .gmnoprint,
-    .gm-control-active,
-    .gm-fullscreen-control {
-        display: none;
-    }
-
-    #drawer-chevron-container {
-        display: block;
-        margin-inline: auto;
-    }
-
-    #drawer-chevron {
-        height: 30px;
-        transition: transform 0.3s;
-    }
-
-    #drawer-chevron.drawer-chevron-open {
-        transform: rotate(180deg);
-    }
-
-
-
-}
-
-@media (max-width: 395px) {
-    nav ul {
-        font-size: 0.9em;
-        gap: 25px;
-    }
-}
-
 div a.attraction-info-button.grey {
     color: #cecece;
     /* background-color: #cecece; */
@@ -567,8 +403,8 @@ h3 {
 }
 
 #game-play-button {
-    width: 20%;
-    height: 10%;
+    width: min(80%, 350px);
+    min-height: 2.5em;
     border-radius: 10px;
     background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
     font-family: var(--font-family-header);
@@ -590,4 +426,179 @@ h3 {
 
 .hidden {
     display: none;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    nav {
+        /* width: 45%; */
+    }
+
+    header {
+        height: 65px;
+    }
+
+    main {
+        height: calc(var(--unit-100vh) - 130px);
+        /* MINUS HEADER + FOOTER HEIGHT */
+    }
+
+    footer {
+        height: 65px;
+    }
+
+    #container-header {
+        width: 90%;
+    }
+
+    #container-content {
+        width: 90%;
+    }
+
+    #nav-logo {
+        font-size: 2.3em;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* nav {
+        width: 55%;
+    } */
+    nav ul {
+        font-size: 1.2em;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 550px),
+(max-height: 550px) {
+    /* nav {
+        width: 55%;
+    } */
+
+    header {
+        height: 50px;
+    }
+
+    nav ul {
+        font-size: 1em;
+    }
+
+    #nav-logo {
+        font-size: 1.6em;
+    }
+
+    footer {
+        height: 50px;
+        box-shadow: 0px -4px 12px 1px rgba(0, 0, 0, 0.25);
+        z-index: 1;
+    }
+
+    .footer-icon {
+        height: 25px;
+    }
+
+    main {
+        height: calc(var(--unit-100vh) - 100px);
+        /* MINUS HEADER + FOOTER HEIGHT */
+    }
+
+    /* REPOSITION SEARCH CONTAINER TO MAKE DRAWER */
+    #search-container {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        background-color: var(--colour-white);
+        min-width: 100%;
+        height: 60px;
+        border-radius: 20px 20px 0px 0px;
+        box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        transition: height 0.5s;
+        overflow: hidden;
+    }
+
+    #search-container-head {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #search-container.search-container-open {
+        height: 100%;
+    }
+
+    #search-container-results {
+        height: 0.1px;
+        transition: height 0.3s;
+    }
+
+    #search-container-results.search-container-results-open {
+        height: 100%;
+    }
+
+    #search {
+        display: none;
+    }
+
+    #search.search-open {
+        display: block;
+        margin: 10px 0;
+    }
+
+    #container-content {
+        width: 100%;
+    }
+
+    /* EXTEND MAP SIZE FOR SMALL SCREENS */
+    #map {
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+    }
+
+    /* REMOVE MAP CONTROLS FOR SMALL SCREENS */
+    .gmnoprint,
+    .gm-control-active,
+    .gm-fullscreen-control {
+        display: none;
+    }
+
+    #drawer-chevron-container {
+        display: block;
+        margin-inline: auto;
+    }
+
+    #drawer-chevron {
+        height: 30px;
+        transition: transform 0.3s;
+    }
+
+    #drawer-chevron.drawer-chevron-open {
+        transform: rotate(180deg);
+    }
+
+    #game-container,
+    .game-container-overlay {
+        height: 100%;
+        border-radius: 0;
+    }
+
+    #game-text-content-header {
+        font-size: 2.5em;
+    }
+
+    #game-text-content-paragraph {
+        font-size: 1.1em;
+    }
+
+}
+
+@media (max-width: 395px) {
+    nav ul {
+        font-size: 0.9em;
+        gap: 25px;
+    }
 }
