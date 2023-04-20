@@ -527,7 +527,47 @@ h3 {
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     overflow: hidden;
+}
 
+#game-container-overlay {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    border-radius: 20px;
+    z-index: 999;
+    background-color: var(--colour-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#game-text-content {
+    text-align: center;
+}
+
+#game-text-content-header {
+    font-family: var(--font-family-header);
+    font-size: 4em;
+    color: var(--colour-primary-teal);
+    margin: 0.6em;
+}
+
+#game-text-content-paragraph {
+    font-family: var(--font-family-Body);
+    font-size: 1.5em;
+}
+
+#game-play-button {
+    width: 20%;
+    height: 10%;
+    border-radius: 10px;
+    background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
+    font-family: var(--font-family-header);
+    font-size: 2em;
+    color: var(--colour-white);
+    margin: 1em;
 }
 
 #game-map-container {
@@ -540,4 +580,3 @@ h3 {
     /* border: 3px solid red; */
     flex-grow: 1;
 }
-
