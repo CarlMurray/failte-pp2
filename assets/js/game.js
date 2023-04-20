@@ -1,18 +1,7 @@
 const CSV_PATH = 'assets/data/attractions.json'
 let data;
 let panorama;
-
-// async function initMap() {
-//     // SET INIT POSITION AT IRELAND
-//     const position = { lat: 53.4152431, lng: -7.9559668 };
-//     const { Map } = await google.maps.importLibrary("maps");
-//     map = new Map(document.getElementById("game-map-container"), {
-//         mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
-//         zoom: 7,
-//         center: position,
-//     });
-
-// }
+let streetViewStatus;
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData(callback) {
@@ -24,7 +13,7 @@ async function fetchData(callback) {
 }
 
 // CODE FROM GOOGLE MAPS API DOCUMENTATION
-function initialize(streetPosition) {
+async function initialize(streetPosition) {
     const position = { lat: 53.4152431, lng: -7.9559668 };
     const map = new google.maps.Map(document.getElementById("game-map-container"), {
         center: position,
@@ -40,23 +29,37 @@ function initialize(streetPosition) {
           pov: { heading: 165, pitch: 0 },
           zoom: 1,
         }
-    );    
-    console.log(streetPosition)
-
+    )
 }
 
 async function locationArray() {
     // console.log(data);
 
+    // PICKS RANDOM NUMBER FROM DATASET TO USE AS INDEX FOR LOCATIONS ARRAY 
     let streetLocationIndex = Math.floor(Math.random()*622);
     console.log(streetLocationIndex)
     const {Name, Latitude, Longitude} = data[streetLocationIndex];
-    console.log(Latitude, Longitude)
+    console.log(Name, Latitude, Longitude)
+
+    // DEFINE LATLNG OBJ FOR STREET VIEW POSITION
     let streetPosition = {lat: Latitude, lng: Longitude}
-    initialize(streetPosition);
+    await initialize(streetPosition, checkStreetViewStatus);
     // console.log(streetPosition)
     return streetPosition
 }
 
-// window.initialize = initialize;
+const checkStreetViewStatus = async () => {
+    const {StreetViewStatus} = await google.maps.importLibrary("streetView")
+    panorama.getStatus((status) => {
+        console.log(status)
+        if (status === 'OK') {
+            console.log('STATUS IS OK')
+        }
+        else if (status === 'ZERO_RESULTS') [
+            console.log('NOT OK')
+        ]
+    })
+}
+
+window.initialize = initialize;
 fetchData(locationArray);
