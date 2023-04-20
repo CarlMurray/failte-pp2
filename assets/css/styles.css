@@ -527,13 +527,13 @@ h3 {
 }
 
 #game-map-container {
-    border: 3px solid green;
+    /* border: 3px solid green; */
     flex-grow: 1;
 
 }
 
 #game-street-container {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     flex-grow: 1;
 }
 
