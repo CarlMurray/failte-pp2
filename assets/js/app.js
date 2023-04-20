@@ -125,6 +125,14 @@ const initMarkers = async () => {
       });
     });
 
+    map.addListener("click", () => {
+      if (activeInfoWindow) {
+        activeInfoWindow.close()
+      };
+
+      activeInfoWindow = infowindow;
+    });
+
     // CREATE A DIV FOR ATTRACTION INFO AND APPEND TO SEARCH RESULTS CONTAINER
     attractionListInfo = document.createElement('div');
     attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
@@ -266,6 +274,15 @@ const positionMarker = async (searchQuery) => {
           map,
         });
       });
+
+      map.addListener("click", () => {
+        if (activeInfoWindow) {
+          activeInfoWindow.close()
+        };
+  
+        activeInfoWindow = infowindow;
+      });  
+
       markers.push(marker)
     }
 
