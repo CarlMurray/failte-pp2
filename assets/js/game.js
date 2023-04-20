@@ -45,7 +45,13 @@ async function initStreetView() {
         radius: MAX_STREET_VIEW_RADIUS
     }
     // CREATE NEW PANO WITH CONTAINER
-    let newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'));
+    let newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'), 
+    {
+        addressControl: false, // REMOVES OVERLAY SHOWING STREET VIEW LOCATION
+        showRoadLabels: false, // HIDES ROAD LABELS
+        disableDefaultUI: true, // TURNS OFF STREET VIEW UI
+        clickToGo: false // DISABLES ABILITY TO MOVE
+    });
 
     
     let streetViewObject = streetViewService.getPanorama(streetViewRequest, (streetViewData, streetViewStatus) => {
