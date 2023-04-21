@@ -602,3 +602,9 @@ h3 {
         gap: 25px;
     }
 }
+
+@media (min-aspect-ratio: 7/5) {
+    #game-container {
+        flex-direction: row;
+    }
+}
