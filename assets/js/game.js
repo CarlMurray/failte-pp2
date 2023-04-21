@@ -124,9 +124,9 @@ const getDistance = () => {
         let scoreboard = document.querySelector('.game-scoreboard')
         scoreboard.classList.remove('hidden')
         let btn = document.querySelector('.game-scoreboard .game-play-button')
+        changeStreetView();
         // RESTART WHEN BUTTON CLICK
         btn.addEventListener('click', () => {
-            changeStreetView();
             scoreboard.classList.add('hidden')
             drawLine.setMap(null);
             initMap();
@@ -140,12 +140,19 @@ const changeStreetView = async () => {
     let data = await fetchData();
     // console.log(data)
     streetLocationIndex = Math.floor(Math.random() * 622);
+    // console.log(streetLocationIndex)
     const { Name, Latitude, Longitude } = data[streetLocationIndex];
+    // console.log(Name, Latitude, Longitude)
 
     // DEFINE LATLNG OBJ FOR STREET VIEW POSITION
     streetPosition = { lat: Latitude, lng: Longitude }
+    // let pano = await initStreetView()
+    // console.log(pano);
+    newStreetViewPano.setPosition(streetPosition)
+
 }
 
+let newStreetViewPano;
 let streetLocationIndex;
 async function initStreetView() {
     const { StreetViewService } = await google.maps.importLibrary("streetView")
@@ -170,7 +177,7 @@ async function initStreetView() {
         radius: MAX_STREET_VIEW_RADIUS
     }
     // CREATE NEW PANO WITH CONTAINER
-    let newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'),
+    newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'),
         {
             addressControl: false, // REMOVES OVERLAY SHOWING STREET VIEW LOCATION
             showRoadLabels: false, // HIDES ROAD LABELS
@@ -197,6 +204,7 @@ async function initStreetView() {
             initStreetView();
         };
     })
+    return newStreetViewPano;
 }
 
 async function main() {
