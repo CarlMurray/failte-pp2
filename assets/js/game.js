@@ -16,10 +16,10 @@ async function fetchData() {
 // CODE FROM GOOGLE MAPS API DOCUMENTATION
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps")
-    const {spherical} = await google.maps.importLibrary("geometry")
+    const { spherical } = await google.maps.importLibrary("geometry")
 
     const position = { lat: 53.4152431, lng: -7.9559668 };
-     map = new google.maps.Map(document.getElementById("game-map-container"), {
+    map = new google.maps.Map(document.getElementById("game-map-container"), {
         center: position,
         zoom: 7,
         streetViewControl: false,
@@ -32,54 +32,56 @@ async function initMap() {
         let userClick = event.latLng
         let lat = userClick.lat();
         let lng = userClick.lng();
-        userGuessResult = {lat: lat, lng: lng}
+        userGuessResult = { lat: lat, lng: lng }
         // console.log(userGuessResult)
+        google.maps.event.clearInstanceListeners(map);
         getDistance();
+
     })
 }
 
 // CALC DISTANCE BETWEEN GUESS AND STREET VIEW LOCATIONS
 const getDistance = () => {
-const calcDistance = google.maps.geometry.spherical.computeDistanceBetween(userGuessResult, streetPosition)
-console.log(calcDistance)
-// console.log(userGuessResult, streetPosition)
-const lineIcons = [
-    {
-        fixedRotation: false,
-        offset: '0%',
-        icon: {
-            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-            scale: 4,
-            fillOpacity: 1,
-            fillColor: '#ffffff',
-            strokeOpacity: 1,
-            strokeColor: '#000000',
-            strokeWeight: 1
-          },
-    },
-    {
-        fixedRotation: true,
-        offset: '100%',
-        icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 6,
-            fillOpacity: 1,
-            fillColor: '#ffffff',
-            strokeOpacity: 1,
-            strokeColor: '#000000',
-            strokeWeight: 1
-          },
-    }
-]
-const drawLine = new google.maps.Polyline(
-    {
-        path: [userGuessResult, streetPosition],
-        visible: true,
-        map: map,
-        strokeWeight: 5,
-        strokeColor: "#008080",
-        icons: lineIcons
-    }
+    const calcDistance = google.maps.geometry.spherical.computeDistanceBetween(userGuessResult, streetPosition)
+    console.log(calcDistance)
+    // console.log(userGuessResult, streetPosition)
+    const lineIcons = [
+        {
+            fixedRotation: false,
+            offset: '0%',
+            icon: {
+                path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                scale: 4,
+                fillOpacity: 1,
+                fillColor: '#ffffff',
+                strokeOpacity: 1,
+                strokeColor: '#000000',
+                strokeWeight: 1
+            },
+        },
+        {
+            fixedRotation: true,
+            offset: '100%',
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 6,
+                fillOpacity: 1,
+                fillColor: '#ffffff',
+                strokeOpacity: 1,
+                strokeColor: '#000000',
+                strokeWeight: 1
+            },
+        }
+    ]
+    const drawLine = new google.maps.Polyline(
+        {
+            path: [userGuessResult, streetPosition],
+            visible: true,
+            map: map,
+            strokeWeight: 5,
+            strokeColor: "#008080",
+            icons: lineIcons
+        }
     )
 
     const calcScore = () => {
@@ -112,6 +114,16 @@ const drawLine = new google.maps.Polyline(
             console.log(score)
         }
         else score = score += 0;
+
+        let scoreboard = document.querySelector('.game-scoreboard')
+        scoreboard.classList.remove('hidden')
+        let btn = document.querySelector('.game-scoreboard .game-play-button')
+        btn.addEventListener('click', () => {
+            initStreetView();
+            scoreboard.classList.add('hidden')
+            drawLine.setMap(null);
+            initMap();
+        })
     }
     calcScore();
 
@@ -119,7 +131,7 @@ const drawLine = new google.maps.Polyline(
 
 async function initStreetView() {
     const { StreetViewService } = await google.maps.importLibrary("streetView")
-    const {StreetViewPanorama} = await google.maps.importLibrary("streetView")
+    const { StreetViewPanorama } = await google.maps.importLibrary("streetView")
     let data = await fetchData();
     let streetLocationIndex = Math.floor(Math.random() * 622);
     // console.log(streetLocationIndex)
@@ -140,25 +152,25 @@ async function initStreetView() {
         radius: MAX_STREET_VIEW_RADIUS
     }
     // CREATE NEW PANO WITH CONTAINER
-    let newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'), 
-    {
-        addressControl: false, // REMOVES OVERLAY SHOWING STREET VIEW LOCATION
-        showRoadLabels: false, // HIDES ROAD LABELS
-        disableDefaultUI: true, // TURNS OFF STREET VIEW UI
-        clickToGo: false, // DISABLES ABILITY TO MOVE
-        fullscreenControl: true,
-        fullscreenControlOptions: true
-    });
+    let newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'),
+        {
+            addressControl: false, // REMOVES OVERLAY SHOWING STREET VIEW LOCATION
+            showRoadLabels: false, // HIDES ROAD LABELS
+            disableDefaultUI: true, // TURNS OFF STREET VIEW UI
+            clickToGo: false, // DISABLES ABILITY TO MOVE
+            fullscreenControl: true,
+            fullscreenControlOptions: true
+        });
 
-    
+
     let streetViewObject = streetViewService.getPanorama(streetViewRequest, (streetViewData, streetViewStatus) => {
         // console.log(streetViewStatus) // LOGS STATUS OF REQUEST
         // console.log(streetViewData) // LOGS REQUEST OBJ
-        
+
         // CHECK THAT STREET VIEW IS VALID AND SET VISIBLE
         if (streetViewStatus === "OK") {
-        newStreetViewPano.setPano(streetViewData.location.pano)
-        newStreetViewPano.setVisible(true)
+            newStreetViewPano.setPano(streetViewData.location.pano)
+            newStreetViewPano.setVisible(true)
         }
 
         // IF NOT, TRY AGAIN
@@ -166,8 +178,9 @@ async function initStreetView() {
             console.log(streetViewStatus)
             initStreetView();
         };
-})}
-    
+    })
+}
+
 async function main() {
     await fetchData();
     await initMap();
@@ -177,9 +190,9 @@ async function main() {
 main();
 
 // DEFINE PLAY BUTTON
-let playBtn = document.querySelector('#game-play-button')
-let gameIntroHeader = document.querySelector('#game-text-content-header')
-let gameIntroText = document.querySelector('#game-text-content-paragraph')
+let playBtn = document.querySelector('.game-play-button')
+let gameIntroHeader = document.querySelector('.game-text-content-header')
+let gameIntroText = document.querySelector('.game-text-content-paragraph')
 let gameIntroOverlay = document.querySelector('.game-container-overlay')
 
 let isClicked = false;
