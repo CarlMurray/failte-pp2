@@ -44,6 +44,10 @@
     }
 }
 
+body {
+    overflow: hidden;
+}
+
 #container {
     /* width: var(--container-width); width will be 80% or 1440px max */
     margin: auto;
@@ -54,6 +58,7 @@
 header {
     height: 100px;
     background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
+    z-index: 999;
 }
 
 #content-wrapper {
@@ -459,6 +464,72 @@ h3 {
 
 .game-round-number {
     margin: 0.4em
+}
+
+.contact-container {
+    width: 50%;
+    margin-right: 12%;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+}
+
+#contact-img-container {
+    /* border: 1px solid red; */
+    max-width: 30%;
+    height: 100vh;
+    /* overflow: hidden; */
+    box-shadow: inset 10px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    z-index: -1;
+
+}
+
+#contact-img {
+    /* position: absolute; */
+    z-index: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text-input {
+    height: 45px;
+    width: 100%;
+    border-radius: 100px;
+    border: none;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.18);
+    padding-inline: 15px;
+    font-size: 16px;
+    font-family: var(--font-family-Body);
+}
+
+.text-input:focus-visible {
+    outline: 1px solid var(--colour-primary-teal);
+}
+
+textarea.text-input {
+    border-radius: 22.5px;
+    padding: 15px;
+    min-height: 200px;
+}
+
+h1 {
+    font-family: var(--font-family-header);
+    color: var(--colour-primary-teal);
+    font-size: 3em;
+}
+
+.contact-paragraph {
+    font-family: var(--font-family-Body);
+    font-size: 1em;
+    color: #3b3b3b;
+    margin: 25px 0;
+    max-width: 80%;
 }
 
 .hidden {
