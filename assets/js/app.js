@@ -142,49 +142,46 @@ const initMarkers = async () => {
     // ADD MARKER TO MARKERS ARRAY
     markers.push(marker)
 
-    // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    if (Url.length < 5) {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-      ${markerAddress}
-      <div class = "attraction-info-button-container">
-      <a class = "attraction-info-button fa-solid fa-link grey"></a>
-      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-      </div>`;
-    }
-
-    // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    else if (Telephone.length < 5) {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-      ${markerAddress}
-      <div class = "attraction-info-button-container">
-      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-      <a class = "attraction-info-button fa-solid fa-phone grey"></a>
-      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-      </div>`;
-    }
-
-    // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    else if (Url.length < 5 && Telephone.length < 5) {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-      ${markerAddress}
-      <div class = "attraction-info-button-container">
-      <a class = "attraction-info-button fa-solid fa-link grey"></a>
-      <a class = "attraction-info-button fa-solid fa-phone grey"></a>
-      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-      </div>`;
-    }
-
-    // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    else {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-      ${markerAddress}
-      <div class = "attraction-info-button-container">
-      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
-      </div>`;
-    }
+      // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+      if (Url.length < 5 && Telephone.length > 7) {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link grey"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+      else if (Url.length > 5 && Telephone.length < 5) {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+      else if (Url.length < 5 && Telephone.length < 5) {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link grey"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
+      // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+      else {
+        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+        ${markerAddress}
+        <div class = "attraction-info-button-container">
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        </div>`;
+      }
 
     // SET THE CONTENT OF MARKER INFOWINDOWS 
     infowindow.setContent(attractionListInfo.innerHTML)
@@ -319,7 +316,7 @@ const positionMarker = async (searchQuery) => {
       attractionListInfo = document.createElement('div');
       attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
       // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      if (Url.length < 5) {
+      if (Url.length < 5 && Telephone.length > 7) {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
@@ -329,7 +326,7 @@ const positionMarker = async (searchQuery) => {
         </div>`;
       }
       // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else if (Telephone.length < 5) {
+      else if (Url.length > 5 && Telephone.length < 5) {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
