@@ -148,7 +148,7 @@ const initMarkers = async () => {
       ${markerAddress}
       <div class = "attraction-info-button-container">
       <a class = "attraction-info-button fa-solid fa-link grey"></a>
-      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
@@ -159,7 +159,7 @@ const initMarkers = async () => {
       ${markerAddress}
       <div class = "attraction-info-button-container">
       <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-      <a class = "attraction-info-button fa-solid fa-phone grey"></i></a>
+      <a class = "attraction-info-button fa-solid fa-phone grey"></a>
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
@@ -170,7 +170,7 @@ const initMarkers = async () => {
       ${markerAddress}
       <div class = "attraction-info-button-container">
       <a class = "attraction-info-button fa-solid fa-link grey"></a>
-      <a class = "attraction-info-button fa-solid fa-phone grey"></i></a>
+      <a class = "attraction-info-button fa-solid fa-phone grey"></a>
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
@@ -181,7 +181,7 @@ const initMarkers = async () => {
       ${markerAddress}
       <div class = "attraction-info-button-container">
       <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
       <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
       </div>`;
     }
@@ -324,7 +324,7 @@ const positionMarker = async (searchQuery) => {
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link grey"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
@@ -334,7 +334,7 @@ const positionMarker = async (searchQuery) => {
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey"></i></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
@@ -344,7 +344,7 @@ const positionMarker = async (searchQuery) => {
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link grey"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey"></i></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
@@ -354,7 +354,7 @@ const positionMarker = async (searchQuery) => {
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></i></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
         </div>`;
       }
