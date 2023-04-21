@@ -117,7 +117,7 @@ const getDistance = () => {
 
         // ADD SCORE AND LOCATION TO SCOREBOARD
         document.querySelector('.game-scoreboard .game-text-content-header').innerText = `Score: ${score}/5000`;
-        document.querySelector('.game-scoreboard .game-text-content-paragraph').innerText = `Place: ${data[streetLocationIndex].Name}, ${data[streetLocationIndex].AddressLocality}, ${data[streetLocationIndex].AddressRegion}`;
+        document.querySelector('.game-scoreboard .game-text-content-paragraph').innerHTML = `Place: ${data[streetLocationIndex].Name}, ${data[streetLocationIndex].AddressRegion} <br> Your guess was within ${(calcDistance/1000).toFixed(1)}km`;
         // console.log(data[streetLocationIndex]);
 
         // SHOW SCOREBOARD
