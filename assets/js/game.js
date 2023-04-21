@@ -2,7 +2,7 @@ const CSV_PATH = 'assets/data/attractions.json'
 const MAX_STREET_VIEW_RADIUS = 50;
 let streetPosition;
 let userGuessResult;
-
+let map;
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
@@ -18,7 +18,7 @@ async function initMap() {
     const {spherical} = await google.maps.importLibrary("geometry")
 
     const position = { lat: 53.4152431, lng: -7.9559668 };
-    const map = new google.maps.Map(document.getElementById("game-map-container"), {
+     map = new google.maps.Map(document.getElementById("game-map-container"), {
         center: position,
         zoom: 7,
         streetViewControl: false,
@@ -27,12 +27,12 @@ async function initMap() {
     });
 
     map.addListener('click', (event) => {
-        console.log(event)
+        // console.log(event)
         let userClick = event.latLng
         let lat = userClick.lat();
         let lng = userClick.lng();
         userGuessResult = {lat: lat, lng: lng}
-        console.log(userGuessResult)
+        // console.log(userGuessResult)
         getDistance();
     })
 }
@@ -41,6 +41,16 @@ async function initMap() {
 const getDistance = () => {
 const calcDistance = google.maps.geometry.spherical.computeDistanceBetween(userGuessResult, streetPosition)
 console.log(calcDistance)
+// console.log(userGuessResult, streetPosition)
+const drawLine = new google.maps.Polyline(
+    {
+        path: [userGuessResult, streetPosition],
+        visible: true,
+        map: map,
+        strokeWeight: 5,
+        strokeColor: "#008080",
+    }
+    )
 }
 
 async function initStreetView() {
@@ -48,9 +58,9 @@ async function initStreetView() {
     const {StreetViewPanorama} = await google.maps.importLibrary("streetView")
     let data = await fetchData();
     let streetLocationIndex = Math.floor(Math.random() * 622);
-    console.log(streetLocationIndex)
+    // console.log(streetLocationIndex)
     const { Name, Latitude, Longitude } = data[streetLocationIndex];
-    console.log(Name, Latitude, Longitude)
+    // console.log(Name, Latitude, Longitude)
 
     // DEFINE LATLNG OBJ FOR STREET VIEW POSITION
     streetPosition = { lat: Latitude, lng: Longitude }
@@ -78,8 +88,8 @@ async function initStreetView() {
 
     
     let streetViewObject = streetViewService.getPanorama(streetViewRequest, (streetViewData, streetViewStatus) => {
-        console.log(streetViewStatus) // LOGS STATUS OF REQUEST
-        console.log(streetViewData) // LOGS REQUEST OBJ
+        // console.log(streetViewStatus) // LOGS STATUS OF REQUEST
+        // console.log(streetViewData) // LOGS REQUEST OBJ
         
         // CHECK THAT STREET VIEW IS VALID AND SET VISIBLE
         if (streetViewStatus === "OK") {
