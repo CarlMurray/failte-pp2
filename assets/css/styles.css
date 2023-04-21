@@ -413,6 +413,10 @@ h3 {
     margin: 1.5em;
 }
 
+#game-play-button:active {
+    background-image: linear-gradient(0deg, var(--colour-primary-teal), #019c9c);
+}
+
 #game-map-container {
     /* border: 3px solid green; */
     flex-grow: 1;
