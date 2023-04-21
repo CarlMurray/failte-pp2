@@ -3,6 +3,7 @@ const MAX_STREET_VIEW_RADIUS = 50;
 let streetPosition;
 let userGuessResult;
 let map;
+let score = 0;
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
@@ -80,6 +81,40 @@ const drawLine = new google.maps.Polyline(
         icons: lineIcons
     }
     )
+
+    const calcScore = () => {
+        if (calcDistance < 50) {
+            score = score += 1000;
+            console.log(score)
+        }
+        else if (calcDistance < 200) {
+            score = score += 900;
+            console.log(score)
+        }
+        else if (calcDistance < 500) {
+            score = score += 700;
+            console.log(score)
+        }
+        else if (calcDistance < 1000) {
+            score = score += 500;
+            console.log(score)
+        }
+        else if (calcDistance < 5000) {
+            score = score += 350;
+            console.log(score)
+        }
+        else if (calcDistance < 10000) {
+            score = score += 200;
+            console.log(score)
+        }
+        else if (calcDistance < 50000) {
+            score = score += 100;
+            console.log(score)
+        }
+        else score = score += 0;
+    }
+    calcScore();
+
 }
 
 async function initStreetView() {
