@@ -19,6 +19,7 @@ async function initMap() {
         zoom: 7,
         streetViewControl: false,
         mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
+        clickableIcons: false //DISABLES NATIVE CLICKABLE PLACE ICONS
     });
 }
 
@@ -50,7 +51,9 @@ async function initStreetView() {
         addressControl: false, // REMOVES OVERLAY SHOWING STREET VIEW LOCATION
         showRoadLabels: false, // HIDES ROAD LABELS
         disableDefaultUI: true, // TURNS OFF STREET VIEW UI
-        clickToGo: false // DISABLES ABILITY TO MOVE
+        clickToGo: false, // DISABLES ABILITY TO MOVE
+        fullscreenControl: true,
+        fullscreenControlOptions: true
     });
 
     
@@ -87,6 +90,7 @@ let gameIntroOverlay = document.querySelector('.game-container-overlay')
 
 let isClicked = false;
 
+// LISTEN FOR PLAY BUTTON CLICK
 playBtn.addEventListener('click', () => {
     isClicked = !isClicked;
     if (isClicked) {
