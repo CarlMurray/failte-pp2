@@ -115,9 +115,16 @@ const getDistance = () => {
         }
         else score = score += 0;
 
+        // ADD SCORE AND LOCATION TO SCOREBOARD
+        document.querySelector('.game-scoreboard .game-text-content-header').innerText = `Score: ${score}/5000`;
+        document.querySelector('.game-scoreboard .game-text-content-paragraph').innerText = `Place: ${data[streetLocationIndex].Name}, ${data[streetLocationIndex].AddressLocality}, ${data[streetLocationIndex].AddressRegion}`;
+        console.log(data[streetLocationIndex]);
+
+        // SHOW SCOREBOARD
         let scoreboard = document.querySelector('.game-scoreboard')
         scoreboard.classList.remove('hidden')
         let btn = document.querySelector('.game-scoreboard .game-play-button')
+        // RESTART WHEN BUTTON CLICKED
         btn.addEventListener('click', () => {
             initStreetView();
             scoreboard.classList.add('hidden')
@@ -128,12 +135,12 @@ const getDistance = () => {
     calcScore();
 
 }
-
+let streetLocationIndex;
 async function initStreetView() {
     const { StreetViewService } = await google.maps.importLibrary("streetView")
     const { StreetViewPanorama } = await google.maps.importLibrary("streetView")
     let data = await fetchData();
-    let streetLocationIndex = Math.floor(Math.random() * 622);
+    streetLocationIndex = Math.floor(Math.random() * 622);
     // console.log(streetLocationIndex)
     const { Name, Latitude, Longitude } = data[streetLocationIndex];
     // console.log(Name, Latitude, Longitude)
