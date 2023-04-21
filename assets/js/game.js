@@ -4,6 +4,7 @@ let streetPosition;
 let userGuessResult;
 let map;
 let score = 0;
+let roundNumber = 0;
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
@@ -35,6 +36,8 @@ async function initMap() {
         userGuessResult = { lat: lat, lng: lng }
         // console.log(userGuessResult)
         google.maps.event.clearInstanceListeners(map);
+        roundNumber++
+        console.log(roundNumber)
         getDistance();
 
     })
@@ -118,6 +121,8 @@ const getDistance = () => {
         // ADD SCORE AND LOCATION TO SCOREBOARD
         document.querySelector('.game-scoreboard .game-text-content-header').innerText = `Score: ${score}/5000`;
         document.querySelector('.game-scoreboard .game-text-content-paragraph').innerHTML = `Place: ${data[streetLocationIndex].Name}, ${data[streetLocationIndex].AddressRegion} <br> Your guess was within ${(calcDistance/1000).toFixed(1)}km`;
+        document.querySelector('.game-round-number').innerText = `Round ${roundNumber} of 5`
+
         // console.log(data[streetLocationIndex]);
 
         // SHOW SCOREBOARD
@@ -131,6 +136,31 @@ const getDistance = () => {
             drawLine.setMap(null);
             initMap();
         })
+
+        if(roundNumber === 5){
+            document.querySelector('.game-scoreboard .game-text-content-header').innerText = `Final Score: ${score}/5000`;
+            document.querySelector('.game-scoreboard .game-text-content-header').style.color = '#fff'
+            document.querySelector('.game-round-number').style.color = '#fff'
+            btn.innerText = 'Play again'
+            btn.classList.remove('game-play-button')
+            btn.classList.add('game-play-again-button')
+            scoreboard.style.backgroundColor = '#008080'
+            roundNumber = 0;
+            score = 0;
+
+            btn.addEventListener('click', () => {
+                scoreboard.style.backgroundColor = '#fff'
+                document.querySelector('.game-scoreboard .game-text-content-header').style.color = '#008080'
+                document.querySelector('.game-round-number').style.color = '#008080'
+                btn.innerText = 'Next round'
+                btn.classList.add('game-play-button')
+                btn.classList.remove('game-play-again-button')
+                // getDistance();
+                // btn.removeEventListener('click')
+    
+            })
+        }
+
     }
     calcScore();
 

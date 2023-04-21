@@ -395,6 +395,10 @@ h3 {
     margin: 0.6em;
 }
 
+#game-street-container > div.game-scoreboard > div > h2 {
+    margin-bottom: 0em;
+}
+
 .game-text-content-paragraph {
     font-family: var(--font-family-Body);
     font-size: 1.5em;
@@ -411,6 +415,19 @@ h3 {
     font-size: 2em;
     color: var(--colour-white);
     margin: 1.5em;
+    border: none;
+}
+
+.game-play-again-button {
+    width: min(80%, 350px);
+    min-height: 2.5em;
+    border-radius: 10px;
+    background-color: var(--colour-white);
+    font-family: var(--font-family-header);
+    font-size: 2em;
+    color: var(--colour-primary-teal);
+    margin: 1.5em;
+    border: none;
 }
 
 .game-play-button:active {
@@ -438,6 +455,10 @@ h3 {
     background-color: var(--colour-white);
     z-index: 999;
     position: absolute;
+}
+
+.game-round-number {
+    margin: 0.4em
 }
 
 .hidden {
