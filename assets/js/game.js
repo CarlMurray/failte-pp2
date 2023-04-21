@@ -1,5 +1,8 @@
 const CSV_PATH = 'assets/data/attractions.json'
 const MAX_STREET_VIEW_RADIUS = 50;
+let streetPosition;
+let userGuessResult;
+
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
@@ -12,6 +15,7 @@ async function fetchData() {
 // CODE FROM GOOGLE MAPS API DOCUMENTATION
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps")
+    const {spherical} = await google.maps.importLibrary("geometry")
 
     const position = { lat: 53.4152431, lng: -7.9559668 };
     const map = new google.maps.Map(document.getElementById("game-map-container"), {
@@ -27,9 +31,16 @@ async function initMap() {
         let userClick = event.latLng
         let lat = userClick.lat();
         let lng = userClick.lng();
-        let userGuessResult = {lat, lng}
+        userGuessResult = {lat: lat, lng: lng}
         console.log(userGuessResult)
+        getDistance();
     })
+}
+
+// CALC DISTANCE BETWEEN GUESS AND STREET VIEW LOCATIONS
+const getDistance = () => {
+const calcDistance = google.maps.geometry.spherical.computeDistanceBetween(userGuessResult, streetPosition)
+console.log(calcDistance)
 }
 
 async function initStreetView() {
@@ -42,7 +53,7 @@ async function initStreetView() {
     console.log(Name, Latitude, Longitude)
 
     // DEFINE LATLNG OBJ FOR STREET VIEW POSITION
-    let streetPosition = { lat: Latitude, lng: Longitude }
+    streetPosition = { lat: Latitude, lng: Longitude }
 
     // console.log(data);
 
