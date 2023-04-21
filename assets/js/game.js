@@ -88,31 +88,31 @@ const getDistance = () => {
     )
 
     const calcScore = () => {
-        if (calcDistance < 50) {
+        if (calcDistance < 200) {
             score = score += 1000;
             // console.log(score)
         }
-        else if (calcDistance < 200) {
+        else if (calcDistance < 1000) {
             score = score += 900;
             // console.log(score)
         }
-        else if (calcDistance < 500) {
+        else if (calcDistance < 5000) {
             score = score += 700;
             // console.log(score)
         }
-        else if (calcDistance < 1000) {
+        else if (calcDistance < 10000) {
             score = score += 500;
             // console.log(score)
         }
-        else if (calcDistance < 5000) {
+        else if (calcDistance < 25000) {
             score = score += 350;
             // console.log(score)
         }
-        else if (calcDistance < 10000) {
+        else if (calcDistance < 50000) {
             score = score += 200;
             // console.log(score)
         }
-        else if (calcDistance < 50000) {
+        else if (calcDistance < 100000) {
             score = score += 100;
             // console.log(score)
         }
