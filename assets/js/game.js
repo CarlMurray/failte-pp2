@@ -21,6 +21,15 @@ async function initMap() {
         mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
         clickableIcons: false //DISABLES NATIVE CLICKABLE PLACE ICONS
     });
+
+    map.addListener('click', (event) => {
+        console.log(event)
+        let userClick = event.latLng
+        let lat = userClick.lat();
+        let lng = userClick.lng();
+        let userGuessResult = {lat, lng}
+        console.log(userGuessResult)
+    })
 }
 
 async function initStreetView() {
@@ -105,3 +114,4 @@ playBtn.addEventListener('click', () => {
         gameIntroOverlay.classList.add('hidden')
     }
 })
+
