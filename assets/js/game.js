@@ -42,6 +42,34 @@ const getDistance = () => {
 const calcDistance = google.maps.geometry.spherical.computeDistanceBetween(userGuessResult, streetPosition)
 console.log(calcDistance)
 // console.log(userGuessResult, streetPosition)
+const lineIcons = [
+    {
+        fixedRotation: false,
+        offset: '0%',
+        icon: {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            scale: 4,
+            fillOpacity: 1,
+            fillColor: '#ffffff',
+            strokeOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1
+          },
+    },
+    {
+        fixedRotation: true,
+        offset: '100%',
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 6,
+            fillOpacity: 1,
+            fillColor: '#ffffff',
+            strokeOpacity: 1,
+            strokeColor: '#000000',
+            strokeWeight: 1
+          },
+    }
+]
 const drawLine = new google.maps.Polyline(
     {
         path: [userGuessResult, streetPosition],
@@ -49,6 +77,7 @@ const drawLine = new google.maps.Polyline(
         map: map,
         strokeWeight: 5,
         strokeColor: "#008080",
+        icons: lineIcons
     }
     )
 }
