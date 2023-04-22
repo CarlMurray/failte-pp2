@@ -515,6 +515,15 @@ h3 {
     gap: 10px;
 }
 
+#search-bar-container {
+    display: flex;
+    flex-direction: column;
+}
+#search-bar-container.hidden {
+    display: none;
+    /* flex-direction: column; */
+}
+
 /* #contact-img-container {
     border: 1px solid red;
     max-width: 30%;
@@ -791,6 +800,15 @@ label {
 
     #search {
         display: none;
+    }
+
+    #search-bar-container {
+        display: none;
+    }
+
+    #search-bar-container.visible {
+        display: flex;
+        flex-direction: column;
     }
 
     #search.search-open {

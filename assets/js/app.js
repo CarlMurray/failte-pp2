@@ -435,7 +435,7 @@ const openDrawer = () => {
   searchContainer.classList.toggle('search-container-open')
   searchContainerHeadChevron.classList.toggle('drawer-chevron-open')
   searchContainerResults.classList.toggle('search-container-results-open')
-  document.querySelector('#search-bar-container').classList.toggle('hidden')
+  document.querySelector('#search-bar-container').classList.toggle('visible')
 
   // document.querySelector('#search-error-message').classList.toggle('hidden')
 
