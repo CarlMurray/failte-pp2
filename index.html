@@ -67,8 +67,12 @@
                     <div id="search-container-head">
                         <div id="drawer-chevron-container"><img id="drawer-chevron" src="assets/img/chevron-circle.svg" alt="Chevron" aria-label="Click to open/close drawer"></div>
                         <!-- Search bar -->
-                        <label for="search">Search</label>
-                        <input type="search" id="search" placeholder="e.g. 'Forest', 'Castle', 'Cafe', 'Museum'">
+                        <div id="search-bar-container" class="hidden">
+                            <label for="search">Search</label>
+                            <input type="search" id="search" placeholder="e.g. 'Forest', 'Castle', 'Cafe', 'Museum'">
+                            <span id="search-error-message" class="hidden">Oops! Try search by attraction name, type or
+                                location.</span>
+                        </div>
                     </div>
                     <div id="search-container-results">
 
@@ -83,11 +87,14 @@
 
         <footer>
             <div id="footer-links">
-                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank" title="See this project's Repo on GitHub" aria-label="See this project's Repo on GitHub"><img class="footer-icon"
-                        src="assets/img/footer/footer-github-icon.svg" alt="GitHub Logo"></a>
-                <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects" aria-label="View my portfolio of projects"><img class="footer-icon"
+                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank"
+                    title="See this project's Repo on GitHub" aria-label="See this project's Repo on GitHub"><img
+                        class="footer-icon" src="assets/img/footer/footer-github-icon.svg" alt="GitHub Logo"></a>
+                <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects"
+                    aria-label="View my portfolio of projects"><img class="footer-icon"
                         src="assets/img/footer/footer-portfolio-icon.svg" alt="Personal Portfolio Logo"></a>
-                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Conenct with me on LinkedIn" aria-label="Conenct with me on LinkedIn"><img class="footer-icon"
+                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Conenct with me on LinkedIn"
+                    aria-label="Conenct with me on LinkedIn"><img class="footer-icon"
                         src="assets/img/footer/footer-linkedin-icon.svg" alt="LinkedIn Logo"></a>
             </div>
         </footer>

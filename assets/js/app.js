@@ -142,46 +142,46 @@ const initMarkers = async () => {
     // ADD MARKER TO MARKERS ARRAY
     markers.push(marker)
 
-      // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      if (Url.length < 5 && Telephone.length > 7) {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+    // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+    if (Url.length < 5 && Telephone.length > 7) {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
         <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
-      }
-      // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else if (Url.length > 5 && Telephone.length < 5) {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+    }
+    // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+    else if (Url.length > 5 && Telephone.length < 5) {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
         <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
-      }
-      // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else if (Url.length < 5 && Telephone.length < 5) {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+    }
+    // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+    else if (Url.length < 5 && Telephone.length < 5) {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
         <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
-      }
-      // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
+    }
+    // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+    else {
+      attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
         <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
         <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
         <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
-      }
+    }
 
     // SET THE CONTENT OF MARKER INFOWINDOWS 
     infowindow.setContent(attractionListInfo.innerHTML)
@@ -199,11 +199,13 @@ const positionMarker = async (searchQuery) => {
   }
   markers.length = 0;
 
+
   //CLEAR ALL EXISTING SEARCH RESULTS
   let clearAttractionsList = document.querySelectorAll('.attractionListInfoDiv')
   if (clearAttractionsList) {
     for (attractions of clearAttractionsList) {
       attractions.remove();
+
     }
   }
 
@@ -277,11 +279,29 @@ const positionMarker = async (searchQuery) => {
         if (activeInfoWindow) {
           activeInfoWindow.close()
         };
-  
+
         activeInfoWindow = infowindow;
-      });  
+      });
 
       markers.push(marker)
+
+      if (markers.length === 0) {
+        console.log('empty query')
+        searchBar.classList.add('search-invalid')
+
+        let errorMsgSpan = document.querySelector('#search-error-message')
+        errorMsgSpan.classList.remove('hidden')
+        // errorMsgSpan.innerText = 'Oops! Try search by attraction name, type or location.';
+        // searchBar.after(errorMsgSpan)
+        // errorMsgSpan.innerText = 'Oops! Try search by attraction name, type or location.'
+      }
+      else {
+        errorMsgSpan.classList.add('hidden')
+        searchBar.classList.remove('search-invalid')
+
+        // document.querySelector('#errorMsg').remove()
+      }
+
     }
 
     // IF SEARCH QUERY MATCHES ATTRACTION DATA
@@ -367,6 +387,22 @@ const positionMarker = async (searchQuery) => {
   for (marker of markers) {
     marker.setMap(map);
   }
+
+  let errorMsgSpan = document.querySelector('#search-error-message')
+  if (markers.length === 0) {
+    console.log('empty query')
+    searchBar.classList.add('search-invalid')
+    errorMsgSpan.classList.remove('hidden')
+    // errorMsgSpan.innerText = 'Oops! Try search by attraction name, type or location.';
+    // searchBar.after(errorMsgSpan)
+    // errorMsgSpan.innerText = 'Oops! Try search by attraction name, type or location.'
+  }
+  else {
+    errorMsgSpan.classList.add('hidden')
+    searchBar.classList.remove('search-invalid')
+    // document.querySelector('#errorMsg').remove()
+  }
+
 }
 
 let searchQuery;
@@ -399,6 +435,9 @@ const openDrawer = () => {
   searchContainer.classList.toggle('search-container-open')
   searchContainerHeadChevron.classList.toggle('drawer-chevron-open')
   searchContainerResults.classList.toggle('search-container-results-open')
+  document.querySelector('#search-bar-container').classList.toggle('hidden')
+
+  // document.querySelector('#search-error-message').classList.toggle('hidden')
 
 }
 // LISTEN FOR CLICK ON CHEVRON, THEN RUN ABOVE FUNCTION TO OPEN DRAWER
