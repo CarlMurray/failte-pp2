@@ -92,6 +92,10 @@ main {
     /* align-items: stretch; */
 }
 
+main.no-overflow {
+    overflow: hidden;
+}
+
 #container-content {
     width: var(--container-width);
     margin: auto;
