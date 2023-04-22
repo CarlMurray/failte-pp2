@@ -31,13 +31,13 @@
         <header>
             <div id="container-header">
                 <div id="nav-logo">
-                    <a href="index.html">fáilte</a>
+                    <a href="index.html" aria-label="Click to go to Homepage">fáilte</a>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Map</a></li>
-                        <li><a href="play.html">Play</a></li>
-                        <li><a href="contact.html" class="active-page">Contact</a></li>
+                        <li><a href="index.html" aria-label="Go to Map page">Map</a></li>
+                        <li><a href="play.html" aria-label="Go to Geo Game page">Play</a></li>
+                        <li><a href="contact.html" class="active-page" aria-label="Go to Contact page">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -50,15 +50,19 @@
                         request? Get in touch and we’ll get back to you soonest!</p>
                     <form action="">
                         <div class="input-container">
-                            <input class="text-input" type="text" placeholder="Name" required>
-                            <input class="text-input" type="email" placeholder="Email" required>
+                            <label for="name-input">Name</label>
+                            <input id="name-input" class="text-input" type="text" placeholder="Name" required>
+                            <label for="email-input">Email</label>
+                            <input id="email-input" class="text-input" type="email" placeholder="Email" required>
                         </div>
-                        <textarea class="text-input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
-                        <input type="submit" class="primary-cta" value="Send!">
+                        <label for="message-input">Message</label>
+                        <textarea class="text-input" name="" id="message-input" cols="30" rows="10" placeholder="Message"></textarea>
+                        <label for="submit-input">Submit</label>
+                        <input id="submit-input" type="submit" class="primary-cta" value="Send!">
                     </form>
                 </div>
                 <div id="contact-img-container">
-                    <img id="contact-img" src="assets/img/ireland-img.png" alt="">
+                    <img id="contact-img" src="assets/img/ireland-img.png" alt="Background image of Ireland map">
                 </div>
             </div>
         </main>
@@ -67,12 +71,12 @@
 
         <footer>
             <div id="footer-links">
-                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank"><img class="footer-icon"
-                        src="assets/img/footer/footer-github-icon.svg" alt=""></a>
-                <a href="https://carlmurray.design" target="_blank"><img class="footer-icon"
-                        src="assets/img/footer/footer-portfolio-icon.svg" alt=""></a>
-                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank"><img class="footer-icon"
-                        src="assets/img/footer/footer-linkedin-icon.svg" alt=""></a>
+                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank" title="See this project's Repo on GitHub" aria-label="See this project's Repo on GitHub"><img class="footer-icon"
+                        src="assets/img/footer/footer-github-icon.svg" alt="GitHub Logo"></a>
+                <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects" aria-label="View my portfolio of projects"><img class="footer-icon"
+                        src="assets/img/footer/footer-portfolio-icon.svg" alt="Personal Portfolio Logo"></a>
+                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Conenct with me on LinkedIn" aria-label="Conenct with me on LinkedIn"><img class="footer-icon"
+                        src="assets/img/footer/footer-linkedin-icon.svg" alt="LinkedIn Logo"></a>
             </div>
         </footer>
     </div>

@@ -147,9 +147,9 @@ const initMarkers = async () => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
@@ -157,9 +157,9 @@ const initMarkers = async () => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
@@ -167,9 +167,9 @@ const initMarkers = async () => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
@@ -177,9 +177,9 @@ const initMarkers = async () => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
 
@@ -320,9 +320,9 @@ const positionMarker = async (searchQuery) => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
@@ -330,9 +330,9 @@ const positionMarker = async (searchQuery) => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
@@ -340,9 +340,9 @@ const positionMarker = async (searchQuery) => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
+        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
@@ -350,9 +350,9 @@ const positionMarker = async (searchQuery) => {
         attractionListInfo.innerHTML = `<h4>${Name}</h4>
         ${markerAddress}
         <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone}></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank"></a>
+        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
+        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
+        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
         </div>`;
       }
       // SET THE CONTENT OF MARKER INFOWINDOWS
