@@ -364,6 +364,7 @@ div a.attraction-info-button.grey {
     border-radius: 100px;
     /* min-width: 40%; */
     text-align: center;
+    border: none;
 }
 
 .secondary-cta {
