@@ -399,7 +399,7 @@ h3 {
 
 .game-text-content-header {
     font-family: var(--font-family-header);
-    font-size: 4em;
+    font-size: 2.5em;
     color: var(--colour-primary-teal);
     margin: 0.6em;
 }
@@ -410,32 +410,32 @@ h3 {
 
 .game-text-content-paragraph {
     font-family: var(--font-family-Body);
-    font-size: 1.5em;
+    font-size: 1em;
     width: 80%;
     /* margin: auto; */
 }
 
 .game-play-button {
     width: min(80%, 350px);
-    min-height: 2.5em;
+    min-height: 2em;
     border-radius: 10px;
     background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
     font-family: var(--font-family-header);
-    font-size: 2em;
+    font-size: 1.5em;
     color: var(--colour-white);
-    margin: 1.5em;
+    margin: 1em;
     border: none;
 }
 
 .game-play-again-button {
     width: min(80%, 350px);
-    min-height: 2.5em;
+    min-height: 2em;
     border-radius: 10px;
     background-color: var(--colour-white);
     font-family: var(--font-family-header);
-    font-size: 2em;
+    font-size: 1.5em;
     color: var(--colour-primary-teal);
-    margin: 1.5em;
+    margin: 1em;
     border: none;
 }
 
@@ -617,6 +617,50 @@ h1 {
     .contact-container {
         width: 70%;
     }
+
+    .game-text-content-header {
+        font-family: var(--font-family-header);
+        font-size: 1.8em;
+        color: var(--colour-primary-teal);
+        margin: 0.3em;
+    }
+    
+    
+    .game-text-content-paragraph {
+        font-family: var(--font-family-Body);
+        font-size: 1em;
+        width: 90%;
+        /* margin: auto; */
+    }
+
+    .game-round-number {
+        margin: 0.3em;
+        font-size: 1em;
+    }
+
+    .game-play-button {
+        width: min(80%, 350px);
+        min-height: 2em;
+        border-radius: 10px;
+        background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
+        font-family: var(--font-family-header);
+        font-size: 1em;
+        color: var(--colour-white);
+        margin: 0.5em;
+        border: none;
+    }
+    
+    .game-play-again-button {
+        width: min(80%, 350px);
+        min-height: 2em;
+        border-radius: 10px;
+        background-color: var(--colour-white);
+        font-family: var(--font-family-header);
+        font-size: 1em;
+        color: var(--colour-primary-teal);
+        margin: 0.5em;
+        border: none;
+    }
 }
 
 /* MOBILE */
@@ -773,6 +817,49 @@ h1 {
         font-size: 0.9em;
     }
 
+    .game-text-content-header {
+        font-family: var(--font-family-header);
+        font-size: 1.6em;
+        color: var(--colour-primary-teal);
+        margin: 0.2em;
+    }
+    
+    
+    .game-text-content-paragraph {
+        font-family: var(--font-family-Body);
+        font-size: 1em;
+        width: 90%;
+        /* margin: auto; */
+    }
+
+    .game-round-number {
+        margin: 0.3em;
+        font-size: 1.2em;
+    }
+
+    .game-play-button {
+        width: min(80%, 350px);
+        min-height: 2.5em;
+        border-radius: 10px;
+        background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
+        font-family: var(--font-family-header);
+        font-size: 1em;
+        color: var(--colour-white);
+        margin: 0.5em;
+        border: none;
+    }
+    
+    .game-play-again-button {
+        width: min(80%, 350px);
+        min-height: 2.5em;
+        border-radius: 10px;
+        background-color: var(--colour-white);
+        font-family: var(--font-family-header);
+        font-size: 1em;
+        color: var(--colour-primary-teal);
+        margin: 0.5em;
+        border: none;
+    }
 }
 
 @media (max-width: 395px) {
