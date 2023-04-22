@@ -85,6 +85,8 @@ main {
     align-items: center;
     justify-content: center;
     height: calc(var(--unit-100vh) - 200px);
+    overflow-y: scroll;
+    overflow-x: hidden;
     /* MINUS FOOTER HEIGHT */
     /* border: 2px solid red; */
     /* align-items: stretch; */
@@ -485,7 +487,10 @@ h3 {
 
 .contact-container {
     width: 50%;
+    margin: 20px;
     margin-right: 12%;
+    flex: 2;
+    padding-bottom: 20px;
 }
 
 .input-container {
@@ -493,13 +498,28 @@ h3 {
     gap: 10px;
 }
 
+/* #contact-img-container {
+    border: 1px solid red;
+    max-width: 30%;
+    height: 100vh;
+    overflow: hidden;
+    box-shadow: inset 10px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    z-index: -1;
+    flex: 1;
+    overflow-y: hidden;
+} */
+
 #contact-img-container {
     /* border: 1px solid red; */
     max-width: 30%;
-    height: 100vh;
+    height: 100%;
     /* overflow: hidden; */
     box-shadow: inset 10px 4px 12px 0px rgba(0, 0, 0, 0.25);
     z-index: -1;
+    flex: 1;
+    /* overflow-y: hidden; */
+    overflow-x: visible;
+    overflow-y: clip;
 }
 
 #contact-img {
