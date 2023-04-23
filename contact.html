@@ -25,23 +25,41 @@
     <!-- ADD EMAILJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-        (function() {
+        (function () {
             // https://dashboard.emailjs.com/admin/account
             emailjs.init('nAMWVoO4q5WTnV_xg');
         })();
     </script>
     <script type="text/javascript">
-        window.onload = function() {
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
+        window.onload = function () {
+            let errorMsg;
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
                 event.preventDefault();
                 // generate a five digit number for the contact_number variable
                 this.contact_number.value = Math.random() * 100000 | 0;
                 // these IDs from the previous steps
                 emailjs.sendForm('service_u8p34w3', 'template_ilgfd18', this)
-                    .then(function() {
+                    .then(function () {
                         console.log('SUCCESS!');
-                    }, function(error) {
+                        errorMsg.classList.add('hidden')
+                        const submitFeedbackOverlay = document.querySelector('#contact-feedback-overlay')
+                        const submitBtn = document.querySelector('#submit-input')
+                        const formTextInputs = document.querySelector('#input-container')
+                        const formTextarea = document.querySelector('textarea')
+                        submitFeedbackOverlay.classList.add('submit')
+                        submitBtn.style.visibility = 'hidden'
+                        formTextInputs.style.visibility = 'hidden'
+                        formTextarea.style.visibility = 'hidden'
+                    }, function (error) {
+
                         console.log('FAILED...', error);
+                        if (!errorMsg) {
+                            const form = document.querySelector('form');
+                            errorMsg = document.createElement('p')
+                            errorMsg.setAttribute('id', 'search-error-message')
+                            errorMsg.innerText = 'Oops! Something went wrong. Please try again.'
+                            form.append(errorMsg)
+                        }
                     });
             });
         }
@@ -75,15 +93,19 @@
                     <p class="contact-paragraph">Have a question? Want to know more about this site? Have a feature
                         request? Get in touch and we’ll get back to you soonest!</p>
                     <form id="contact-form" action="">
+                        <div id="contact-feedback-overlay">Thank you for your message, keep an eye on your emails!</div>
                         <div class="input-container">
                             <input type="hidden" name="contact_number">
                             <label for="name-input">Name</label>
-                            <input name="user_name" id="name-input" class="text-input" type="text" placeholder="Name" required>
+                            <input name="user_name" id="name-input" class="text-input" type="text" placeholder="Name"
+                                required>
                             <label for="email-input">Email</label>
-                            <input name="user_email" id="email-input" class="text-input" type="email" placeholder="Email" required>
+                            <input name="user_email" id="email-input" class="text-input" type="email"
+                                placeholder="Email" required>
                         </div>
                         <label for="message-input">Message</label>
-                        <textarea name="message" class="text-input" name="" id="message-input" cols="30" rows="10" placeholder="Message"></textarea>
+                        <textarea name="message" class="text-input" name="" id="message-input" cols="30" rows="10"
+                            placeholder="Message"></textarea>
                         <label for="submit-input">Submit</label>
                         <input id="submit-input" type="submit" class="primary-cta" value="Send!">
                     </form>
@@ -98,11 +120,14 @@
 
         <footer>
             <div id="footer-links">
-                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank" title="See this project's Repo on GitHub" aria-label="See this project's Repo on GitHub"><img class="footer-icon"
-                        src="assets/img/footer/footer-github-icon.svg" alt="GitHub Logo"></a>
-                <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects" aria-label="View my portfolio of projects"><img class="footer-icon"
+                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank"
+                    title="See this project's Repo on GitHub" aria-label="See this project's Repo on GitHub"><img
+                        class="footer-icon" src="assets/img/footer/footer-github-icon.svg" alt="GitHub Logo"></a>
+                <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects"
+                    aria-label="View my portfolio of projects"><img class="footer-icon"
                         src="assets/img/footer/footer-portfolio-icon.svg" alt="Personal Portfolio Logo"></a>
-                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Conenct with me on LinkedIn" aria-label="Conenct with me on LinkedIn"><img class="footer-icon"
+                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Conenct with me on LinkedIn"
+                    aria-label="Conenct with me on LinkedIn"><img class="footer-icon"
                         src="assets/img/footer/footer-linkedin-icon.svg" alt="LinkedIn Logo"></a>
             </div>
         </footer>
