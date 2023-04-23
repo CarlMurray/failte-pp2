@@ -6,6 +6,7 @@ let map;
 let data;
 let activeInfoWindow = false;
 let linkIcon;
+let markerIcon;
 
 // CHECKS IS USER IS FIRST TIME VISITOR
 const checkIfVisited = () => {
@@ -79,21 +80,8 @@ const initMarkers = async () => {
       markerAddress = `${AddressRegion}`
     } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
 
-    let markerIcon;
     // CHECK ATTRACTION TAGS AND SET MARKER ICON
-    if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
-    else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
-    else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
-    else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/map-icons/icon-restaurant.png'
-    else if (Tags.includes('Church')) markerIcon = 'assets/img/map-icons/icon-church.png'
-    else if (Tags.includes('Public Sculpture') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/map-icons/icon-art.png'
-    else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/map-icons/icon-shopping.png'
-    else if (Tags.includes('Beach') || Tags.includes('River')) markerIcon = 'assets/img/map-icons/icon-water.png'
-    else if (Tags.includes('Gaa') || Tags.includes('Sports') || Tags.includes('Stadium')) markerIcon = 'assets/img/map-icons/icon-sport.png'
-    else if (Tags.includes('Embarkation Point') || Tags.includes('Island')) markerIcon = 'assets/img/map-icons/icon-boat.png'
-    else if (Tags.includes('Literary') || Tags.includes('Library') || Tags.includes('Learning')) markerIcon = 'assets/img/map-icons/icon-book.png'
-    else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
-    else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
+    markerIcon = setMarkerIcons(Tags, markerIcon)
 
     //CREATE MAP MARKER
     const { Marker } = await google.maps.importLibrary("marker");
@@ -142,46 +130,7 @@ const initMarkers = async () => {
     // ADD MARKER TO MARKERS ARRAY
     markers.push(marker)
 
-    // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    if (Url.length < 5 && Telephone.length > 7) {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-    }
-    // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    else if (Url.length > 5 && Telephone.length < 5) {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-    }
-    // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    else if (Url.length < 5 && Telephone.length < 5) {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-    }
-    // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-    else {
-      attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-    }
+    checkAttractionDataValidity(Name, markerAddress, Url, Telephone, directionsURL);
 
     // SET THE CONTENT OF MARKER INFOWINDOWS 
     infowindow.setContent(attractionListInfo.innerHTML)
@@ -228,21 +177,7 @@ const positionMarker = async (searchQuery) => {
       markerAddress = `${AddressRegion}`
     } else markerAddress = `${AddressLocality}, ${AddressRegion}`;
 
-    let markerIcon;
-    // CHECK ATTRACTION TAGS AND SET MARKER ICON
-    if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
-    else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
-    else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
-    else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/map-icons/icon-restaurant.png'
-    else if (Tags.includes('Church')) markerIcon = 'assets/img/map-icons/icon-church.png'
-    else if (Tags.includes('Public Sculpture') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/map-icons/icon-art.png'
-    else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/map-icons/icon-shopping.png'
-    else if (Tags.includes('Beach') || Tags.includes('River')) markerIcon = 'assets/img/map-icons/icon-water.png'
-    else if (Tags.includes('Gaa') || Tags.includes('Sports') || Tags.includes('Stadium')) markerIcon = 'assets/img/map-icons/icon-sport.png'
-    else if (Tags.includes('Embarkation Point') || Tags.includes('Island')) markerIcon = 'assets/img/map-icons/icon-boat.png'
-    else if (Tags.includes('Literary') || Tags.includes('Library') || Tags.includes('Learning')) markerIcon = 'assets/img/map-icons/icon-book.png'
-    else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
-    else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
+    markerIcon = setMarkerIcons(Tags, markerIcon)
 
     // IF SEARCH IS EMPTY
     if (searchQuery === undefined || searchQuery === null) {
@@ -336,45 +271,7 @@ const positionMarker = async (searchQuery) => {
       attractionListInfo = document.createElement('div');
       attractionListInfo.setAttribute('class', 'attractionListInfoDiv')
       // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      if (Url.length < 5 && Telephone.length > 7) {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-      }
-      // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else if (Url.length > 5 && Telephone.length < 5) {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-      }
-      // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else if (Url.length < 5 && Telephone.length < 5) {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
-        <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-      }
-      // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
-      else {
-        attractionListInfo.innerHTML = `<h4>${Name}</h4>
-        ${markerAddress}
-        <div class = "attraction-info-button-container">
-        <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
-        <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
-        <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
-        </div>`;
-      }
+      checkAttractionDataValidity(Name, markerAddress, Url, Telephone, directionsURL);
       // SET THE CONTENT OF MARKER INFOWINDOWS
       infowindow.setContent(attractionListInfo.innerHTML)
       // SET THE CONTENT OF SEARCH RESULTS
@@ -443,5 +340,68 @@ const openDrawer = () => {
 // LISTEN FOR CLICK ON CHEVRON, THEN RUN ABOVE FUNCTION TO OPEN DRAWER
 const searchContainerOpener = document.querySelector('#drawer-chevron-container');
 searchContainerOpener.addEventListener('click', openDrawer);
+
+const checkAttractionDataValidity = (Name, markerAddress, Url, Telephone, directionsURL) => {
+  // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+  if (Url.length < 5 && Telephone.length > 7) {
+    attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
+      </div>`;
+  }
+  // IF TELEPHONE IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+  else if (Url.length > 5 && Telephone.length < 5) {
+    attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
+      <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
+      </div>`;
+  }
+  // IF URL & TELEPHONE ARE NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+  else if (Url.length < 5 && Telephone.length < 5) {
+    attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link grey" aria-label = "This attraction does not have a website" title = "This attraction does not have a website"></a>
+      <a class = "attraction-info-button fa-solid fa-phone grey" aria-label = "This attraction does not have a phone number" title = "This attraction does not have a phone number"></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
+      </div>`;
+  }
+  // OTHERWISE IF URL & TELEPHONE ARE VALID, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+  else {
+    attractionListInfo.innerHTML = `<h4>${Name}</h4>
+      ${markerAddress}
+      <div class = "attraction-info-button-container">
+      <a class = "attraction-info-button fa-solid fa-link" href = ${Url} target="_blank" aria-label = "Click to open attraction website in new tab" title = "Click to open attraction website in new tab"></a>
+      <a class = "attraction-info-button fa-solid fa-phone" href = tel:+${Telephone} aria-label = "Click to call attraction" title = "Click to call attraction"></a>
+      <a class = "attraction-info-button fa-solid fa-compass fa-lg" href = ${directionsURL} target="_blank" aria-label = "Click to get directions to attraction. Opens Google Maps." title = "Click to get directions to attraction - Opens Google Maps"></a>
+      </div>`;
+  }
+
+}
+
+const setMarkerIcons = (Tags, markerIcon) => {
+  
+  if (Tags.includes('Castle')) markerIcon = 'assets/img/map-icons/icon-castle.png'
+  else if (Tags.includes('Museum')) markerIcon = 'assets/img/map-icons/icon-museum.png'
+  else if (Tags.includes('Natural Landscape') || Tags.includes('Nature') || Tags.includes('Garden') || Tags.includes('Forest')) markerIcon = 'assets/img/map-icons/icon-hiking.png'
+  else if (Tags.includes('Food') || Tags.includes('Cafe')) markerIcon = 'assets/img/map-icons/icon-restaurant.png'
+  else if (Tags.includes('Church')) markerIcon = 'assets/img/map-icons/icon-church.png'
+  else if (Tags.includes('Public Sculpture') || Tags.includes('Art Gallery')) markerIcon = 'assets/img/map-icons/icon-art.png'
+  else if (Tags.includes('Craft') || Tags.includes('Shopping')) markerIcon = 'assets/img/map-icons/icon-shopping.png'
+  else if (Tags.includes('Beach') || Tags.includes('River')) markerIcon = 'assets/img/map-icons/icon-water.png'
+  else if (Tags.includes('Gaa') || Tags.includes('Sports') || Tags.includes('Stadium')) markerIcon = 'assets/img/map-icons/icon-sport.png'
+  else if (Tags.includes('Embarkation Point') || Tags.includes('Island')) markerIcon = 'assets/img/map-icons/icon-boat.png'
+  else if (Tags.includes('Literary') || Tags.includes('Library') || Tags.includes('Learning')) markerIcon = 'assets/img/map-icons/icon-book.png'
+  else if (Tags.includes('Zoos') || Tags.includes('Aquarium') || Tags.includes('Farm')) markerIcon = 'assets/img/map-icons/icon-zoo.png'
+  else if (Tags.includes('Cycling') || Tags.includes('Cycle')) markerIcon = 'assets/img/map-icons/icon-cycling.png'
+  return  markerIcon
+
+}
 
 main();
