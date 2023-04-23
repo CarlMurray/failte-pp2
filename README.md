@@ -1,4 +1,51 @@
-# failte-pp2
+![Cover image](assets/readme/img/cover-img.jpg "Cover image")
+---
+### The production site is available at https://failte.carlmurray.design OR https://carlmurray.github.io/failte-pp2/ (in case custom domain doesn't work)
+---
+# Table of Contents
+TBD
+---
+# Project Background
+fáilte is a site that aims to make it easy for users to find and discover attractions in Ireland. The site features an interactive map which has over 600 attractions plotted, along with a geo-guessing game where users can test their knowledge of Ireland's attractions.
+
+With the rising popularity of staycations, people require easy access to information that helps them make the most of their trips and explore their surroundings. The project's primary objectives include creating a user-friendly platform for browsing various attractions in Ireland, such as historic sites, nature reserves, museums, art galleries, and other points of interest. Additionally, it aims to provide information about specific attractions and directions to navigate to them.
+
+The key goals for this project include providing a user-friendly experience for browsing attractions in Ireland, including historic site, nature reserves, museums, art galleries and other points of interest. Additionally it aims to make it easy for users to find out more about an attraction of interest and find directions to navigate to the attraction.
+---
+# User Experience
+## Design
+- To guide the development process, mockups of the intended design were created in Figma before starting development. These early designs provided clear direction for development, however the final build may differ as various iterations were explored throughout the development.
+- A simple colour palette was used consisting of a green primary colour, inspired by Ireland's national colour, along with a spectrum of gray to white. 
+- Lilita Pro was the chosen typeface for headings as it conveys a sense of welcome (fáilte) and friendliness, while Roboto was used for body text for its simple and modern appearance.
+![Colour palette](assets/readme/img/colour-palette.png "Colour palette")
+![Lilita Pro for headings and Roboto for body](assets/readme/img/fonts.png "Font choices")
+
+## Site Structure
+- **fáilte** has four pages:
+    - The landing page contains the primary feature of the site - an interactive map showing 600+ attractions, with a search input feature.
+    - The 'Play' page features a geo-guessing game where users can test their knowledge of Ireland's attractions.
+    - The 'About' page contains a short description of the site and its purpose. Additionally it includes an attribution statement to credit Fáilte Ireland for the data used for the site.
+    - The 'Contact' page allows users to contact the site owner (me) with feedback, questions and suggestions.
+    ![Diagram showing site map](assets/readme/img/sitemap.png "Sitemap")
+
+## Features
+### Navigation Bar
+- The site features a responsive navigation bar which includes links to each page. 
+- Clicking the **fáilte** logo brings users to the Home/Map page in line with UX best practice.
+- The active page a user is on is highlighted with a decorative underline to help orient the user as they navigate the site.
+
+### Interactive Map
+- The Map utilises the Google Maps JavaScript API along with attraction data provided by the Fáilte Ireland Open Data API which includes the name, address, phone number, website and geographical coordinates for 622 attractions in Ireland.
+- Users can pan and zoom around the Map using the mouse, keyboard or on-screen controls.
+
+### Mobile UX
+- On mobile screens, the Map and Play pages are designed to fit within the browser's viewport at all times, taking native browser UI elements into account. This was accomplished by using DVH (Dynamic Viewport Units) in CSS rules.
+- This was intentionally done so that no scrolling is necessary and the Map and Play features are always visible on screen, and are easy to interact with, without the possibility of unintentional (and frustrating) scrolling as users try to navigate the Map or Street View.
+- Map and Street View controls are also hidden on mobile screens to preserve screen real estate, with the exception of the fullscreen control which is of particular importance on small screens.
+- On the Map and Play pages, layouts are designed to adapt for optimal usability on small screens. For example, on the Map page, Search Results are hidden in a bottom-drawer on small screens. Additionally, on the Play page, the layout of Street View and the Map change based on the aspect ratio of the screen (i.e. side-by-side vs. vertically stacked Map/Street View)
+![Mobile layout on map and street view](assets/readme/img/mobile-layout.jpg "Mobile layout")
+
+
 
 # Bugs and Issues
 
