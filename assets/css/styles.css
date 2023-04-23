@@ -625,6 +625,11 @@ label {
     left: -99999px;
 }
 
+.inline-link {
+    text-decoration: none;
+    color: var(--colour-primary-teal);
+}
+
 .hidden {
     display: none;
 }
@@ -889,6 +894,7 @@ label {
     .contact-container {
         margin: auto;
         width: 100%;
+        text-align: center;
     }
 
     h1,
@@ -948,12 +954,16 @@ label {
         margin: 0.5em;
         border: none;
     }
+
+    .active-page {
+        text-underline-offset: 6px;
+    }
 }
 
 @media (max-width: 395px) {
     nav ul {
         font-size: 0.9em;
-        gap: 25px;
+        gap: 20px;
     }
 }
 
