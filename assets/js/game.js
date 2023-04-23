@@ -141,6 +141,7 @@ const getDistance = () => {
             document.querySelector('.game-scoreboard .game-text-content-header').innerText = `Final Score: ${score}/5000`;
             document.querySelector('.game-scoreboard .game-text-content-header').style.color = '#fff'
             document.querySelector('.game-round-number').style.color = '#fff'
+            document.querySelector('.game-scoreboard .game-text-content-paragraph').style.color = '#fff'
             btn.innerText = 'Play again'
             btn.classList.remove('game-play-button')
             btn.classList.add('game-play-again-button')
@@ -152,6 +153,7 @@ const getDistance = () => {
                 scoreboard.style.backgroundColor = '#fff'
                 document.querySelector('.game-scoreboard .game-text-content-header').style.color = '#008080'
                 document.querySelector('.game-round-number').style.color = '#008080'
+                document.querySelector('.game-scoreboard .game-text-content-paragraph').style.color = '#000'
                 btn.innerText = 'Next round'
                 btn.classList.add('game-play-button')
                 btn.classList.remove('game-play-again-button')
