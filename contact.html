@@ -21,6 +21,31 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/faviconfavicon-16x16.png">
     <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+
+    <!-- ADD EMAILJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('nAMWVoO4q5WTnV_xg');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_u8p34w3', 'template_ilgfd18', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -49,15 +74,16 @@
                     <h1>What's the craic?</h1>
                     <p class="contact-paragraph">Have a question? Want to know more about this site? Have a feature
                         request? Get in touch and we’ll get back to you soonest!</p>
-                    <form action="">
+                    <form id="contact-form" action="">
                         <div class="input-container">
+                            <input type="hidden" name="contact_number">
                             <label for="name-input">Name</label>
-                            <input id="name-input" class="text-input" type="text" placeholder="Name" required>
+                            <input name="user_name" id="name-input" class="text-input" type="text" placeholder="Name" required>
                             <label for="email-input">Email</label>
-                            <input id="email-input" class="text-input" type="email" placeholder="Email" required>
+                            <input name="user_email" id="email-input" class="text-input" type="email" placeholder="Email" required>
                         </div>
                         <label for="message-input">Message</label>
-                        <textarea class="text-input" name="" id="message-input" cols="30" rows="10" placeholder="Message"></textarea>
+                        <textarea name="message" class="text-input" name="" id="message-input" cols="30" rows="10" placeholder="Message"></textarea>
                         <label for="submit-input">Submit</label>
                         <input id="submit-input" type="submit" class="primary-cta" value="Send!">
                     </form>
