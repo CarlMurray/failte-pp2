@@ -35,12 +35,27 @@ The key goals for this project include providing a user-friendly experience for 
 - The active page a user is on is highlighted with a decorative underline to help orient the user as they navigate the site.
 
 ### Interactive Map
+![Map with search results](assets/readme/img/map-main.jpg "Map")
 - The Map utilises the Google Maps JavaScript API along with attraction data provided by the Fáilte Ireland Open Data API which includes the name, address, phone number, website and geographical coordinates for 622 attractions in Ireland.
-- Users can pan and zoom around the Map using the mouse, keyboard or on-screen controls.
+- Users can pan and zoom around the Map using the mouse, keyboard or on-screen controls. Additionally, the Map includes native Google Maps controls such as Street View, Satellite view, zoom and fullscreen.
+- The Map features a set of marker icons which denote the type of attraction i.e. museum, forest, hike, cafe etc. and are colour coded for readability.
+- When a marker is clicked, an info window displays above the marker with the name and location of the attraction, as well as a link to a website, phone number and Google Maps directions. If the attraction has no website or phone number, the buttons are greyed out and are unclickable.
+- Users can click the 'close' button or click anywhere outside the info window, to close it. The active info window will also close if another is opened.
+
+### Search 
+![Demonstration showing use of search feature](assets/readme/img/map-search-demo.gif "Search demo")
+
+- Users can use the Search function to search for specific attractions.
+- The Search works by checking the name, location and "tags" associated with each attraction against the user's search query. Most attractions have multiple tags (e.g. "Castle, Forest, Museum") which is why a search for "Castle" may also show other types of attractions.
+- The Search results dynamically update as the user types and is quick and responsive to user input.
+- If an invalid search query is entered, an error message is displayed prompting the user to enter a new search query.
+- The Search Results show the same information, including links and buttons, as the info windows on each map marker.
+
+
 
 ### Mobile UX
 - On mobile screens, the Map and Play pages are designed to fit within the browser's viewport at all times, taking native browser UI elements into account. This was accomplished by using DVH (Dynamic Viewport Units) in CSS rules.
-- This was intentionally done so that no scrolling is necessary and the Map and Play features are always visible on screen, and are easy to interact with, without the possibility of unintentional (and frustrating) scrolling as users try to navigate the Map or Street View.
+- This was intentionally done so that no scrolling is necessary and the Map and Play features are always visible on screen, and are easy to interact with, without the possibility of unintentional (and frustrating) scrolling as users try to navigate the Map or Street View, particularly on touch screens.
 - Map and Street View controls are also hidden on mobile screens to preserve screen real estate, with the exception of the fullscreen control which is of particular importance on small screens.
 - On the Map and Play pages, layouts are designed to adapt for optimal usability on small screens. For example, on the Map page, Search Results are hidden in a bottom-drawer on small screens. Additionally, on the Play page, the layout of Street View and the Map change based on the aspect ratio of the screen (i.e. side-by-side vs. vertically stacked Map/Street View)
 ![Mobile layout on map and street view](assets/readme/img/mobile-layout.jpg "Mobile layout")
