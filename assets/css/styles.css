@@ -7,6 +7,7 @@
     scroll-behavior: smooth;
     /* remove webkit styles */
     /* border: 1px solid black; */
+    outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -202,17 +203,18 @@ footer {
 }
 
 #search.search-invalid {
-    outline: 1px solid #cd0000;
-    border: none;
+    border: 1px solid #cd0000;
+    outline: none;
 }
 
 #search.search-invalid:focus-visible {
-    outline: 2px solid #cd0000;
-    border: none;
+    border: 2px solid #cd0000;
+    outline: none;
 }
 
 #search:focus-visible {
-    outline: 2px solid var(--colour-primary-teal);
+    border: 2px solid var(--colour-primary-teal);
+    outline: none;
 }
 
 #search-error-message {
@@ -586,7 +588,7 @@ form {
 }
 
 .text-input:focus-visible {
-    outline: 1px solid var(--colour-primary-teal);
+    border: 1px solid var(--colour-primary-teal);
 }
 
 textarea.text-input {
