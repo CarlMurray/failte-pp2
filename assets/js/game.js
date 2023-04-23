@@ -44,7 +44,7 @@ async function initMap() {
 }
 
 // CALC DISTANCE BETWEEN GUESS AND STREET VIEW LOCATIONS
-const getDistance = () => {
+const getDistance = async() => {
     const calcDistance = google.maps.geometry.spherical.computeDistanceBetween(userGuessResult, streetPosition)
     // console.log(calcDistance)
     // console.log(userGuessResult, streetPosition)
@@ -87,7 +87,7 @@ const getDistance = () => {
         }
     )
 
-    const calcScore = () => {
+    const calcScore = async () => {
         if (calcDistance < 200) {
             score = score += 1000;
             // console.log(score)
@@ -129,7 +129,7 @@ const getDistance = () => {
         let scoreboard = document.querySelector('.game-scoreboard')
         scoreboard.classList.remove('hidden')
         let btn = document.querySelector('.game-scoreboard .game-play-button')
-        changeStreetView();
+        await changeStreetView();
         // RESTART WHEN BUTTON CLICK
         btn.addEventListener('click', () => {
             scoreboard.classList.add('hidden')
@@ -228,24 +228,18 @@ async function initStreetView() {
         if (streetViewStatus === "OK") {
             newStreetViewPano.setPano(streetViewData.location.pano)
             newStreetViewPano.setVisible(true)
+            // console.log(streetViewStatus)
+
         }
 
         // IF NOT, TRY AGAIN
         else {
             // console.log(streetViewStatus)
-            initStreetView();
+            changeStreetView();
         };
     })
     return newStreetViewPano;
 }
-
-async function main() {
-    await fetchData();
-    await initMap();
-    await initStreetView();
-}
-
-main();
 
 // DEFINE PLAY BUTTON
 let playBtn = document.querySelector('.game-play-button')
@@ -271,3 +265,10 @@ playBtn.addEventListener('click', () => {
     }
 })
 
+async function main() {
+    await fetchData();
+    await initMap();
+    await initStreetView();
+}
+
+main();
