@@ -846,9 +846,13 @@ label {
     }
 
     /* REMOVE MAP CONTROLS FOR SMALL SCREENS */
-    .gmnoprint,
+    /* .gmnoprint,
     .gm-control-active,
     .gm-fullscreen-control {
+        display: none;
+    } */
+    .gmnoprint
+    {
         display: none;
     }
 
