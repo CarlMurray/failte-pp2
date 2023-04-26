@@ -1,3 +1,9 @@
+(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+  key: "AIzaSyCbslAH8fUvbb6O544Xyq0iJBzK50vvX08",
+  // Add other bootstrap parameters as needed, using camel case.
+  // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+});
+
 const JSON_PATH = 'assets/data/geo-guess-locations.json'
 const MAX_STREET_VIEW_RADIUS = 50;
 let streetPosition;
@@ -6,6 +12,7 @@ let map;
 let score = 0;
 let roundNumber = 0;
 let data;
+let panorama;
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
@@ -124,13 +131,20 @@ const getDistance = async() => {
         document.querySelector('.game-scoreboard .game-text-content-paragraph').innerHTML = `Place: ${data[streetLocationIndex].Name}, ${data[streetLocationIndex].AddressRegion} <br> Your guess was within ${(calcDistance/1000).toFixed(1)}km`;
         document.querySelector('.game-round-number').innerText = `Round ${roundNumber} of 5`
 
-        // console.log(data[streetLocationIndex]);
+        // REMOVE CURRENT LOCATION FROM LOCATIONS ARRAY SO NOT REPEATED
+        data.splice(streetLocationIndex, 1);
+
+        // RESTART LOCATIONS LIST IF ALL EXHAUSTED
+        if (data.length === 0) {
+            data = await fetchData();
+        }
 
         // SHOW SCOREBOARD
         let scoreboard = document.querySelector('.game-scoreboard')
         scoreboard.classList.remove('hidden')
         let btn = document.querySelector('.game-scoreboard .game-play-button')
         await changeStreetView();
+
         // RESTART WHEN BUTTON CLICK
         btn.addEventListener('click', () => {
             scoreboard.classList.add('hidden')
@@ -157,90 +171,37 @@ const getDistance = async() => {
                 document.querySelector('.game-scoreboard .game-text-content-paragraph').style.color = '#000'
                 btn.innerText = 'Next round'
                 btn.classList.add('game-play-button')
-                btn.classList.remove('game-play-again-button')
-                // getDistance();
-                // btn.removeEventListener('click')
-    
+                btn.classList.remove('game-play-again-button')    
             })
         }
-
     }
     calcScore();
-
 }
 
 const changeStreetView = async () => {
-    let data = await fetchData();
-    // console.log(data)
     streetLocationIndex = Math.floor(Math.random() * data.length);
-    // console.log(streetLocationIndex)
     const { Name, Latitude, Longitude } = data[streetLocationIndex];
-    // console.log(Name, Latitude, Longitude)
 
     // DEFINE LATLNG OBJ FOR STREET VIEW POSITION
     streetPosition = { lat: Latitude, lng: Longitude }
-    // let pano = await initStreetView()
-    // console.log(pano);
-    newStreetViewPano.setPosition(streetPosition)
-
+    panorama.setPosition(streetPosition)
 }
 
 let newStreetViewPano;
 let streetLocationIndex;
-async function initStreetView() {
-    const { StreetViewService } = await google.maps.importLibrary("streetView")
-    const { StreetViewPanorama } = await google.maps.importLibrary("streetView")
-    let data = await fetchData();
-    streetLocationIndex = Math.floor(Math.random() * data.length);
-    // console.log(streetLocationIndex)
-    const { Name, Latitude, Longitude } = data[streetLocationIndex];
-    // console.log(Name, Latitude, Longitude)
 
-    // DEFINE LATLNG OBJ FOR STREET VIEW POSITION
-    streetPosition = { lat: Latitude, lng: Longitude }
-
-    // console.log(data);
-
-    // CREATE NEW STREET MAPS SERVICE
-    let streetViewService = new google.maps.StreetViewService();
-
-    // DEFINE REQUEST TO BE PASSED TO getPanorama()
-    let streetViewRequest = {
-        location: streetPosition,
-        radius: MAX_STREET_VIEW_RADIUS
-    }
-    // CREATE NEW PANO WITH CONTAINER
-    newStreetViewPano = new StreetViewPanorama(document.querySelector('#game-street-container'),
-        {
+async function initStreetView () {
+    const {StreetViewPanorama} = await google.maps.importLibrary("streetView")
+    panorama = new StreetViewPanorama(
+      document.querySelector('#game-street-container'), {
             addressControl: false, // REMOVES OVERLAY SHOWING STREET VIEW LOCATION
             showRoadLabels: false, // HIDES ROAD LABELS
             disableDefaultUI: true, // TURNS OFF STREET VIEW UI
             clickToGo: false, // DISABLES ABILITY TO MOVE
             fullscreenControl: true,
             fullscreenControlOptions: true
-        });
-
-
-    let streetViewObject = streetViewService.getPanorama(streetViewRequest, (streetViewData, streetViewStatus) => {
-        // console.log(streetViewStatus) // LOGS STATUS OF REQUEST
-        // console.log(streetViewData) // LOGS REQUEST OBJ
-
-        // CHECK THAT STREET VIEW IS VALID AND SET VISIBLE
-        if (streetViewStatus === "OK") {
-            newStreetViewPano.setPano(streetViewData.location.pano)
-            newStreetViewPano.setVisible(true)
-            // console.log(streetViewStatus)
-
-        }
-
-        // IF NOT, TRY AGAIN
-        else {
-            // console.log(streetViewStatus)
-            changeStreetView();
-        };
-    })
-    return newStreetViewPano;
-}
+      })
+  }
 
 // DEFINE PLAY BUTTON
 let playBtn = document.querySelector('.game-play-button')
@@ -270,6 +231,7 @@ async function main() {
     await fetchData();
     await initMap();
     await initStreetView();
+    changeStreetView();
 }
 
 main();
