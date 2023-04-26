@@ -1,16 +1,17 @@
-const CSV_PATH = 'assets/data/attractions.json'
+const JSON_PATH = 'assets/data/geo-guess-locations.json'
 const MAX_STREET_VIEW_RADIUS = 50;
 let streetPosition;
 let userGuessResult;
 let map;
 let score = 0;
 let roundNumber = 0;
+let data;
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND CSV attractions.json
 async function fetchData() {
-    const getData = await fetch(CSV_PATH);
+    const getData = await fetch(JSON_PATH);
     data = await getData.json();
-    // console.log(data);
+    console.log(data);
     return data;
 }
 
@@ -171,7 +172,7 @@ const getDistance = async() => {
 const changeStreetView = async () => {
     let data = await fetchData();
     // console.log(data)
-    streetLocationIndex = Math.floor(Math.random() * 622);
+    streetLocationIndex = Math.floor(Math.random() * data.length);
     // console.log(streetLocationIndex)
     const { Name, Latitude, Longitude } = data[streetLocationIndex];
     // console.log(Name, Latitude, Longitude)
@@ -190,7 +191,7 @@ async function initStreetView() {
     const { StreetViewService } = await google.maps.importLibrary("streetView")
     const { StreetViewPanorama } = await google.maps.importLibrary("streetView")
     let data = await fetchData();
-    streetLocationIndex = Math.floor(Math.random() * 622);
+    streetLocationIndex = Math.floor(Math.random() * data.length);
     // console.log(streetLocationIndex)
     const { Name, Latitude, Longitude } = data[streetLocationIndex];
     // console.log(Name, Latitude, Longitude)
