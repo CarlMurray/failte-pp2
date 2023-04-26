@@ -1,0 +1,187 @@
+[
+    {
+        "Name": "Cliffs of Moher, Co. Clare",
+        "Latitude": 52.964199,
+        "Longitude": -9.437777
+    },
+    {
+        "Name": "Latin Quarter, Co. Galway",
+        "Latitude": 53.27147,
+        "Longitude": -9.053807
+    },
+    {
+        "Name": "Westport, Co. Galway",
+        "Latitude": 53.801154,
+        "Longitude": -9.522178
+    },
+    {
+        "Name": "Keem Bay, Achill, Co. Mayo",
+        "Latitude": 53.970872,
+        "Longitude": -10.186576
+    },
+    {
+        "Name": "Rosses Point, Co. Sligo",
+        "Latitude": 54.306976,
+        "Longitude": -8.573903
+    },
+    {
+        "Name": "Sliabh Liag Cliffs, Co. Donegal",
+        "Latitude": 54.627673,
+        "Longitude": -8.684499
+    },
+    {
+        "Name": "Aran Island, Co. Donegal",
+        "Latitude": 55.013434,
+        "Longitude": -8.559635
+    },
+    {
+        "Name": "Malin Head, Co. Donegal",
+        "Latitude": 55.379194,
+        "Longitude": -7.390707
+    },
+    {
+        "Name": "Carlingford Castle, Co. Louth",
+        "Latitude": 54.043081,
+        "Longitude": -6.186406
+    },
+    {
+        "Name": "Titanic Belfast, Co. Antrim",
+        "Latitude": 54.6089,
+        "Longitude": -5.910522
+    },
+    {
+        "Name": "Giant's Causeway, Co. Antrim",
+        "Latitude": 55.241415,
+        "Longitude": -6.512061
+    },
+    {
+        "Name": "Skerries Harbour, Co. Dublin",
+        "Latitude": 53.585167,
+        "Longitude": -6.105183
+    },
+    {
+        "Name": "Bull Island, Co. Dublin",
+        "Latitude": 53.351181,
+        "Longitude": -6.162738
+    },
+    {
+        "Name": "Poolbeg Lighthouse, Co. Dublin",
+        "Latitude": 53.341643,
+        "Longitude": -6.155021
+    },
+    {
+        "Name": "O'Connell Bridge, Dublin City",
+        "Latitude": 53.347321,
+        "Longitude": -6.259307
+    },
+    {
+        "Name": "Dun Laoighaire Harbour, Co. Dublin",
+        "Latitude": 53.297745,
+        "Longitude": -6.124552
+    },
+    {
+        "Name": "Killiney Hill, Co. Dublin",
+        "Latitude": 53.264549,
+        "Longitude": -6.112194
+    },
+    {
+        "Name": "Powerscourt Waterfall, Co. Wicklow",
+        "Latitude": 53.146499,
+        "Longitude": -6.210407
+    },
+    {
+        "Name": "Glendalough, Co. Wicklow",
+        "Latitude": 53.005724,
+        "Longitude": -6.394585
+    },
+    {
+        "Name": "Hook Lighthouse, Co. Wexford",
+        "Latitude": 52.124088,
+        "Longitude": -6.930532
+    },
+    {
+        "Name": "Dunmore East, Co. Waterford",
+        "Latitude": 52.154281,
+        "Longitude": -6.99472
+    },
+    {
+        "Name": "Kilkenny Castle, Co. Kilkenny",
+        "Latitude": 52.650222,
+        "Longitude": -7.249036
+    },
+    {
+        "Name": "Waterford City, Co. Waterford",
+        "Latitude": 52.265036,
+        "Longitude": -7.118323
+    },
+    {
+        "Name": "Dungarvan Castle, Co. Waterford",
+        "Latitude": 52.088982,
+        "Longitude": -7.615534
+    },
+    {
+        "Name": "Cobh, Co. Cork",
+        "Latitude": 51.852376,
+        "Longitude": -8.295553
+    },
+    {
+        "Name": "Cork City, Co. Cork",
+        "Latitude": 51.900271,
+        "Longitude": -8.470487
+    },
+    {
+        "Name": "Kinsale, Co. Cork",
+        "Latitude": 51.706602,
+        "Longitude": -8.523795
+    },
+    {
+        "Name": "Dursey Island, Co. Cork",
+        "Latitude": 51.607803,
+        "Longitude": -10.158235
+    },
+    {
+        "Name": "Gap of Dunloe, Co. Kerry",
+        "Latitude": 51.994491,
+        "Longitude": -9.64414
+    },
+    {
+        "Name": "Carauntoohill, Co. Kerry",
+        "Latitude": 51.99892,
+        "Longitude": -9.743238
+    },
+    {
+        "Name": "Inch Beach, Co. Kerry",
+        "Latitude": 52.142568,
+        "Longitude": -9.983301
+    },
+    {
+        "Name": "Dingle, Co. Kerry",
+        "Latitude": 52.139311,
+        "Longitude": -10.276117
+    },
+    {
+        "Name": "Cashel, Co. Tipperary",
+        "Latitude": 52.522951,
+        "Longitude": -7.889169
+    },
+    {
+        "Name": "Newgrange, Co. Meath",
+        "Latitude": 53.69374,
+        "Longitude": -6.474762
+    },
+    {
+        "Name": "Glencolumbkille, Co. Donegal",
+        "Latitude": 54.707342,
+        "Longitude": -8.740728
+    },
+    {
+        "Name": "Poulnabrone Dolmen, Co. Clare",
+        "Latitude": 53.048672,
+        "Longitude": -9.140042
+    },
+    {
+        "Name": "Grianan of Aileach, Co. Donegal",
+        "Latitude": 55.023868,
+        "Longitude": -7.427874
+    }
+]
