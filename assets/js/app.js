@@ -89,7 +89,8 @@ const initMarkers = async () => {
       map: map,
       position: { lat: lat, lng: lng },
       title: Name,
-      icon: markerIcon
+      icon: markerIcon,
+      optimized: false //FOR KEYBOARD NAVIGATION
     }
     )
 
@@ -248,7 +249,8 @@ const positionMarker = async (searchQuery) => {
         // map: map,
         position: { lat: lat, lng: lng },
         title: Name,
-        icon: markerIcon
+        icon: markerIcon,
+        optimized: false //FOR KEYBOARD NAVIGATION
       }
       )
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
