@@ -5,8 +5,6 @@
     -webkit-font-smoothing: antialiased;
     -webkit-appearance: none;
     scroll-behavior: smooth;
-    /* remove webkit styles */
-    /* border: 1px solid black; */
     outline: none;
 }
 
@@ -55,12 +53,9 @@ body {
 
 
 #container {
-    /* width: var(--container-width); */
-    /*width will be 80% or 1440px max*/
     margin: auto;
     min-height: var(--unit-100vh);
     position: relative;
-    /* border: 2px solid red; */
 }
 
 #wrapper {
@@ -74,7 +69,6 @@ header {
 }
 
 #content-wrapper {
-    /* padding-bottom: 100px; */
     display: flex;
     flex-direction: column;
 }
@@ -93,11 +87,7 @@ main {
     align-items: center;
     justify-content: center;
     height: calc(var(--unit-100vh) - 200px);
-    overflow-y: scroll;
     overflow-x: hidden;
-    /* MINUS FOOTER HEIGHT */
-    /* border: 2px solid red; */
-    /* align-items: stretch; */
 }
 
 main.no-overflow {
@@ -122,17 +112,12 @@ main.no-overflow {
     color: var(--colour-white);
 }
 
-/* nav {
-    width: 30%;
-} */
-
 nav ul {
     display: flex;
     justify-content: space-between;
     list-style: none;
     font: 1.5em var(--font-family-header);
     gap: 35px;
-    /* width: 500px; */
 }
 
 nav a {
@@ -159,14 +144,12 @@ footer {
 #map {
     height: 90%;
     width: 100%;
-    /* border: 1px solid black; */
     border-radius: 0px 20px 20px 0px;
 }
 
 #content-underlay {
     width: 100%;
     height: 90%;
-    /* border: 5px solid red; */
     position: absolute;
     z-index: -1;
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
@@ -179,14 +162,12 @@ footer {
     max-width: 350px;
     min-width: 200px;
     padding: 15px;
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
 }
 
 #search-container-head {
     padding-bottom: 10px;
-    /* margin-bottom: 10px; */
     border-bottom: 1px solid #cecece;
     box-shadow: 0px 10px 10px -10px #bdbdbd;
 }
@@ -249,7 +230,6 @@ footer a {
 }
 
 #search-container-results {
-    /* height: inherit; */
     overflow-y: scroll;
     overflow-x: hidden;
     align-items: stretch;
@@ -274,18 +254,14 @@ h4 {
 .attraction-info-button-container {
     display: flex;
     flex-direction: row;
-    /* margin: 5px; */
-    /* background-color: red; */
 }
 
 a.attraction-info-button {
     text-decoration: none;
     color: var(--colour-primary-teal);
     background-color: #f6f6f6;
-    /* border: 1px solid magenta; */
     width: 30px;
     height: 30px;
-    /* display: inline-block; */
     border-radius: 100px;
     margin-right: 10px;
     margin-top: 10px;
@@ -293,12 +269,10 @@ a.attraction-info-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: ; */
 }
 
 div a.attraction-info-button.grey {
     color: #cecece;
-    /* background-color: #cecece; */
 }
 
 .modal-overlay {
@@ -364,7 +338,6 @@ div a.attraction-info-button.grey {
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
     padding: 7px 25px;
     border-radius: 100px;
-    /* min-width: 40%; */
     text-align: center;
     border: none;
 }
@@ -421,7 +394,6 @@ h3 {
 }
 
 .game-container-overlay {
-    /* border: 1px solid red; */
     width: 100%;
     height: 90%;
     position: absolute;
@@ -458,7 +430,6 @@ h3 {
     font-family: var(--font-family-Body);
     font-size: 1em;
     width: 80%;
-    /* margin: auto; */
 }
 
 .game-play-button {
@@ -490,13 +461,11 @@ h3 {
 }
 
 #game-map-container {
-    /* border: 3px solid green; */
     flex-grow: 1;
 
 }
 
 #game-street-container {
-    /* border: 3px solid red; */
     flex-grow: 1;
 }
 
@@ -519,7 +488,6 @@ h3 {
 .contact-container {
     width: 50%;
     margin: 20px 12% 20px 0;
-    /* margin-right: 12%; */
     flex: 2;
     padding-bottom: 20px;
 }
@@ -536,35 +504,19 @@ h3 {
 
 #search-bar-container.hidden {
     display: none;
-    /* flex-direction: column; */
 }
 
-/* #contact-img-container {
-    border: 1px solid red;
-    max-width: 30%;
-    height: 100vh;
-    overflow: hidden;
-    box-shadow: inset 10px 4px 12px 0px rgba(0, 0, 0, 0.25);
-    z-index: -1;
-    flex: 1;
-    overflow-y: hidden;
-} */
-
 #contact-img-container {
-    /* border: 1px solid red; */
     max-width: 30%;
     height: 100%;
-    /* overflow: hidden; */
     box-shadow: inset 15px 0px 20px -15px rgba(0, 0, 0, 0.25);
     z-index: -1;
     flex: 1;
-    /* overflow-y: hidden; */
     overflow-x: visible;
     overflow-y: clip;
 }
 
 #contact-img {
-    /* position: absolute; */
     z-index: 0;
     min-height: 100%;
 }
@@ -619,7 +571,6 @@ h1 {
     height: 100%;
     display: flex;
     align-items: center;
-    /* position: relative; */
 }
 
 label {
@@ -638,7 +589,6 @@ label {
     height: 101%;
     background-color: var(--colour-white);
     z-index: 999;
-    /* border: 1px solid red; */
     position: absolute;
     border-radius: 20px;
     display: flex;
@@ -666,9 +616,6 @@ label {
 
 /* TABLET */
 @media (max-width: 1024px) {
-    /* nav {
-        width: 45%;
-    } */
 
     header {
         height: 65px;
@@ -690,6 +637,10 @@ label {
     #container-content {
         width: 90%;
     }
+    
+    #container-contact-page {
+        width: 90%;
+    }
 
     #nav-logo {
         font-size: 2.3em;
@@ -709,14 +660,12 @@ label {
 
     .contact-container {
         width: 65%;
+        margin: 20px 6% 20px 0;
     }
 }
 
 @media (max-width: 768px) {
 
-    /* nav {
-        width: 55%;
-    } */
     nav ul {
         font-size: 1.2em;
     }
@@ -744,7 +693,6 @@ label {
         font-family: var(--font-family-Body);
         font-size: 1em;
         width: 90%;
-        /* margin: auto; */
     }
 
     .game-round-number {
@@ -785,9 +733,6 @@ label {
 /* MOBILE */
 @media (max-width: 550px),
 (max-height: 550px) {
-    /* nav {
-        width: 55%;
-    } */
 
     header {
         height: 50px;
@@ -880,12 +825,6 @@ label {
         border-radius: 0px;
     }
 
-    /* REMOVE MAP CONTROLS FOR SMALL SCREENS */
-    /* .gmnoprint,
-    .gm-control-active,
-    .gm-fullscreen-control {
-        display: none;
-    } */
     .gmnoprint {
         display: none;
     }
@@ -961,7 +900,6 @@ label {
         font-family: var(--font-family-Body);
         font-size: 1em;
         width: 90%;
-        /* margin: auto; */
     }
 
     .game-round-number {
