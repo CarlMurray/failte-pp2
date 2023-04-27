@@ -775,6 +775,11 @@ label {
         margin: 0.5em;
         border: none;
     }
+
+    .contact-paragraph {
+        font-size: 0.9em;
+        margin: 20px 0;
+    }
 }
 
 /* MOBILE */
@@ -941,7 +946,7 @@ label {
     }
 
     .contact-paragraph {
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
 
     .game-text-content-header {
