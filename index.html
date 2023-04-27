@@ -24,6 +24,8 @@
 </head>
 
 <body>
+
+    <!-- MODAL TO SHOW ON FIRST VISIT -->
     <div class="modal-overlay"></div>
     <div class="modal-container">
         <div class="first-visit-modal">
@@ -42,8 +44,8 @@
 
         </div>
     </div>
+    
     <div id="container">
-        <!-- <div id="content-wrapper"> -->
 
         <!-- HEADER -->
         <header>
@@ -61,13 +63,18 @@
                 </nav>
             </div>
         </header>
+
+        <!-- MAIN CONTENT -->
         <main class="no-overflow">
             <div id="container-content">
                 <div id="content-underlay"></div>
+
+                <!-- CONTAINER FOR SEARCH BAR + RESULTS -->
                 <div id="search-container">
                     <div id="search-container-head">
                         <div id="drawer-chevron-container"><img id="drawer-chevron" src="assets/img/chevron-circle.svg" alt="Chevron" aria-label="Click to open/close drawer"></div>
-                        <!-- Search bar -->
+                        
+                        <!-- SEARCH BAR -->
                         <div id="search-bar-container">
                             <label for="search">Search</label>
                             <input type="search" id="search" placeholder="e.g. 'Forest', 'Castle', 'Cafe', 'Museum'">
@@ -75,17 +82,15 @@
                                 location.</span>
                         </div>
                     </div>
-                    <div id="search-container-results">
-
-                    </div>
+                    <div id="search-container-results"></div>
                 </div>
-                <!-- container for map -->
+
+                <!-- CONTAINER FOR MAP -->
                 <div id="map"></div>
             </div>
         </main>
 
-        <!-- </div> -->
-
+        <!-- FOOTER -->
         <footer>
             <div id="footer-links">
                 <a href="https://github.com/CarlMurray/failte-pp2" target="_blank"
@@ -105,11 +110,14 @@
     <!-- SCRIPTS -->
     <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
 
-    <!-- Google Map bootstrap loader -->
+    <!-- Google Map API dynamic loader -->
     <!-- prettier-ignore -->
     <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
             ({ key: "AIzaSyCbslAH8fUvbb6O544Xyq0iJBzK50vvX08", v: "beta" });</script>
-    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+    <!-- UNCOMMENT TO ENABLE MARKER CLUSTERING -->
+    <!-- <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script> -->
+    
     <!-- add JS app link -->
     <script src="assets/js/app.js"></script>
 </body>
