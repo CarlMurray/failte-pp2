@@ -26,7 +26,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function () {
-            // https://dashboard.emailjs.com/admin/account
             emailjs.init('nAMWVoO4q5WTnV_xg');
         })();
     </script>
@@ -40,7 +39,7 @@
                 // these IDs from the previous steps
                 emailjs.sendForm('service_u8p34w3', 'template_ilgfd18', this)
                     .then(function () {
-                        console.log('SUCCESS!');
+                        // SHOW SUCCESS FEEDBACK MESSAGE
                         const submitFeedbackOverlay = document.querySelector('#contact-feedback-overlay')
                         const submitBtn = document.querySelector('#submit-input')
                         const formTextInputs = document.querySelector('#input-container')
@@ -51,7 +50,7 @@
                         formTextarea.style.visibility = 'hidden'
                     }, function (error) {
 
-                        console.log('FAILED...', error);
+                        // IF UNSUCCESSFUL, SHOW ERROR MESSAGE
                         if (!errorMsg) {
                             const form = document.querySelector('form');
                             errorMsg = document.createElement('p')
@@ -67,7 +66,6 @@
 
 <body>
     <div id="container">
-        <!-- <div id="content-wrapper"> -->
 
         <!-- HEADER -->
         <header>
@@ -85,12 +83,16 @@
                 </nav>
             </div>
         </header>
+
+        <!-- MAIN CONTENT -->
         <main>
             <div id="container-contact-page">
                 <div class="contact-container">
                     <h1>What's the craic?</h1>
                     <p class="contact-paragraph">Have a question? Want to know more about this site? Have a feature
                         request? Get in touch and we’ll get back to you soonest!</p>
+
+                    <!-- CONTACT FORM -->
                     <form id="contact-form" action="">
                         <div id="contact-feedback-overlay">Thank you for your message, keep an eye on your emails!</div>
                         <div class="input-container">
@@ -115,8 +117,7 @@
             </div>
         </main>
 
-        <!-- </div> -->
-
+        <!-- FOOTER -->
         <footer>
             <div id="footer-links">
                 <a href="https://github.com/CarlMurray/failte-pp2" target="_blank"
@@ -131,11 +132,6 @@
             </div>
         </footer>
     </div>
-
-    <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
-    <!-- SCRIPTS -->
-    <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
-
 </body>
 
 </html>
