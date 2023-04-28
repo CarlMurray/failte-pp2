@@ -17,6 +17,9 @@ let data;
 let panorama;
 let streetLocationIndex;
 let accessibleGuessBtnDiv;
+const crosshairHorizontal = document.createElement('hr')
+const crosshairVertical = document.createElement('hr')
+
 
 // FETCH ATTRACTION DATA FROM geo-guess-locations.json
 async function fetchData() {
@@ -43,9 +46,14 @@ async function initMap() {
         // CREATE CONTROL CONTAINER
         const accessibleControlDiv = document.createElement("div");
         accessibleGuessBtnDiv = document.createElement("div");
+
+        if (accessibleIsClicked === false) {
         accessibleGuessBtnDiv.classList.add('hidden'); // ADD HIDDEN CLASS TO GUESS BTN
+        crosshairHorizontal.classList.add('hidden')
+        crosshairVertical.classList.add('hidden')    
         // accessibleGuessBtnDiv.setAttribute('id', 'accessible-guess-button'); // ADD HIDDEN CLASS TO GUESS BTN
-        
+        }
+
         // CREATE CONTROL
         const accessibleControl = createAccessibleControl(map);
         const accessibleGuessBtn = createAccessibleGuessBtn(map);
@@ -247,35 +255,32 @@ playBtn.addEventListener('click', () => {
     }
 })
 
+let accessibleIsClicked = false;
 // CREATES ACCESSBILITY CONTROL
 function createAccessibleControl(map) {
     const controlButton = document.createElement("button");
     controlButton.setAttribute('id', 'accessible-control-toggle') 
-    controlButton.title = "Click to show accessible controls";
+    controlButton.setAttribute('aria-label', 'click to enable accessible game controls') 
+    controlButton.title = "click to enable accessible game controls";
     controlButton.type = "button";
 
     // CREATE MAP CROSSHAIR
     const mapContainer = document.querySelector('#game-map-container') // STORE MAP DIV IN VARIABLE
 
-    const crosshairHorizontal = document.createElement('hr')
-    const crosshairVertical = document.createElement('hr')
 
     mapContainer.appendChild(crosshairHorizontal)
     mapContainer.appendChild(crosshairVertical)
 
-    crosshairHorizontal.classList.add('hidden')
+    // crosshairHorizontal.classList.add('hidden')
     crosshairHorizontal.classList.add('map-crosshair')
 
-    crosshairVertical.classList.add('hidden')
+    // crosshairVertical.classList.add('hidden')
     crosshairVertical.classList.add('map-crosshair')
     crosshairVertical.style.transform = 'rotate(90deg)'
 
     // SHOW GUESS BUTTON ON CLICK
     controlButton.addEventListener("click", () => {
-    //   let centerLat = map.getCenter().lat();
-    //   let centerLng = map.getCenter().lng();
-    //   console.log(centerLat, centerLng)
-    // registerAccessibleGuess()
+    accessibleIsClicked = !accessibleIsClicked;
     accessibleGuessBtnDiv.classList.toggle('hidden')
     crosshairHorizontal.classList.toggle('hidden')
     crosshairVertical.classList.toggle('hidden')
