@@ -242,7 +242,7 @@ playBtn.addEventListener('click', () => {
     // SHOW GAME INSTRUCTIONS ON CLICK
     if (isClicked) {
         gameIntroHeader.innerText = 'How to play'
-        gameIntroText.innerText = 'You are dropped at a random attraction on the island of Ireland. Guess the location by clicking the map - the closer you are, the more points you get!'
+        gameIntroText.innerHTML = 'You are dropped at a random attraction on the island of Ireland. Guess the location by clicking the map - the closer you are, the more points you get! <br><br><strong>Check the top-left corner of the Map for accessible controls!</strong><br>'
         playBtn.innerText = 'Play'
     }
 
