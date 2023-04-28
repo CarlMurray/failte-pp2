@@ -64,6 +64,8 @@ The key goals for this project include providing a user-friendly experience for 
 
 # Bugs and Issues
 
+## Resolved
+
 1. During the initial stage of development, when fetching the Attraction Data from the Fáilte Ireland API, it would only return a maximum of 50 results as results are paginated. Documentation for the API is non-existant/inaccessible at time of writing and I could not determine a solution. However, I was able to download the full dataset in CSV format which I could then parse to JSON using [CSVtoJSON](https://csvjson.com/csv2json) and `fetch` the file locally which turned out to be a simpler and better solution.
 2. The biggest challenge was implementing the search feature so that it functions as desired. During development, I was able to make Attractions which matched the search query appear on the map, however when I cleared or editted the search input, the Attractions remained on the map as I had not told the program to clear the map when a new search query is made. Drawing up a flowchart helped me think through the logic of my code and the issue and solution became obvious after doing this.
 ![Flowchart showing incorrect code logic](assets/readme/img/flowchart.png "Flowchart")
@@ -78,12 +80,39 @@ The key goals for this project include providing a user-friendly experience for 
 ![Screenshot of site and console showing bug](assets/readme/img/bug-webgl.png "Bug due to having too many WebGL contexts")
 7. When testing the site towards the end of development, I noticed a bug in the Geo Guessing Game where every 5 - 10 rounds, the Street View would not update and users were shown a stale Street View even though a new Map position was generated, similar to bug #5. This was a challenging bug to diagnose and there were a couple of occasions where I mistakenly thought I had fixed it, but I believe it relates to the Lat/Lng coordinates in the Fáilte Ireland dataset - some locations do not have a valid Street View. I also think that fixing bug #6 led to this bug arising. To fix this bug, I created my own dataset with locations for the game in `geo-guess-locations.json`. This served two purposes: 1. It fixed the bug as I chose locations that I was able to verify had a valid Street View; 2. It fixed the issue of the game being too difficult as it now shows popular and familiar locations in Ireland rather than obscure locations that are too hard to guess.
 
+## Unresolved
+
+1. On initial load of the Geo Guessing Game, if the user enables the Accessibility Controls, the "Guess" button initially displays off-center. I could not diagnose the issue, however the button shifts to it's intended position once the user interacts with the Map (pan/zoom) and as such, does not have any significant impact on performance, usability or functionality.
+![Screenshot of game showing off-center button](assets/readme/img/bug-game-off-center-btn.png "'Guess' button showing off-center on initial load only")
+
 ---
 
 # Testing
 
-## Site Testing
+## Overview
+- Responsiveness was tested as per below table (go to section: [Responsiveness](#responsiveness))
+- All HTML files were passed through the W3C validator with no errors (Validation results: [Home page](), [Game page](), [About page](), [Contact page]() )
+- The CSS stylesheet was passed through the W3C validator with no errors ([Validation of styles.css]())
+- The website was tested on major browsers including Chrome, Safari, Firefox and Edge as detailed in [Testing Process](#testing-process) below.
+- All user flows were tested in depth including navigating through content, entering search queries, clicking CTAs and links, and form submission.
+- All forms were tested to ensure validation was present and that forms could be submitted without error
+- Lighthouse was used to test for Performance, Accessibility, Best Practices and SEO and adjustments were made to improve test results. [Example of Home page test results here]()
+- Accessibility testing was conducted by navigating the site and performing tasks using keyboard navigation and a screen reader (MacOS VoiceOver)
 
+## Testing Process
+| Test                | Action                   | Success Criteria  |
+| -------------       |-------------             | -----|
+| Homepage loads      | Navigate to website URL  | Page loads < 3s, no errors |
+| Game                | Play 50 rounds of game  | Locations not repeated until all have been shown once, correct map and street view shown, interactivity functions as intended |
+| Links               | Click on each Navigation link, CTA, button, logo, footer link, attraction links   | Correct page is loaded/correct action performed, new tab opened if applicable |
+| Attraction links    | Verify invalid links are not clickable, correct button style applied, correct title shown on hover, check info windows and search results views   | Invalid links not clickable, grey icon shown, correct title shown on hover |
+| Form validation     | Enter data into each input field, ensure only valid data is accepted | Form doesn't submit until correct data entered, error message shown |
+| Successful Contact form submission     | Complete contact form and submit | Form successfully submits, feedback message shown |
+| Unsuccessful Contact form submission     | Complete contact form, disable network connection and submit | Form submission fails, error message shown |
+| Responsiveness      | Resize viewport window from 320px upwards with Chrome Dev Tools. Test devices as detailed in [Testing Process](#testing-process) | Page layout remains intact and adapts to screen size as intended |
+| Accessibility       | Navigate the site with keyboard and screen reader | Tab index works in correct order, map is navigable, game is playable with accessible controls enabled, content/aria-labels read aloud |
+| Lighthouse          | Perform Lighthouse test on each page | Score of > 89 on Performance, Accessibility, Best Practices, SEO |
+| Browser compatibility | Test links, layout, appearance, functionality and above Tests on Chrome, Safari, Firefox and Edge. | Website looks and functions as intended and passes all tests above
 
 
 ## Responsiveness
@@ -104,21 +133,26 @@ The key goals for this project include providing a user-friendly experience for 
 *Testing using ResponsivelyApp:*
 ![Screenshot of responsiveness testing in Responsively App](assets/readme/img/responsiveness-testing.png "Responsiveness testing in Responsively App")
 
-
+---
+# Roadmap
+- Add more popular attractions to game dataset
+- Improve search function to allow multiple keywords and locations to be entered
+- Add search filter options to allow users to filter attractions by type, location etc.
+- Add game options including difficulty, number of rounds, high score, location boundaries
+---
 # Credits
 
 ### Assets
 - Attraction data: [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv)
-- Map: [Google Maps API](https://developers.google.com/maps)
-- Map Marker Icons: [Geoapify](https://www.geoapify.com/free-map-icons)
-- Favicon: 
-- Misc. Icons: [Font Awesome](https://fontawesome.com/)
-- Code Snippet README Images: [Carbon](https://carbon.now.sh/)
-- Flow Diagram: [SmartDraw](https://cloud.smartdraw.com/)
+- Map & Street View: [Google Maps JavaScript API](https://developers.google.com/maps)
+- Favicon: [Favicon.io](https://favicon.io/)
+- Icons: [Font Awesome](https://fontawesome.com/)
 
-### Tools
+### Tools & Utilities
 - Responsiveness Testing: [ResponsivelyApp](https://responsively.app/)
 - Accessibility Testing: [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
+- Flow Diagram: [SmartDraw](https://cloud.smartdraw.com/)
+- Code Snippet README Images: [Carbon](https://carbon.now.sh/)
 
 ### Educational Resources
 - [MDN Documentation](https://developer.mozilla.org/en-US/)
