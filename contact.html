@@ -27,13 +27,13 @@
     <link rel="manifest" href="assets/img/favicon/site.webmanifest">
 
     <!-- ADD EMAILJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
         (function () {
             emailjs.init('nAMWVoO4q5WTnV_xg');
         })();
     </script>
-    <script type="text/javascript">
+    <script>
         window.onload = function () {
             let errorMsg;
             document.getElementById('contact-form').addEventListener('submit', function (event) {
@@ -97,7 +97,7 @@
                         request? Get in touch and we’ll get back to you soonest!</p>
 
                     <!-- CONTACT FORM -->
-                    <form id="contact-form" action="">
+                    <form id="contact-form">
                         <div id="contact-feedback-overlay">Thank you for your message, keep an eye on your emails!</div>
                         <div class="input-container">
                             <input type="hidden" name="contact_number">
@@ -109,7 +109,7 @@
                                 placeholder="Email" required>
                         </div>
                         <label for="message-input">Message</label>
-                        <textarea name="message" class="text-input" name="" id="message-input" cols="30" rows="10"
+                        <textarea name="message" class="text-input" id="message-input" cols="30" rows="10"
                             placeholder="Message"></textarea>
                         <label for="submit-input">Submit</label>
                         <input id="submit-input" type="submit" class="primary-cta" value="Send!">
@@ -130,8 +130,8 @@
                 <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects"
                     aria-label="View my portfolio of projects"><img class="footer-icon"
                         src="assets/img/footer/footer-portfolio-icon.svg" alt="Personal Portfolio Logo"></a>
-                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Conenct with me on LinkedIn"
-                    aria-label="Conenct with me on LinkedIn"><img class="footer-icon"
+                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Connect with me on LinkedIn"
+                    aria-label="Connect with me on LinkedIn"><img class="footer-icon"
                         src="assets/img/footer/footer-linkedin-icon.svg" alt="LinkedIn Logo"></a>
             </div>
         </footer>
