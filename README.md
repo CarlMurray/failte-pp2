@@ -82,6 +82,10 @@ The key goals for this project include providing a user-friendly experience for 
 
 # Testing
 
+## Site Testing
+
+
+
 ## Responsiveness
 
 - Testing for responsiveness was conducted using Chrome Dev Tools and ResponsivelyApp.
@@ -114,6 +118,7 @@ The key goals for this project include providing a user-friendly experience for 
 
 ### Tools
 - Responsiveness Testing: [ResponsivelyApp](https://responsively.app/)
+- Accessibility Testing: [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 
 ### Educational Resources
 - [MDN Documentation](https://developer.mozilla.org/en-US/)
