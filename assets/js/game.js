@@ -39,23 +39,17 @@ async function initMap() {
         clickableIcons: false //DISABLES NATIVE CLICKABLE PLACE ICONS
     });
 
+        // CREATE CONTROL CONTAINER
+        const accessibleControlDiv = document.createElement("div");
+        // CREATE CONTROL
+        const accessibleControl = createAccessibleControl(map);
+      
+        // APPEND CONTROL TO MAP
+        accessibleControlDiv.appendChild(accessibleControl);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(accessibleControlDiv);    
+
     // ADD LISTENER TO MAP TO DETECT USER GUESS
-    map.addListener('click', (event) => {
-
-        // GET GEO LOCATION OF USER GUESS
-        let userClick = event.latLng
-        let lat = userClick.lat();
-        let lng = userClick.lng();
-        userGuessResult = { lat: lat, lng: lng }
-
-        // CLEAR MAP LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
-        google.maps.event.clearInstanceListeners(map);
-        roundNumber++
-        console.log(roundNumber)
-
-        // CALL FUNCTION TO CALC DISTANCE AND SCORE
-        getDistance();
-    })
+    map.addListener('click', registerGuess)
 }
 
 // CALC DISTANCE BETWEEN GUESS AND STREET VIEW LOCATIONS
@@ -242,6 +236,55 @@ playBtn.addEventListener('click', () => {
         gameIntroOverlay.classList.add('hidden')
     }
 })
+
+// CREATES ACCESSBILITY CONTROL
+function createAccessibleControl(map) {
+    const controlButton = document.createElement("button");
+    controlButton.setAttribute('id', 'accessible-control-toggle') 
+    controlButton.title = "Click to show accessible controls";
+    controlButton.type = "button";
+    // SHOW GUESS BUTTON ON CLICK
+    controlButton.addEventListener("click", () => {
+    //   let centerLat = map.getCenter().lat();
+    //   let centerLng = map.getCenter().lng();
+    //   console.log(centerLat, centerLng)
+    registerAccessibleGuess()
+    });
+    return controlButton;
+  }  
+
+function registerGuess(event) {
+    // GET GEO LOCATION OF USER GUESS
+    let userClick = event.latLng
+    let lat = userClick.lat();
+    let lng = userClick.lng();
+    userGuessResult = { lat: lat, lng: lng }
+
+    // CLEAR MAP LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
+    google.maps.event.clearInstanceListeners(map);
+    roundNumber++
+    console.log(roundNumber)
+
+    // CALL FUNCTION TO CALC DISTANCE AND SCORE
+    getDistance();
+}
+
+function registerAccessibleGuess(event) {
+    // GET GEO LOCATION OF USER GUESS
+    let userClick = map.getCenter()
+    let lat = userClick.lat();
+    let lng = userClick.lng();
+    userGuessResult = { lat: lat, lng: lng }
+
+    // CLEAR MAP LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
+    google.maps.event.clearInstanceListeners(map);
+    roundNumber++
+    console.log(roundNumber)
+
+    // CALL FUNCTION TO CALC DISTANCE AND SCORE
+    getDistance();
+}
+  
 
 async function main() {
     await fetchData(); //GET LOCATION DATA
