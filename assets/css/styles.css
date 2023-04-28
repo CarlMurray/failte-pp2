@@ -647,6 +647,13 @@ label {
     margin: 10px;
 }
 
+.map-crosshair {
+    border: 3px solid red;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
 /* TABLET */
 @media (max-width: 1024px) {
 

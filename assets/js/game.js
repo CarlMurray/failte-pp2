@@ -253,6 +253,23 @@ function createAccessibleControl(map) {
     controlButton.setAttribute('id', 'accessible-control-toggle') 
     controlButton.title = "Click to show accessible controls";
     controlButton.type = "button";
+
+    // CREATE MAP CROSSHAIR
+    const mapContainer = document.querySelector('#game-map-container') // STORE MAP DIV IN VARIABLE
+
+    const crosshairHorizontal = document.createElement('hr')
+    const crosshairVertical = document.createElement('hr')
+
+    mapContainer.appendChild(crosshairHorizontal)
+    mapContainer.appendChild(crosshairVertical)
+
+    crosshairHorizontal.classList.add('hidden')
+    crosshairHorizontal.classList.add('map-crosshair')
+
+    crosshairVertical.classList.add('hidden')
+    crosshairVertical.classList.add('map-crosshair')
+    crosshairVertical.style.transform = 'rotate(90deg)'
+
     // SHOW GUESS BUTTON ON CLICK
     controlButton.addEventListener("click", () => {
     //   let centerLat = map.getCenter().lat();
@@ -260,6 +277,8 @@ function createAccessibleControl(map) {
     //   console.log(centerLat, centerLng)
     // registerAccessibleGuess()
     accessibleGuessBtnDiv.classList.toggle('hidden')
+    crosshairHorizontal.classList.toggle('hidden')
+    crosshairVertical.classList.toggle('hidden')
     });
     return controlButton;
   }  
