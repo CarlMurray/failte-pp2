@@ -633,6 +633,20 @@ label {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
 }
 
+#accessible-guess-button {
+    width: 220px;
+    height: 40px;
+    background-color: var(--colour-primary-teal);
+    font-size: 18px;
+    font-weight: bold;
+    font-family: var(--font-family-Body);
+    border-radius: 100px;
+    color: var(--colour-white);
+    border: 2px solid white;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 10px -1px;
+    margin: 10px;
+}
+
 /* TABLET */
 @media (max-width: 1024px) {
 

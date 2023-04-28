@@ -16,6 +16,7 @@ let roundNumber = 0;
 let data;
 let panorama;
 let streetLocationIndex;
+let accessibleGuessBtnDiv;
 
 // FETCH ATTRACTION DATA FROM geo-guess-locations.json
 async function fetchData() {
@@ -41,12 +42,21 @@ async function initMap() {
 
         // CREATE CONTROL CONTAINER
         const accessibleControlDiv = document.createElement("div");
+        accessibleGuessBtnDiv = document.createElement("div");
+        accessibleGuessBtnDiv.classList.add('hidden'); // ADD HIDDEN CLASS TO GUESS BTN
+        // accessibleGuessBtnDiv.setAttribute('id', 'accessible-guess-button'); // ADD HIDDEN CLASS TO GUESS BTN
+        
         // CREATE CONTROL
         const accessibleControl = createAccessibleControl(map);
+        const accessibleGuessBtn = createAccessibleGuessBtn(map);
       
         // APPEND CONTROL TO MAP
         accessibleControlDiv.appendChild(accessibleControl);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(accessibleControlDiv);    
+        
+        // APPEND CONTROL TO MAP
+        accessibleGuessBtnDiv.appendChild(accessibleGuessBtn);
+        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(accessibleGuessBtnDiv);    
 
     // ADD LISTENER TO MAP TO DETECT USER GUESS
     map.addListener('click', registerGuess)
@@ -243,6 +253,23 @@ function createAccessibleControl(map) {
     controlButton.setAttribute('id', 'accessible-control-toggle') 
     controlButton.title = "Click to show accessible controls";
     controlButton.type = "button";
+    // SHOW GUESS BUTTON ON CLICK
+    controlButton.addEventListener("click", () => {
+    //   let centerLat = map.getCenter().lat();
+    //   let centerLng = map.getCenter().lng();
+    //   console.log(centerLat, centerLng)
+    // registerAccessibleGuess()
+    accessibleGuessBtnDiv.classList.toggle('hidden')
+    });
+    return controlButton;
+  }  
+// CREATES ACCESSBILITY CONTROL
+function createAccessibleGuessBtn(map) {
+    const controlButton = document.createElement("button");
+    controlButton.setAttribute('id', 'accessible-guess-button') 
+    controlButton.title = "Click to guess at map center";
+    controlButton.type = "button";
+    controlButton.innerText = 'Guess (map center)'
     // SHOW GUESS BUTTON ON CLICK
     controlButton.addEventListener("click", () => {
     //   let centerLat = map.getCenter().lat();
