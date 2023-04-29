@@ -37,6 +37,11 @@ The key goals for this project include providing a user-friendly, accessible exp
 
 ## Features
 
+### First Visit
+
+- The main app checks the window.localStorage property to check if it's the user's first time visiting the site. On first visit, a modal is shown to provide some context on what fáilte is and CTA's are provided to allow users to easily navigate to the About page to read more before interacting with the Map.
+![First visit modal](assets/readme/img/first-visit-modal.png "First visit modal")
+
 ### Navigation Bar
 
 - The site features a responsive navigation bar which includes links to each page. 
