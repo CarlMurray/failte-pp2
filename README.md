@@ -44,23 +44,51 @@ The key goals for this project include providing a user-friendly experience for 
 
 ### Search 
 ![Demonstration showing use of search feature](assets/readme/img/map-search-demo.gif "Search demo")
-
 - Users can use the Search function to search for specific attractions.
 - The Search works by checking the name, location and "tags" associated with each attraction against the user's search query. Most attractions have multiple tags (e.g. "Castle, Forest, Museum") which is why a search for "Castle" may also show other types of attractions.
 - The Search results dynamically update as the user types and is quick and responsive to user input.
 - If an invalid search query is entered, an error message is displayed prompting the user to enter a new search query.
 - The Search Results show the same information, including links and buttons, as the info windows on each map marker.
 
-
+### Geo Guessing Game
+- fáilte features a Geo Guessing Game that provides users a fun way to discover Ireland's attractions.
+- Users are dropped at a random Street View of a popular attraction in Ireland and must guess the location by clicking on the map. 
+- The closer the user's guess, the more points they win, over the course of a five round game.
+- The game can be enjoyed by users of all abilities as it features accessible controls [see Accessibility](#accessibility).
 
 ### Mobile UX
 - On mobile screens, the Map and Play pages are designed to fit within the browser's viewport at all times, taking native browser UI elements into account. This was accomplished by using DVH (Dynamic Viewport Units) in CSS rules.
 - This was intentionally done so that no scrolling is necessary and the Map and Play features are always visible on screen, and are easy to interact with, without the possibility of unintentional (and frustrating) scrolling as users try to navigate the Map or Street View, particularly on touch screens.
-- Map and Street View controls are also hidden on mobile screens to preserve screen real estate, with the exception of the fullscreen control which is of particular importance on small screens.
+- Map and Street View controls are also hidden on mobile screens to preserve screen real estate, with the exception of the fullscreen control which is of particular importance on small screens (fullscreen not available on iOS, see [Bug #8](#bugs-and-issues)).
 - On the Map and Play pages, layouts are designed to adapt for optimal usability on small screens. For example, on the Map page, Search Results are hidden in a bottom-drawer on small screens. Additionally, on the Play page, the layout of Street View and the Map change based on the aspect ratio of the screen (i.e. side-by-side vs. vertically stacked Map/Street View)
 ![Mobile layout on map and street view](assets/readme/img/mobile-layout.jpg "Mobile layout")
 
+### Accessibility
+- Designing for accessibility was an important goal of this project, and steps were taken to ensure that users of all abilites can enjoy what fáilte has to offer.
+- The Map is navigable with keyboard controls and all attractions on the map and search results can be cycled through by tabbing. 
+- All attraction icons on the Map, along with their associated links, have aria-labels and/or titles so users of screen readers can use the Map.
+- The Geo Guessing Game can be enjoyed by all users too, as it features optional accessible controls which show a red crosshair at the center of the map and allow users to make a guess by using an on-screen button.
+![Game with accessible controls](assets/readme/img/accessible-controls.png "Accessible controls")
 
+
+# Technologies Used
+I used the following technologies, platforms and support in building my project:
+- Wireframes and mockups were designed in [Figma](https://www.figma.com/)
+- The website is built with [HTML](https://html.spec.whatwg.org/), [CSS](https://www.w3.org/Style/CSS/Overview.en.html) and [JavaScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
+- The Code Institute modules/lessons aided my learning and many of the concepts learned were applied in this project
+- [Stack Overflow](https://stackoverflow.com/) was used for troubleshooting and debugging throughout the project, as referenced.
+- [MacOS VoiceOver](https://bbc.github.io/accessibility-news-and-you/assistive-technology/testing-steps/voiceover-mac.html) was used for accessibility testing.
+- [Git](https://git-scm.com/) was used for version control
+- [GitHub](https://github.com/) was used for the project repository
+- [Google Fonts](https://fonts.google.com/) was used for all fonts on the site
+- [FontAwesome](https://fontawesome.com/v4/) was used for icons which then had additional styling applied to them
+- [Favicon Generator](https://favicon.io) was used to generate the favicon used
+- The site is hosted on [AWS Amplify](https://aws.amazon.com/amplify/)
+- Custom domain registered with [NameSilo](https://www.namesilo.com/), with a specific subdomain for this project (https://failte.carlmurray.design)
+- [Google Analytics](https://analytics.google.com/analytics/web/) was linked to the site to track site traffic and user behaviour.
+- The [Google Maps JavaScript API]() was used for the Map and Street View functionality.
+- The [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv) was used for attraction data.
+- [EmailJS](https://www.emailjs.com/) was used to add functionality to the Contact form.
 
 # Bugs and Issues
 
@@ -79,6 +107,7 @@ The key goals for this project include providing a user-friendly experience for 
 [Relevant Stack Overflow Thread](https://stackoverflow.com/questions/45654166/reuse-a-google-maps-street-view-inside-of-a-modal)
 ![Screenshot of site and console showing bug](assets/readme/img/bug-webgl.png "Bug due to having too many WebGL contexts")
 7. When testing the site towards the end of development, I noticed a bug in the Geo Guessing Game where every 5 - 10 rounds, the Street View would not update and users were shown a stale Street View even though a new Map position was generated, similar to bug #5. This was a challenging bug to diagnose and there were a couple of occasions where I mistakenly thought I had fixed it, but I believe it relates to the Lat/Lng coordinates in the Fáilte Ireland dataset - some locations do not have a valid Street View. I also think that fixing bug #6 led to this bug arising. To fix this bug, I created my own dataset with locations for the game in `geo-guess-locations.json`. This served two purposes: 1. It fixed the bug as I chose locations that I was able to verify had a valid Street View; 2. It fixed the issue of the game being too difficult as it now shows popular and familiar locations in Ireland rather than obscure locations that are too hard to guess.
+8. During testing I noticed the fullscreen control was not showing on Map or Street View. After some troubleshooting, I learned from the Google Maps JavaScript API Documentation that iOS does not support fullscreen. [Reference](https://developers.google.com/maps/documentation/javascript/controls#:~:text=The%20Fullscreen%20control%20offers%20the,not%20visible%20on%20iOS%20devices.)
 
 ## Unresolved
 
@@ -153,6 +182,7 @@ The key goals for this project include providing a user-friendly experience for 
 - Accessibility Testing: [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 - Flow Diagram: [SmartDraw](https://cloud.smartdraw.com/)
 - Code Snippet README Images: [Carbon](https://carbon.now.sh/)
+- Contact form submission: [EmailJS](https://www.emailjs.com/)
 
 ### Educational Resources
 - [MDN Documentation](https://developer.mozilla.org/en-US/)
