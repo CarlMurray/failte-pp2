@@ -11,7 +11,7 @@ fáilte is a site that aims to make it easy for users to find and discover attra
 
 With the rising popularity of staycations, people require easy access to information that helps them make the most of their trips and explore their surroundings. The project's primary objectives include creating a user-friendly platform for browsing various attractions in Ireland, such as historic sites, nature reserves, museums, art galleries, and other points of interest. Additionally, it aims to provide information about specific attractions and directions to navigate to them.
 
-The key goals for this project include providing a user-friendly experience for browsing attractions in Ireland, including historic site, nature reserves, museums, art galleries and other points of interest. Additionally it aims to make it easy for users to find out more about an attraction of interest and find directions to navigate to the attraction.
+The key goals for this project include providing a user-friendly, accessible experience for browsing attractions in Ireland, including historic sites, nature reserves, museums, art galleries and other points of interest. Additionally it aims to make it easy for users to find out more about an attraction of interest and find directions to navigate to the attraction.
 
 ---
 
@@ -19,6 +19,7 @@ The key goals for this project include providing a user-friendly experience for 
 
 ## Design
 
+![Mockups of site screens](assets/readme/img/figma-mockups.jpg "Mockups")
 - To guide the development process, mockups of the intended design were created in Figma before starting development. These early designs provided clear direction for development, however the final build may differ as various iterations were explored throughout the development.
 - A simple colour palette was used consisting of a green primary colour, inspired by Ireland's national colour, along with a spectrum of gray to white. 
 - Lilita Pro was the chosen typeface for headings as it conveys a sense of welcome (fáilte) and friendliness, while Roboto was used for body text for its simple and modern appearance.
@@ -157,8 +158,9 @@ I used the following technologies, platforms and support in building my project:
 ## Overview
 
 - Responsiveness was tested as per below table (go to section: [Responsiveness](#responsiveness))
-- All HTML files were passed through the W3C validator with no errors (Validation results: [Home page](), [Game page](), [About page](), [Contact page]() )
-- The CSS stylesheet was passed through the W3C validator with no errors ([Validation of styles.css]())
+- All HTML files were passed through the W3C validator with no errors (Validation results: [Home page](https://validator.w3.org/nu/?doc=https://failte.carlmurray.design/), [Game page](https://validator.w3.org/nu/?doc=https://failte.carlmurray.design/play.html), [About page](https://validator.w3.org/nu/?doc=https://failte.carlmurray.design/about.html), [Contact page](https://validator.w3.org/nu/?doc=https://failte.carlmurray.design/contact.html) )
+- The CSS stylesheet was passed through the W3C validator with no errors ([Validation of styles.css](https://jigsaw.w3.org/css-validator/validator?uri=https://failte.carlmurray.design/assets/css/styles.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en))
+- All JavaScript files were passed through JSHint with no errors present.
 - The website was tested on major browsers including Chrome, Safari, Firefox and Edge as detailed in [Testing Process](#testing-process) below.
 - All user flows were tested in depth including navigating through content, entering search queries, clicking CTAs and links, and form submission.
 - All forms were tested to ensure validation was present and that forms could be submitted without error
