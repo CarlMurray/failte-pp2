@@ -1,19 +1,24 @@
 ![Cover image](assets/readme/img/cover-img.jpg "Cover image")
 ---
-### The production site is available at https://failte.carlmurray.design OR https://carlmurray.github.io/failte-pp2/ (in case custom domain doesn't work)
+### The production site is available at https://failte.carlmurray.design
 ---
 # Table of Contents
 TBD
 ---
 # Project Background
+
 fáilte is a site that aims to make it easy for users to find and discover attractions in Ireland. The site features an interactive map which has over 600 attractions plotted, along with a geo-guessing game where users can test their knowledge of Ireland's attractions.
 
 With the rising popularity of staycations, people require easy access to information that helps them make the most of their trips and explore their surroundings. The project's primary objectives include creating a user-friendly platform for browsing various attractions in Ireland, such as historic sites, nature reserves, museums, art galleries, and other points of interest. Additionally, it aims to provide information about specific attractions and directions to navigate to them.
 
 The key goals for this project include providing a user-friendly experience for browsing attractions in Ireland, including historic site, nature reserves, museums, art galleries and other points of interest. Additionally it aims to make it easy for users to find out more about an attraction of interest and find directions to navigate to the attraction.
+
 ---
+
 # User Experience
+
 ## Design
+
 - To guide the development process, mockups of the intended design were created in Figma before starting development. These early designs provided clear direction for development, however the final build may differ as various iterations were explored throughout the development.
 - A simple colour palette was used consisting of a green primary colour, inspired by Ireland's national colour, along with a spectrum of gray to white. 
 - Lilita Pro was the chosen typeface for headings as it conveys a sense of welcome (fáilte) and friendliness, while Roboto was used for body text for its simple and modern appearance.
@@ -21,6 +26,7 @@ The key goals for this project include providing a user-friendly experience for 
 ![Lilita Pro for headings and Roboto for body](assets/readme/img/fonts.png "Font choices")
 
 ## Site Structure
+
 - **fáilte** has four pages:
     - The landing page contains the primary feature of the site - an interactive map showing 600+ attractions, with a search input feature.
     - The 'Play' page features a geo-guessing game where users can test their knowledge of Ireland's attractions.
@@ -29,12 +35,15 @@ The key goals for this project include providing a user-friendly experience for 
     ![Diagram showing site map](assets/readme/img/sitemap.png "Sitemap")
 
 ## Features
+
 ### Navigation Bar
+
 - The site features a responsive navigation bar which includes links to each page. 
 - Clicking the **fáilte** logo brings users to the Home/Map page in line with UX best practice.
 - The active page a user is on is highlighted with a decorative underline to help orient the user as they navigate the site.
 
 ### Interactive Map
+
 ![Map with search results](assets/readme/img/map-main.jpg "Map")
 - The Map utilises the Google Maps JavaScript API along with attraction data provided by the Fáilte Ireland Open Data API which includes the name, address, phone number, website and geographical coordinates for 622 attractions in Ireland.
 - Users can pan and zoom around the Map using the mouse, keyboard or on-screen controls. Additionally, the Map includes native Google Maps controls such as Street View, Satellite view, zoom and fullscreen.
@@ -43,6 +52,7 @@ The key goals for this project include providing a user-friendly experience for 
 - Users can click the 'close' button or click anywhere outside the info window, to close it. The active info window will also close if another is opened.
 
 ### Search 
+
 ![Demonstration showing use of search feature](assets/readme/img/map-search-demo.gif "Search demo")
 - Users can use the Search function to search for specific attractions.
 - The Search works by checking the name, location and "tags" associated with each attraction against the user's search query. Most attractions have multiple tags (e.g. "Castle, Forest, Museum") which is why a search for "Castle" may also show other types of attractions.
@@ -51,12 +61,33 @@ The key goals for this project include providing a user-friendly experience for 
 - The Search Results show the same information, including links and buttons, as the info windows on each map marker.
 
 ### Geo Guessing Game
+
+![Demonstration showing use of geo guessing game](assets/readme/img/game-demo.gif "Game demo")
 - fáilte features a Geo Guessing Game that provides users a fun way to discover Ireland's attractions.
 - Users are dropped at a random Street View of a popular attraction in Ireland and must guess the location by clicking on the map. 
 - The closer the user's guess, the more points they win, over the course of a five round game.
 - The game can be enjoyed by users of all abilities as it features accessible controls [see Accessibility](#accessibility).
 
+### About
+
+![About page](assets/readme/img/about-page.png "About page")
+- The site features an About page which provides more information on what fáilte is and how users can utilise it.
+- An attribution statement is also provided to credit the attraction data source (Fáilte Ireland).
+- A "Get started" CTA is shown at the end of the About content to enable user to easily navigate to the Map after reading about the site.
+
+### Contact
+
+![Contact page](assets/readme/img/contact-demo.gif "Contact page")
+- A functional contact form is provided to allow users to submit feedback, messages etc.
+- On successful submission, a feedback popup is shown to tell the user the message has been sent.
+- If unsuccessful, an error message displays, prompting the user to try again.
+
+### Footer
+
+- The site footer features three of my personal links to allow users to easily get in touch with me or to view my work: GitHub; Portfolio; LinkedIn.
+
 ### Mobile UX
+
 - On mobile screens, the Map and Play pages are designed to fit within the browser's viewport at all times, taking native browser UI elements into account. This was accomplished by using DVH (Dynamic Viewport Units) in CSS rules.
 - This was intentionally done so that no scrolling is necessary and the Map and Play features are always visible on screen, and are easy to interact with, without the possibility of unintentional (and frustrating) scrolling as users try to navigate the Map or Street View, particularly on touch screens.
 - Map and Street View controls are also hidden on mobile screens to preserve screen real estate, with the exception of the fullscreen control which is of particular importance on small screens (fullscreen not available on iOS, see [Bug #8](#bugs-and-issues)).
@@ -64,14 +95,17 @@ The key goals for this project include providing a user-friendly experience for 
 ![Mobile layout on map and street view](assets/readme/img/mobile-layout.jpg "Mobile layout")
 
 ### Accessibility
+
 - Designing for accessibility was an important goal of this project, and steps were taken to ensure that users of all abilites can enjoy what fáilte has to offer.
 - The Map is navigable with keyboard controls and all attractions on the map and search results can be cycled through by tabbing. 
 - All attraction icons on the Map, along with their associated links, have aria-labels and/or titles so users of screen readers can use the Map.
 - The Geo Guessing Game can be enjoyed by all users too, as it features optional accessible controls which show a red crosshair at the center of the map and allow users to make a guess by using an on-screen button.
 ![Game with accessible controls](assets/readme/img/accessible-controls.png "Accessible controls")
 
+---
 
 # Technologies Used
+
 I used the following technologies, platforms and support in building my project:
 - Wireframes and mockups were designed in [Figma](https://www.figma.com/)
 - The website is built with [HTML](https://html.spec.whatwg.org/), [CSS](https://www.w3.org/Style/CSS/Overview.en.html) and [JavaScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
@@ -89,6 +123,8 @@ I used the following technologies, platforms and support in building my project:
 - The [Google Maps JavaScript API]() was used for the Map and Street View functionality.
 - The [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv) was used for attraction data.
 - [EmailJS](https://www.emailjs.com/) was used to add functionality to the Contact form.
+
+---
 
 # Bugs and Issues
 
@@ -119,6 +155,7 @@ I used the following technologies, platforms and support in building my project:
 # Testing
 
 ## Overview
+
 - Responsiveness was tested as per below table (go to section: [Responsiveness](#responsiveness))
 - All HTML files were passed through the W3C validator with no errors (Validation results: [Home page](), [Game page](), [About page](), [Contact page]() )
 - The CSS stylesheet was passed through the W3C validator with no errors ([Validation of styles.css]())
@@ -129,6 +166,7 @@ I used the following technologies, platforms and support in building my project:
 - Accessibility testing was conducted by navigating the site and performing tasks using keyboard navigation and a screen reader (MacOS VoiceOver)
 
 ## Testing Process
+
 | Test                | Action                   | Success Criteria  |
 | -------------       |-------------             | -----|
 | Homepage loads      | Navigate to website URL  | Page loads < 3s, no errors |
@@ -163,21 +201,81 @@ I used the following technologies, platforms and support in building my project:
 ![Screenshot of responsiveness testing in Responsively App](assets/readme/img/responsiveness-testing.png "Responsiveness testing in Responsively App")
 
 ---
+
 # Roadmap
 - Add more popular attractions to game dataset
 - Improve search function to allow multiple keywords and locations to be entered
 - Add search filter options to allow users to filter attractions by type, location etc.
 - Add game options including difficulty, number of rounds, high score, location boundaries
+
 ---
+
+# Deployment
+
+- A DNS record for a subdomain of my portfolio, carlmurray.design, was created for this project.
+- The GitHub repository was connected to AWS Amplify for hosting.
+- Custom domain (https://failte.carlmurray.design) was added with an SSL certificate on AWS Amplify.
+- __The production site is available at https://failte.carlmurray.design OR https://carlmurray.github.io/failte-pp2/
+- Note: Site was deployed to GitHub Pages for project submission and acts as a backup to the AWS/custom domain site. Both sites are identical and are built from the same repo/branch and source code.
+
+### Google Maps API Key
+
+- Note: The API key in this repository is restricted and will not work outside of the repository.
+- You must sign up to Google Cloud Platform and generate your own API key.
+- Follow instructions [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+### Steps for deployment on AWS:
+
+- Navigate to AWS Amplify dashboard (sign-up required)
+- Select "New app" - "Host Web App"
+![Alt text](/assets/readme/img/deployment-1.png "Deployment")
+
+- Connect GitHub 
+![Alt text](/assets/readme/img/deployment-2.png "Deployment")
+- Select repository, main branch
+![Alt text](/assets/readme/img/deployment-3.png "Deployment")
+
+- Click checkbox and then Next
+![Alt text](/assets/readme/img/deployment-4.png "Deployment")
+
+- Click "Save and deploy"
+![Alt text](/assets/readme/img/deployment-5.png "Deployment")
+
+- Optional: Add a custom domain through the "Domain management" tab
+
+### Steps for cloning the repository
+
+1. Click on the "Code" button near the top right corner of the page.
+2. Copy the HTTPS or SSH URL that appears in the box.
+3. Open your terminal (or Git Bash on Windows) and navigate to the directory where you want to clone the repository.
+4. Type "git clone" followed by a space, and then paste the URL you copied in step 3.
+5. Press enter to run the command. This will clone the repository onto your local machine.
+6. You should now have a local copy of the GitHub repository on your machine.
+
+### Steps for forking the repository
+
+1. Click the "Fork" button near the top right corner of the page. This will create a copy of the repository in your own GitHub account.
+2. Once the fork is complete, you will be redirected to the forked repository in your account.
+3. If you haven't already, clone the forked repository to your local machine using the steps outlined in the previous answer.
+4. Make any changes or additions you want to the code in your local copy of the repository.
+5. Commit your changes to your local repository using the "git commit" command.
+6. Push your changes to the forked repository on GitHub using the "git push" command.
+7. If you want to contribute your changes back to the original repository, create a pull request by going to the original repository's page and clicking the "New pull request" button. From there, you can compare your changes to the original repository and request that they be merged.
+8. You should now have a forked copy of the GitHub repository in your account, and you can make changes to it and contribute back to the original repository if desired.
+
+---
+
 # Credits
 
 ### Assets
+
 - Attraction data: [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv)
 - Map & Street View: [Google Maps JavaScript API](https://developers.google.com/maps)
 - Favicon: [Favicon.io](https://favicon.io/)
 - Icons: [Font Awesome](https://fontawesome.com/)
 
 ### Tools & Utilities
+
 - Responsiveness Testing: [ResponsivelyApp](https://responsively.app/)
 - Accessibility Testing: [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 - Flow Diagram: [SmartDraw](https://cloud.smartdraw.com/)
@@ -185,6 +283,7 @@ I used the following technologies, platforms and support in building my project:
 - Contact form submission: [EmailJS](https://www.emailjs.com/)
 
 ### Educational Resources
+
 - [MDN Documentation](https://developer.mozilla.org/en-US/)
 - [Working with Data and APIs in JavaScript, The Coding Train](https://www.youtube.com/watch?v=DbcLg8nRWEg&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X)
 - [Google Maps API JavaScript Tutorial, Traversy Media](https://www.youtube.com/watch?v=Zxf1mnP5zcw&ab_channel=TraversyMedia)
