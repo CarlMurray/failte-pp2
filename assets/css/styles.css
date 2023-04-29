@@ -546,7 +546,8 @@ form {
 }
 
 .text-input:focus-visible {
-    border: 1px solid var(--colour-primary-teal);
+    border: 2px solid var(--colour-primary-teal);
+    outline: none;
 }
 
 textarea.text-input {
