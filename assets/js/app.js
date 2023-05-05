@@ -1,10 +1,14 @@
-const JSON_PATH = "assets/data/attractions.json";
-
-let map;
-let data;
-let activeInfoWindow = false;
-let linkIcon;
-let markerIcon;
+const JSON_PATH = "assets/data/attractions.json"; //FILE PATH FOR ATTRACTION DATA
+let map; //GMAPS OBJECT
+let data; //FOR FETCHED LOCATION DATA
+let activeInfoWindow = false; //DEFINE INFOWINDOW STATE
+let linkIcon; //ICON FOR ATTRACTION WEBSITE, PHONE, DIRECTIONS
+let markerIcon; //MAP ICON FOR ATTRACTION
+const markers = []; //TO STORE MARKERS IN ARRAY
+const searchContainer = document.querySelector("#search-container-results"); //VARIABLE FOR SEARCH RESULTS CONTAINER
+let attractionListInfo; //CONTAINER FOR EACH SEARCH RESULT
+let searchQuery; //SEARCH INPUT
+const searchBar = document.querySelector("#search"); //VARIABLE FOR SEARCH BAR DOM ELEMENT
 
 // CHECKS IS USER IS FIRST TIME VISITOR
 const checkIfVisited = () => {
@@ -45,7 +49,7 @@ async function initMap() {
       clickableIcons: false, //DISABLES NATIVE CLICKABLE PLACE ICONS
     });
   } catch (error) {
-    showFetchErrorMessage();
+    showFetchErrorMessage(); //SHOW ERROR IF FAILS
   }
 }
 
@@ -56,21 +60,22 @@ async function fetchData() {
     data = await getData.json();
     return data;
   } catch (error) {
-    showFetchErrorMessage();
+    showFetchErrorMessage(); //SHOW ERROR IF FAILS
   }
 }
 
-// PLOT ALL MARKERS ON MAP INITIALLY
+// PLOT ALL MARKERS ON MAP ON INITIAL LOAD
 const initMarkers = async () => {
   try {
-  await fetchData();
+    await fetchData();
   } catch {
-    showFetchErrorMessage()
+    showFetchErrorMessage(); //SHOW ERROR IF FAILS
   }
 
   // ITERATE THROUGH ALL DATA POINTS, DEFINE VARIABLES,
   // DEFINE MARKER ICONS, DEFINE CONTENT
   for (let i = 0; i < data.length; i++) {
+    
     // DETRUCTURE OBJ TO DEFINE VARIABLES
     const {
       Latitude: lat,
@@ -113,20 +118,18 @@ const initMarkers = async () => {
       if (activeInfoWindow) {
         activeInfoWindow.close();
       }
-
       activeInfoWindow = infowindow;
-
       infowindow.open({
         anchor: marker,
         map,
       });
     });
 
+    //CLOSE ACTIVE MARKER INFOWINDOW IF MAP CLICKED
     map.addListener("click", () => {
       if (activeInfoWindow) {
         activeInfoWindow.close();
       }
-
       activeInfoWindow = infowindow;
     });
 
@@ -150,10 +153,6 @@ const initMarkers = async () => {
     infowindow.setContent(attractionListInfo.innerHTML);
   }
 };
-
-const markers = [];
-const searchContainer = document.querySelector("#search-container-results");
-let attractionListInfo;
 
 const positionMarker = async (searchQuery) => {
   //CLEAR ALL EXISTING MARKERS
@@ -222,23 +221,22 @@ const positionMarker = async (searchQuery) => {
         });
       });
 
+      //CLOSE ACTIVE MARKER INFOWINDOW IF MAP CLICKED
       map.addListener("click", () => {
         if (activeInfoWindow) {
           activeInfoWindow.close();
         }
-
         activeInfoWindow = infowindow;
       });
 
+      //ADD MARKER TO MARKERS ARRAY
       markers.push(marker);
 
       // CHECK FOR VALID SEARCH, SHOW ERROR MSG
       if (markers.length === 0) {
-        console.log("empty query");
         searchBar.classList.add("search-invalid");
-
-        let errorMsgSpan = document.querySelector("#search-error-message");
-        errorMsgSpan.classList.remove("hidden");
+        let errorMsgSpan = document.querySelector("#search-error-message"); //APPLY ERROR STYLES TO SEARCH BAR
+        errorMsgSpan.classList.remove("hidden"); //SHOW ERROR MESSAGE
       } else {
         errorMsgSpan.classList.add("hidden");
         searchBar.classList.remove("search-invalid");
@@ -259,26 +257,31 @@ const positionMarker = async (searchQuery) => {
         icon: markerIcon,
         optimized: false, //REQUIRED FOR KEYBOARD NAVIGATION
       });
+      // URL STRUCTURE TO GET DIRECTIONS ON GMAPS
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
+
+      // ADD INFOWINDOW TO MARKERS
       const infowindow = new google.maps.InfoWindow({
         ariaLabel: `${Name}`,
       });
 
+      // CLOSE ACTIVE MARKER INFOWINDOW IF NEW OPENED
       marker.addListener("click", () => {
         if (activeInfoWindow) {
           activeInfoWindow.close();
         }
-
         activeInfoWindow = infowindow;
-
         infowindow.open({
           anchor: marker,
           map,
         });
       });
+
+      //CREATE DIV FOR EACH SEARCH RESULT
       attractionListInfo = document.createElement("div");
       attractionListInfo.setAttribute("class", "attractionListInfoDiv");
-      // IF URL IS NON-EXISTANT, USE THIS CONTENT FOR LIST AND INFOWINDOWS
+
+      // CHECK DATA AND SET STYLING AND CONTENT ACCORDINGLY
       checkAttractionDataValidity(
         Name,
         markerAddress,
@@ -299,20 +302,18 @@ const positionMarker = async (searchQuery) => {
     marker.setMap(map);
   }
 
-  let errorMsgSpan = document.querySelector("#search-error-message");
+  let errorMsgSpan = document.querySelector("#search-error-message"); //VARIABLE FOR SEARCH ERROR MSG
+  //IF NO SEARCH RESULTS
   if (markers.length === 0) {
-    console.log("empty query");
-    searchBar.classList.add("search-invalid");
-    errorMsgSpan.classList.remove("hidden");
+    searchBar.classList.add("search-invalid"); //APPLY ERROR STYLES TO SEARCH BAR
+    errorMsgSpan.classList.remove("hidden"); //SHOW ERROR MESSAGE
   } else {
     errorMsgSpan.classList.add("hidden");
     searchBar.classList.remove("search-invalid");
   }
 };
 
-let searchQuery;
-const searchBar = document.querySelector("#search");
-
+// SEARCH FUNCTION
 const performSearch = (callback) => {
   searchBar.addEventListener("input", function () {
     searchQuery = searchBar.value.toLowerCase(); //GET SEARCH INPUT
@@ -329,7 +330,7 @@ const main = async () => {
   performSearch((searchQuery) => positionMarker(searchQuery));
 };
 
-// FUNCTION TO RUN WHEN CHEVRON CLICKED
+// FUNCTION TO RUN WHEN CHEVRON CLICKED, SHOWS SEARCH RESULT DRAWER
 const openDrawer = () => {
   const searchBar = document.querySelector("#search");
   const searchContainer = document.querySelector("#search-container");
@@ -344,12 +345,13 @@ const openDrawer = () => {
   document.querySelector("#search-bar-container").classList.toggle("visible");
 };
 
-// LISTEN FOR CLICK ON CHEVRON, THEN RUN ABOVE FUNCTION TO OPEN DRAWER
+// LISTEN FOR CLICK ON CHEVRON, THEN RUN openDrawer() FUNCTION TO OPEN DRAWER
 const searchContainerOpener = document.querySelector(
   "#drawer-chevron-container"
 );
 searchContainerOpener.addEventListener("click", openDrawer);
 
+// CHECK IF ATTRACTION WEBSITE, PHONE, ADDRESS ETC. IS VALID AND APPLY SUITABLE CONTENT AND STYLES
 const checkAttractionDataValidity = (
   Name,
   markerAddress,
@@ -399,6 +401,7 @@ const checkAttractionDataValidity = (
   }
 };
 
+// DEFINE ICONS FOR DIFFERENT TYPES OF ATTRACTIONS
 const setMarkerIcons = (Tags, markerIcon) => {
   if (Tags.includes("Castle"))
     markerIcon = "assets/img/map-icons/icon-castle.png";
@@ -446,6 +449,7 @@ const setMarkerIcons = (Tags, markerIcon) => {
   return markerIcon;
 };
 
+// SHOW ERROR MESSAGE IF APP FAILS TO FETCH DATA
 const showFetchErrorMessage = () => {
   let fetchErrorMessage = document.createElement("p");
   fetchErrorMessage.innerText =
