@@ -35,25 +35,38 @@ const showFirstTimeVisitModal = () => {
 async function initMap() {
   // SET INIT POSITION AT IRELAND
   const position = { lat: 53.4152431, lng: -7.9559668 };
-  const { Map } = await google.maps.importLibrary("maps");
-  map = new Map(document.getElementById("map"), {
-    mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
-    zoom: 7,
-    center: position,
-    clickableIcons: false, //DISABLES NATIVE CLICKABLE PLACE ICONS
-  });
+
+  try {
+    const { Map } = await google.maps.importLibrary("maps");
+    map = new Map(document.getElementById("map"), {
+      mapId: "47f8f1437cc57452", // PERSONAL GMAPS ID WITH CUSTOM STYLES
+      zoom: 7,
+      center: position,
+      clickableIcons: false, //DISABLES NATIVE CLICKABLE PLACE ICONS
+    });
+  } catch (error) {
+    showFetchErrorMessage();
+  }
 }
 
 // FETCH ATTRACTION DATA FROM FAILTE IRELAND DATASET attractions.json
 async function fetchData() {
-  const getData = await fetch(JSON_PATH);
-  data = await getData.json();
-  return data;
+  try {
+    const getData = await fetch(JSON_PATH);
+    data = await getData.json();
+    return data;
+  } catch (error) {
+    showFetchErrorMessage();
+  }
 }
 
 // PLOT ALL MARKERS ON MAP INITIALLY
 const initMarkers = async () => {
+  try {
   await fetchData();
+  } catch {
+    showFetchErrorMessage()
+  }
 
   // ITERATE THROUGH ALL DATA POINTS, DEFINE VARIABLES,
   // DEFINE MARKER ICONS, DEFINE CONTENT
@@ -431,6 +444,13 @@ const setMarkerIcons = (Tags, markerIcon) => {
   else if (Tags.includes("Cycling") || Tags.includes("Cycle"))
     markerIcon = "assets/img/map-icons/icon-cycling.png";
   return markerIcon;
+};
+
+const showFetchErrorMessage = () => {
+  let fetchErrorMessage = document.createElement("p");
+  fetchErrorMessage.innerText =
+    "Oops! Looks like we're having some issues! Please refresh the page or try again later.";
+  document.querySelector("main").appendChild(fetchErrorMessage);
 };
 
 main();
