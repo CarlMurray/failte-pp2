@@ -42,32 +42,32 @@
 // PATH FOR GEO LOCATIONS GAME DATA
 const JSON_PATH = "assets/data/geo-guess-locations.json";
 
-let streetPosition;
+let streetPosition; //FOR STREET VIEW LATLNG
 let userGuessResult;
-let map;
-let score = 0;
-let roundNumber = 0;
-let data;
-let panorama;
-let streetLocationIndex;
-let accessibleGuessBtnDiv;
-const crosshairHorizontal = document.createElement("hr");
-const crosshairVertical = document.createElement("hr");
+let map; //GMAPS OBJECT
+let score = 0; //INIT SCORE TO 0
+let roundNumber = 0; //INIT ROUND TO 0
+let data; //FOR GAME LOCATION DATA
+let panorama; //GMAPS PANORAMA OBJECT
+let streetLocationIndex; //INDEX OF LOCATIONS ARRAY
+let accessibleGuessBtnDiv; //CONTAINER FOR ACC BTN CTRL
+const crosshairHorizontal = document.createElement("hr"); //ACCESSIBLE CONTROLS CROSSHAIR
+const crosshairVertical = document.createElement("hr"); //ACCESSIBLE CONTROLS CROSSHAIR
+let controlButton;
 
 // FETCH ATTRACTION DATA FROM geo-guess-locations.json
 async function fetchData() {
   const getData = await fetch(JSON_PATH);
   data = await getData.json();
-  console.log(data);
   return data;
 }
 
 // INITIALISE GOOGLE MAP OBJECT
 async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
-  const { spherical } = await google.maps.importLibrary("geometry");
+  const { Map } = await google.maps.importLibrary("maps"); //MAPS LIBRARY
+  const { spherical } = await google.maps.importLibrary("geometry"); //REQUIRED TO MEASURE DISTANCE BETWEEN POINTS
 
-  const position = { lat: 53.4152431, lng: -7.9559668 };
+  const position = { lat: 53.4152431, lng: -7.9559668 }; //POSITION MAP AT IRELAND
   map = new google.maps.Map(document.getElementById("game-map-container"), {
     center: position,
     zoom: 7,
@@ -76,7 +76,7 @@ async function initMap() {
     clickableIcons: false, //DISABLES NATIVE CLICKABLE PLACE ICONS
   });
 
-  // CREATE CONTROL CONTAINER
+  // CREATE ACCESSIBLE CONTROL CONTAINER/BTN
   const accessibleControlDiv = document.createElement("div");
   accessibleGuessBtnDiv = document.createElement("div");
 
@@ -84,18 +84,18 @@ async function initMap() {
   if (accessibleIsClicked === false) {
     accessibleGuessBtnDiv.classList.add("hidden"); // ADD HIDDEN CLASS TO GUESS BTN
     crosshairHorizontal.classList.add("hidden"); // ADD HIDDEN CLASS TO CROSSHAIRS
-    crosshairVertical.classList.add("hidden");
+    crosshairVertical.classList.add("hidden"); // ADD HIDDEN CLASS TO CROSSHAIRS
   }
 
   // CREATE ACCESSIBLE CONTROL
-  const accessibleControl = createAccessibleControl(map);
-  const accessibleGuessBtn = createAccessibleGuessBtn(map);
+  const accessibleControl = createAccessibleControl(map); //CALL FN TO CREATE CTRL TOGGLE
+  const accessibleGuessBtn = createAccessibleGuessBtn(map); //CALL FN TO CREATE BTN
 
   // APPEND ACCESSIBLE CONTROL TOGGLE TO MAP
   accessibleControlDiv.appendChild(accessibleControl);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(accessibleControlDiv);
 
-  // APPEND ACESSIBLE GUESS CONTROL TO MAP
+  // APPEND ACCESSIBLE GUESS CONTROL BTN TO MAP
   accessibleGuessBtnDiv.appendChild(accessibleGuessBtn);
   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
     accessibleGuessBtnDiv
@@ -153,7 +153,7 @@ const getDistance = async () => {
     icons: lineIcons,
   });
 
-  // CALC SCORE
+  // CALC SCORE BASED ON DISTANCE IN METRES
   const calcScore = async () => {
     if (calcDistance < 200) {
       score = score += 1000;
@@ -200,9 +200,9 @@ const getDistance = async () => {
 
     // START NEXT ROUND ON BUTTON CLICK
     btn.addEventListener("click", () => {
-      scoreboard.classList.add("hidden");
-      drawLine.setMap(null);
-      initMap();
+      scoreboard.classList.add("hidden"); //HIDE SCOREBOARD
+      drawLine.setMap(null); //HIDE LINE
+      initMap(); //REFRESH MAP
     });
 
     // SHOW END GAME SCREEN AFTER ROUNDS
@@ -274,13 +274,13 @@ async function initStreetView() {
   );
 }
 
-// DEFINE PLAY BUTTON
+// DEFINE INTRO ELEMENTS
 let playBtn = document.querySelector(".game-play-button");
 let gameIntroHeader = document.querySelector(".game-text-content-header");
 let gameIntroText = document.querySelector(".game-text-content-paragraph");
 let gameIntroOverlay = document.querySelector(".game-container-overlay");
 
-let isClicked = false;
+let isClicked = false; //STATE OF PLAY BUTTON
 
 // LISTEN FOR PLAY BUTTON CLICK
 playBtn.addEventListener("click", () => {
@@ -303,7 +303,8 @@ playBtn.addEventListener("click", () => {
   }
 });
 
-let accessibleIsClicked = false;
+let accessibleIsClicked = false; //STATE OF ACC. CTRL BTN
+
 // CREATES ACCESSBILITY CONTROL
 function createAccessibleControl(map) {
   const controlButton = document.createElement("button");
@@ -336,13 +337,15 @@ function createAccessibleControl(map) {
 }
 // CREATES ACCESSBILITY GUESS BTN CONTROL
 function createAccessibleGuessBtn(map) {
-  const controlButton = document.createElement("button");
+  controlButton = document.createElement("button");
   controlButton.setAttribute("id", "accessible-guess-button");
   controlButton.title = "Click to guess at map center";
   controlButton.type = "button";
   controlButton.innerText = "Guess (map center)";
   // REGISTER GUESS ON BTN CLICK
-  controlButton.addEventListener("click", registerAccessibleGuess, {once:true});
+  controlButton.addEventListener("click", registerAccessibleGuess, {
+    once: true,
+  });
   return controlButton;
 }
 
@@ -355,6 +358,9 @@ function registerGuess(event) {
 
   // CLEAR MAP LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
   google.maps.event.clearInstanceListeners(map);
+
+  // CLEAR BTN LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
+  controlButton.removeEventListener("click", registerAccessibleGuess);
   roundNumber++;
   console.log(roundNumber);
 
