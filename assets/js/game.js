@@ -342,9 +342,7 @@ function createAccessibleGuessBtn(map) {
   controlButton.type = "button";
   controlButton.innerText = "Guess (map center)";
   // REGISTER GUESS ON BTN CLICK
-  controlButton.addEventListener("click", () => {
-    registerAccessibleGuess();
-  });
+  controlButton.addEventListener("click", registerAccessibleGuess, {once:true});
   return controlButton;
 }
 
