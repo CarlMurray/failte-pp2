@@ -384,11 +384,24 @@ function registerAccessibleGuess(event) {
   getDistance();
 }
 
+// SHOW ERROR MESSAGE IF APP FAILS TO FETCH DATA
+const showFetchErrorMessage = () => {
+  let fetchErrorMessage = document.createElement("p");
+  fetchErrorMessage.innerText =
+    "Oops! Looks like we're having some issues! Please refresh the page or try again later.";
+  document.querySelector("main").appendChild(fetchErrorMessage);
+};
+
 async function main() {
+  try {
   await fetchData(); //GET LOCATION DATA
   await initMap(); //INIT MAP OBJECT
   await initStreetView(); //INIT STREET VIEW OBJECT
   changeStreetView(); //SET INITIAL STREET VIEW
+  }
+  catch {
+    showFetchErrorMessage()
+  }
 }
 
 main();

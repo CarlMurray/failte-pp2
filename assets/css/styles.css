@@ -673,6 +673,7 @@ main > p {
     font-weight: bold;
     color: var(--colour-primary-teal);
     font-size: 1.5em;
+    z-index: 999;
 }
 
 /* TABLET */
