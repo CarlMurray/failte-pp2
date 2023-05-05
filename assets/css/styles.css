@@ -8,22 +8,24 @@
     outline: none;
 }
 
+/* OUTLINE WHEN FOCUSED FOR ACCESSIBILITY */
 *:focus-visible {
     outline: auto;
 }
 
+/* SEARCH RESULT SCROLLBAR */
 ::-webkit-scrollbar {
     width: 7px;
 }
 
-/* Handle */
+/* SEARCH RESULT SCROLLBAR HANDLE */
 ::-webkit-scrollbar-thumb {
     background-color: #b8b8b8;
     height: 35px;
     border-radius: 100px;
 }
 
-/* Handle on hover */
+/* SEARCH RESULT SCROLLBAR HANDLE ON HOVER */
 ::-webkit-scrollbar-thumb:hover {
     background-color: #747474;
 }
@@ -31,16 +33,16 @@
 :root {
     --colour-primary-teal: #008080;
     --colour-primary-teal-gradient: #008080, #003838;
-    --font-family-header: 'Lilita One', cursive;
+    --font-family-header: 'Lilita One', sans-serif;
     --font-family-Body: 'Roboto', sans-serif;
     --colour-white: #fff;
-    --container-width: min(80%, 1700px);
-    /* width will be 80% or 1440px max */
+    --container-width: min(80%, 1700px); /* width will be 80% or 1440px max */
     --unit-100vh: 100vh;
 }
 
 /* CREDIT: DREW BAKER, STACK OVERFLOW  */
 /* https://stackoverflow.com/questions/58886797/how-to-access-the-real-100vh-on-ios-in-css */
+/* USES DVH IF BROWSER SUPPORTED FOR BEST UX */
 @supports (height: 100dvh) {
     :root {
         --unit-100vh: 100dvh;
@@ -55,28 +57,21 @@ body {
     height: 100%;
 }
 
-
+/* CONTAINER FOR SITE TO FIT WITHIN BROWSER UI */
 #container {
     margin: auto;
     min-height: var(--unit-100vh);
     position: relative;
 }
 
-#wrapper {
-    border: 3px solid green;
-}
-
+/* HEADER */
 header {
     height: 100px;
     background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
     z-index: 999;
 }
 
-#content-wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
+/* CONTAINER FOR HEADER MARGINS */
 #container-header {
     width: 100%;
     padding: 0 2%;
@@ -87,6 +82,7 @@ header {
     height: 100%;
 }
 
+/* HEADER CONTAINER USED FOR ABOUT/CONTACT PAGES FOR AESTHETIC PURPOSES */
 #container-header-contact-about-page {
     width: var(--container-width);
     margin: auto;
@@ -96,6 +92,7 @@ header {
     height: 100%;
 }
 
+/* MAIN CONTENT */
 main {
     display: flex;
     align-items: center;
@@ -105,10 +102,12 @@ main {
     position: relative
 }
 
+/* FOR MAP AND PLAY PAGES ONLY */
 main.no-overflow {
     overflow: hidden;
 }
 
+/* CONTAINER FOR MAP/PLAY INTERACTIVE CONTENT */
 #container-content {
     width: 100%;
     margin: auto;
@@ -118,6 +117,7 @@ main.no-overflow {
     position: relative;
 }
 
+/* NAVIGATION LOGO */
 #nav-logo {
     font: 3em var(--font-family-header)
 }
@@ -127,6 +127,7 @@ main.no-overflow {
     color: var(--colour-white);
 }
 
+/* NAV LINKS */
 nav ul {
     display: flex;
     justify-content: space-between;
@@ -140,6 +141,7 @@ nav a {
     color: var(--colour-white);
 }
 
+/* NAV ACTIVE PAGE HIGHLIGHT */
 .active-page {
     text-decoration: underline;
     text-underline-offset: 12px;
@@ -154,13 +156,16 @@ footer {
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
+    flex-direction: column;
 }
 
+/* GMAPS MAP CONTAINER */
 #map {
     height: 100%;
     width: 100%;
 }
 
+/* CONTAINER FOR SEARCH AND RESULTS */
 #search-container {
     height: 100%;
     width: 40%;
@@ -171,12 +176,14 @@ footer {
     flex-direction: column;
 }
 
+/* CONTAINER FOR SEARCH BAR ETC. */
 #search-container-head {
     padding-bottom: 10px;
     border-bottom: 1px solid #cecece;
     box-shadow: 0px 10px 10px -10px #bdbdbd;
 }
 
+/* SEARCH BAR INPUT */
 #search {
     height: 45px;
     width: 100%;
@@ -188,32 +195,32 @@ footer {
     margin-bottom: 5px;
 }
 
+/* INVALID SEARCH BAR STYLE */
 #search.search-invalid {
     border: 1px solid #cd0000;
     outline: none;
 }
 
+/* INVALID SEARCH BAR STYLE FOCUSED */
 #search.search-invalid:focus-visible {
     border: 2px solid #cd0000;
     outline: none;
 }
 
+/* SEARCH BAR STYLE FOCUSED */
 #search:focus-visible {
     border: 2px solid var(--colour-primary-teal);
     outline: none;
 }
 
+/* INVALID SEARCH ERROR MESSAGE */
 #search-error-message {
     font-family: var(--font-family-Body);
     font-size: 12px;
     color: #cd0000;
 }
 
-footer {
-    display: flex;
-    flex-direction: column;
-}
-
+/* DATA ATTRIBUTION MSG IN MODAL */
 .license-disclaimer {
     font-family: var(--font-family-Body);
     font-size: 0.8em;
@@ -230,10 +237,12 @@ footer a {
     margin-inline: 15px;
 }
 
+/* HIDE MOBILE INTERACTION ON LARGE SCREEN */
 #drawer-chevron-container {
     display: none;
 }
 
+/* SEARCH RESULTS CONTAINER */
 #search-container-results {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -241,26 +250,31 @@ footer a {
     border-bottom: 1px solid #cecece;
 }
 
+/* CONTAINER FOR INDIVIDUAL RESULTS */
 .attractionListInfoDiv {
     font: 14px var(--font-family-Body);
     padding: 15px 5px;
     border-bottom: 1px solid #cecece;
 }
 
+/* MAP INFOWINDOW */
 .info-window-content-container {
     padding: 5px;
 }
 
+/* SEARCH RESULT AND INFOWINDOW ATTRACTION NAME STYLE */
 h4 {
     font: 16px var(--font-family-header);
     color: var(--colour-primary-teal);
 }
 
+/* FLEX CONTAINER FOR ATTRACTION LINK BTNS */
 .attraction-info-button-container {
     display: flex;
     flex-direction: row;
 }
 
+/* ATTRACTION LINK BTN STYLES */
 a.attraction-info-button {
     text-decoration: none;
     color: var(--colour-primary-teal);
@@ -276,10 +290,12 @@ a.attraction-info-button {
     align-items: center;
 }
 
+/* ATTRACTION LINK BTN STYLE, INVALID */
 div a.attraction-info-button.grey {
     color: #cecece;
 }
 
+/* TO DARKEN BACKGROUND WHEN FIRST VISIT MODAL VISIBLE */
 .modal-overlay {
     width: 100%;
     height: 100%;
@@ -292,6 +308,7 @@ div a.attraction-info-button.grey {
     z-index: 980;
 }
 
+/* TO CENTER FIRST VISIT MODAL */
 .modal-container {
     width: 100%;
     height: 100%;
@@ -304,6 +321,7 @@ div a.attraction-info-button.grey {
     left: 0;
 }
 
+/* FIRST VISIT MODAL STYLES */
 .first-visit-modal {
     width: min(70%, 500px);
     max-height: 70%;
@@ -321,6 +339,7 @@ div a.attraction-info-button.grey {
     transition: opacity 0.5s;
 }
 
+/* LINE BREAK USED UNDER HEADERS */
 .decorative-line-break {
     width: 30px;
     border: 1px solid var(--colour-primary-teal);
@@ -328,6 +347,7 @@ div a.attraction-info-button.grey {
     margin: 15px 0;
 }
 
+/* FLEX CONTAINER TO POSITION MODAL CTAS */
 #modal-cta-container {
     display: flex;
     gap: 10px;
@@ -354,6 +374,7 @@ div a.attraction-info-button.grey {
     background-image: none;
 }
 
+/* APPLY BELOW CLASSES ON FIRST VISIT TO SHOW MODAL */
 .modal-container-visible {
     display: flex;
 }
@@ -383,6 +404,7 @@ h3 {
     margin: 0 15px 25px;
 }
 
+/* MAP INFOWINDOW STYLE */
 .gm-style-iw-d {
     padding: 10px;
 }
@@ -397,6 +419,7 @@ h3 {
     overflow: hidden;
 }
 
+/* SHOWN ON GAME INTRO */
 .game-container-overlay {
     width: 100%;
     height: 100%;
@@ -409,6 +432,7 @@ h3 {
     flex-direction: column;
 }
 
+/* GAME INTRO TEXT */
 .game-text-content {
     text-align: center;
     display: flex;
@@ -418,6 +442,7 @@ h3 {
     width: 85%;
 }
 
+/* GAME INTRO HEADER */
 .game-text-content-header {
     font-family: var(--font-family-header);
     font-size: 2.5em;
@@ -425,16 +450,19 @@ h3 {
     margin: 0.6em;
 }
 
+/* SCOREBOARD SCORE HEADER */
 #game-street-container>div.game-scoreboard>div>h2 {
     margin-bottom: 0em;
 }
 
+/* SECONDARY SCOREBOARD TEXT */
 .game-text-content-paragraph {
     font-family: var(--font-family-Body);
     font-size: 1em;
     width: 80%;
 }
 
+/* PLAY BUTTON */
 .game-play-button {
     width: min(80%, 350px);
     min-height: 2em;
@@ -447,6 +475,7 @@ h3 {
     border: none;
 }
 
+/* FINAL ROUND PLAY AGAIN BTN */
 .game-play-again-button {
     width: min(80%, 350px);
     min-height: 2em;
@@ -459,17 +488,22 @@ h3 {
     border: none;
 }
 
+/* PLAY BTN ON CLICK */
 .game-play-button:active {
     background-image: linear-gradient(0deg, var(--colour-primary-teal), #019c9c);
 }
 
+/* CONTAINER FOR GAME MAP */
 #game-map-container {
     flex-grow: 1;
-    display: flex;
+
+    /* FLEX STYLES REQUIRED FOR ACCESSIBLE CONTROLS CROSSHAIRS */
+    display: flex; 
     justify-content: center;
     align-items: center;
 }
 
+/* CONTAINER FOR GAME STREETVIEW */
 #game-street-container {
     flex-grow: 1;
 }
@@ -490,13 +524,15 @@ h3 {
     margin: 0.4em
 }
 
-.contact-container {
+/* CONTAINER FOR CONTENT ON CONTACT/ABOUT PAGE */
+.about-contact-container {
     width: 50%;
     margin: 20px 12% 20px 0;
     flex: 2;
     padding-bottom: 20px;
 }
 
+/* FOR CONTACT FORM INPUTS */
 .input-container {
     display: flex;
     gap: 10px;
@@ -511,7 +547,8 @@ h3 {
     display: none;
 }
 
-#contact-img-container {
+/* IMG CONTAINER ABOUT/CONTACT PAGES */
+#about-contact-img-container {
     max-width: 30%;
     height: 100%;
     box-shadow: inset 15px 0px 20px -15px rgba(0, 0, 0, 0.25);
@@ -521,11 +558,12 @@ h3 {
     overflow-y: clip;
 }
 
-#contact-img {
+#about-contact-img {
     z-index: 0;
     min-height: 100%;
 }
 
+/* CONTACT FORM */
 form {
     display: flex;
     flex-direction: column;
@@ -563,7 +601,8 @@ h1 {
     font-size: 3em;
 }
 
-.contact-paragraph {
+/* TEXT CONTENT ON ABOUT/CONTACT */
+.about-contact-paragraph {
     font-family: var(--font-family-Body);
     font-size: 1em;
     color: #3b3b3b;
@@ -571,7 +610,7 @@ h1 {
     max-width: 80%;
 }
 
-#container-contact-page {
+#container-about-contact-page {
     width: var(--container-width);
     margin: auto;
     height: 100%;
@@ -579,17 +618,20 @@ h1 {
     align-items: center;
 }
 
+/* HIDE LABELS BUT ADD FOR ACCESSIBILITY */
 label {
     visibility: hidden;
     position: absolute;
     left: -99999px;
 }
 
+/* INLINE LINK TEXT STYLE */
 .inline-link {
     text-decoration: none;
     color: var(--colour-primary-teal);
 }
 
+/* CONTACT FORM SUBMISSION FEEDBACK POPUP */
 #contact-feedback-overlay {
     width: 101%;
     height: 101%;
@@ -611,6 +653,7 @@ label {
     transition: all 0.5s;
 }
 
+/* SHOW ON SUCCESSFUL SUBMIT */
 #contact-feedback-overlay.submit {
     opacity: 1;
     visibility: visible;
@@ -620,6 +663,7 @@ label {
     display: none;
 }
 
+/* ACCESSIBLE CTRLS FOR GAME */
 #accessible-control-toggle {
     background-image: url(/assets/img/icons/wheelchair-solid.svg);
     background-repeat: no-repeat;
@@ -635,6 +679,7 @@ label {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
 }
 
+/* ACCESSIBLE CTRL GUESS BTN */
 #accessible-guess-button {
     width: 220px;
     height: 40px;
@@ -649,6 +694,7 @@ label {
     margin: 10px;
 }
 
+/* ACCESSIBLE CTRL CROSSHAIR */
 .map-crosshair {
     border: 2px solid rgb(255, 0, 0);
     position: absolute;
@@ -700,7 +746,7 @@ main > p {
         width: 100%;
     }
     
-    #container-contact-page {
+    #container-about-contact-page {
         width: 90%;
     }
 
@@ -720,7 +766,7 @@ main > p {
         height: 120px;
     }
 
-    .contact-container {
+    .about-contact-container {
         width: 65%;
         margin: 20px 6% 20px 0;
     }
@@ -740,7 +786,7 @@ main > p {
         height: 100px;
     }
 
-    .contact-container {
+    .about-contact-container {
         width: 70%;
     }
 
@@ -763,30 +809,16 @@ main > p {
     }
 
     .game-play-button {
-        width: min(80%, 350px);
-        min-height: 2em;
-        border-radius: 10px;
-        background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
-        font-family: var(--font-family-header);
         font-size: 1em;
-        color: var(--colour-white);
         margin: 0.5em;
-        border: none;
     }
 
     .game-play-again-button {
-        width: min(80%, 350px);
-        min-height: 2em;
-        border-radius: 10px;
-        background-color: var(--colour-white);
-        font-family: var(--font-family-header);
         font-size: 1em;
-        color: var(--colour-primary-teal);
         margin: 0.5em;
-        border: none;
     }
 
-    .contact-paragraph {
+    .about-contact-paragraph {
         font-size: 0.9em;
         margin: 20px 0;
     }
@@ -924,25 +956,25 @@ main > p {
         font-size: 1.1em;
     }
 
-    #contact-img-container {
+    #about-contact-img-container {
         display: none;
     }
 
-    #container-contact-page {
+    #container-about-contact-page {
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .contact-container {
+    .about-contact-container {
         margin: auto;
         width: 100%;
         text-align: center;
     }
 
     h1,
-    .contact-paragraph {
+    .about-contact-paragraph {
         text-align: center;
         margin: 30px auto;
     }
@@ -951,7 +983,7 @@ main > p {
         font-size: 1.7em;
     }
 
-    .contact-paragraph {
+    .about-contact-paragraph {
         font-size: 0.85em;
     }
 
@@ -975,27 +1007,11 @@ main > p {
     }
 
     .game-play-button {
-        width: min(80%, 350px);
         min-height: 2.5em;
-        border-radius: 10px;
-        background-image: linear-gradient(180deg, var(--colour-primary-teal-gradient));
-        font-family: var(--font-family-header);
-        font-size: 1em;
-        color: var(--colour-white);
-        margin: 0.5em;
-        border: none;
     }
 
     .game-play-again-button {
-        width: min(80%, 350px);
         min-height: 2.5em;
-        border-radius: 10px;
-        background-color: var(--colour-white);
-        font-family: var(--font-family-header);
-        font-size: 1em;
-        color: var(--colour-primary-teal);
-        margin: 0.5em;
-        border: none;
     }
 
     .active-page {
@@ -1014,6 +1030,7 @@ main > p {
     }
 }
 
+/* DISPLAYS GAME LAYOUT OPTIMALLY FOR PORTRAIT/LANDSCAPE ORIENTATION */
 @media (min-aspect-ratio: 7/5) {
     #game-container {
         flex-direction: row;
