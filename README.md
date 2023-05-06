@@ -3,7 +3,42 @@
 ### The production site is available at https://failte.app
 ---
 # Table of Contents
-TBD
+
+- [Project Background](#project-background)
+- [User Experience](#user-experience)
+  - [Design](#design)
+  - [Site Structure](#site-structure)
+  - [Features](#features)
+    - [First Visit](#first-visit)
+    - [Navigation Bar](#navigation-bar)
+    - [Interactive Map](#interactive-map)
+    - [Search](#search)
+    - [Geo Guessing Game](#geo-guessing-game)
+    - [About](#about)
+    - [Contact](#contact)
+    - [Footer](#footer)
+    - [Mobile UX](#mobile-ux)
+    - [Accessibility](#accessibility)
+- [Technologies Used](#technologies-used)
+- [Bugs and Issues](#bugs-and-issues)
+  - [Resolved](#resolved)
+  - [Unresolved](#unresolved)
+- [Testing](#testing)
+  - [Overview](#overview)
+  - [Testing Process](#testing-process)
+  - [Responsiveness](#responsiveness)
+- [Roadmap](#roadmap)
+- [Deployment](#deployment)
+  - [Google Maps API Key](#google-maps-api-key)
+  - [EmailJS](#emailjs)
+  - [Steps for deployment on AWS](#steps-for-deployment-on-aws)
+  - [Steps for cloning the repository](#steps-for-cloning-the-repository)
+  - [Steps for forking the repository](#steps-for-forking-the-repository)
+- [Credits](#credits)
+  - [Assets](#assets)
+  - [Tools & Utilities](#tools--utilities)
+  - [Educational Resources](#educational-resources)
+
 ---
 # Project Background
 
@@ -285,6 +320,7 @@ I used the following technologies, platforms and support in building my project:
 - Map & Street View: [Google Maps JavaScript API](https://developers.google.com/maps)
 - Favicon: [Favicon.io](https://favicon.io/)
 - Icons: [Font Awesome](https://fontawesome.com/)
+- Ireland Image (Contact/About page): [MapSVG](https://mapsvg.com/maps/ireland)
 
 ### Tools & Utilities
 
