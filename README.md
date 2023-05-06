@@ -125,7 +125,6 @@ I used the following technologies, platforms and support in building my project:
 - [Favicon Generator](https://favicon.io) was used to generate the favicon used
 - The site is hosted on [AWS Amplify](https://aws.amazon.com/amplify/)
 - Custom domain registered with [NameSilo](https://www.namesilo.com/), with a specific subdomain for this project (https://failte.carlmurray.design)
-- [Google Analytics](https://analytics.google.com/analytics/web/) was linked to the site to track site traffic and user behaviour.
 - The [Google Maps JavaScript API]() was used for the Map and Street View functionality.
 - The [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv) was used for attraction data.
 - [EmailJS](https://www.emailjs.com/) was used to add functionality to the Contact form.
