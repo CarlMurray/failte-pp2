@@ -29,17 +29,17 @@ The key goals for this project include providing a user-friendly, accessible exp
 ## Site Structure
 
 - **fáilte** has four pages:
-    - The landing page contains the primary feature of the site - an interactive map showing 600+ attractions, with a search input feature.
-    - The 'Play' page features a geo-guessing game where users can test their knowledge of Ireland's attractions.
-    - The 'About' page contains a short description of the site and its purpose. Additionally it includes an attribution statement to credit Fáilte Ireland for the data used for the site.
-    - The 'Contact' page allows users to contact the site owner (me) with feedback, questions and suggestions.
+    - The '[Map](https://www.failte.app/index.html)' page contains the primary feature of the site - an interactive map showing 600+ attractions, with a search input feature.
+    - The '[Play](https://www.failte.app/play.html)' page features a geo-guessing game where users can test their knowledge of Ireland's attractions.
+    - The '[About](https://www.failte.app/about.html)' page contains a short description of the site and its purpose. Additionally it includes an attribution statement to credit Fáilte Ireland for the data used for the site.
+    - The '[Contact](https://www.failte.app/contact.html)' page allows users to contact the site owner (myself) with feedback, questions and suggestions.
     ![Diagram showing site map](assets/readme/img/sitemap.png "Sitemap")
 
 ## Features
 
 ### First Visit
 
-- The main app checks the window.localStorage property to check if it's the user's first time visiting the site. On first visit, a modal is shown to provide some context on what fáilte is and CTA's are provided to allow users to easily navigate to the About page to read more before interacting with the Map.
+- The main app checks the `window.localStorage` property to check if it's the user's first time visiting the site. On first visit, a modal is shown to provide some context on what fáilte is and CTA's are provided to allow users to easily navigate to the About page to read more before interacting with the Map.
 ![First visit modal](assets/readme/img/first-visit-modal.png "First visit modal")
 
 ### Navigation Bar
@@ -51,7 +51,7 @@ The key goals for this project include providing a user-friendly, accessible exp
 ### Interactive Map
 
 ![Map with search results](assets/readme/img/map-main.jpg "Map")
-- The Map utilises the Google Maps JavaScript API along with attraction data provided by the Fáilte Ireland Open Data API which includes the name, address, phone number, website and geographical coordinates for 622 attractions in Ireland.
+- The Map utilises the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview) along with attraction data provided by the [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv) which includes the name, address, phone number, website and geographical coordinates for 622 attractions in Ireland.
 - Users can pan and zoom around the Map using the mouse, keyboard or on-screen controls. Additionally, the Map includes native Google Maps controls such as Street View, Satellite view, zoom and fullscreen.
 - The Map features a set of marker icons which denote the type of attraction i.e. museum, forest, hike, cafe etc. and are colour coded for readability.
 - When a marker is clicked, an info window displays above the marker with the name and location of the attraction, as well as a link to a website, phone number and Google Maps directions. If the attraction has no website or phone number, the buttons are greyed out and are unclickable.
@@ -72,14 +72,14 @@ The key goals for this project include providing a user-friendly, accessible exp
 - fáilte features a Geo Guessing Game that provides users a fun way to discover Ireland's attractions.
 - Users are dropped at a random Street View of a popular attraction in Ireland and must guess the location by clicking on the map. 
 - The closer the user's guess, the more points they win, over the course of a five round game.
-- The game can be enjoyed by users of all abilities as it features accessible controls [see Accessibility](#accessibility).
+- The game can be enjoyed by users of all abilities as it features accessible controls ([see Accessibility](#accessibility)).
 
 ### About
 
 ![About page](assets/readme/img/about-page.png "About page")
 - The site features an About page which provides more information on what fáilte is and how users can utilise it.
-- An attribution statement is also provided to credit the attraction data source (Fáilte Ireland).
-- A "Get started" CTA is shown at the end of the About content to enable user to easily navigate to the Map after reading about the site.
+- An attribution statement is also provided to credit the attraction data source ([Fáilte Ireland](https://data.gov.ie/organization/failte-ireland)).
+- A "Get started" CTA is shown at the end of the About content to enable users to easily navigate to the Map after reading about the site.
 
 ### Contact
 
@@ -90,20 +90,20 @@ The key goals for this project include providing a user-friendly, accessible exp
 
 ### Footer
 
-- The site footer features three of my personal links to allow users to easily get in touch with me or to view my work: GitHub; Portfolio; LinkedIn.
+- The site footer features three of my personal links to allow users to easily get in touch with me or to view my work: [GitHub](https://github.com/CarlMurray); [Portfolio](www.carlmurray.design); [LinkedIn](https://www.linkedin.com/in/carljmurray).
 
 ### Mobile UX
 
-- On mobile screens, the Map and Play pages are designed to fit within the browser's viewport at all times, taking native browser UI elements into account. This was accomplished by using DVH (Dynamic Viewport Units) in CSS rules.
+- On mobile screens, the Map and Play pages are designed to fit within the browser's viewport at all times, taking native browser UI elements into account. This was accomplished by using DVH ([Dynamic Viewport Units](https://css-tricks.com/the-large-small-and-dynamic-viewports/)) in CSS rules.
 - This was intentionally done so that no scrolling is necessary and the Map and Play features are always visible on screen, and are easy to interact with, without the possibility of unintentional (and frustrating) scrolling as users try to navigate the Map or Street View, particularly on touch screens.
 - Map and Street View controls are also hidden on mobile screens to preserve screen real estate, with the exception of the fullscreen control which is of particular importance on small screens (fullscreen not available on iOS, see [Bug #8](#bugs-and-issues)).
-- On the Map and Play pages, layouts are designed to adapt for optimal usability on small screens. For example, on the Map page, Search Results are hidden in a bottom-drawer on small screens. Additionally, on the Play page, the layout of Street View and the Map change based on the aspect ratio of the screen (i.e. side-by-side vs. vertically stacked Map/Street View)
+- On the Map and Play pages, layouts are designed to adapt for optimal usability on small screens. For example, on the Map page, Search Results are hidden in a bottom-drawer on small screens. Additionally, on the Play page, the layout of Street View and the Map change based on the aspect ratio of the screen to make the most of the available screen space (i.e. side-by-side vs. vertically stacked Map/Street View)
 ![Mobile layout on map and street view](assets/readme/img/mobile-layout.jpg "Mobile layout")
 
 ### Accessibility
 
 - Designing for accessibility was an important goal of this project, and steps were taken to ensure that users of all abilites can enjoy what fáilte has to offer.
-- The Map is navigable with keyboard controls and all attractions on the map and search results can be cycled through by tabbing. 
+- The Map is navigable with keyboard controls and all attractions on the map and search results can be cycled through with keyboard navigation. 
 - All attraction icons on the Map, along with their associated links, have aria-labels and/or titles so users of screen readers can use the Map.
 - The Geo Guessing Game can be enjoyed by all users too, as it features optional accessible controls which show a red crosshair at the center of the map and allow users to make a guess by using an on-screen button.
 ![Game with accessible controls](assets/readme/img/accessible-controls.png "Accessible controls")
@@ -115,7 +115,6 @@ The key goals for this project include providing a user-friendly, accessible exp
 I used the following technologies, platforms and support in building my project:
 - Wireframes and mockups were designed in [Figma](https://www.figma.com/)
 - The website is built with [HTML](https://html.spec.whatwg.org/), [CSS](https://www.w3.org/Style/CSS/Overview.en.html) and [JavaScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
-- The Code Institute modules/lessons aided my learning and many of the concepts learned were applied in this project
 - [Stack Overflow](https://stackoverflow.com/) was used for troubleshooting and debugging throughout the project, as referenced.
 - [MacOS VoiceOver](https://bbc.github.io/accessibility-news-and-you/assistive-technology/testing-steps/voiceover-mac.html) was used for accessibility testing.
 - [Git](https://git-scm.com/) was used for version control
@@ -124,7 +123,7 @@ I used the following technologies, platforms and support in building my project:
 - [FontAwesome](https://fontawesome.com/v4/) was used for icons which then had additional styling applied to them
 - [Favicon Generator](https://favicon.io) was used to generate the favicon used
 - The site is hosted on [AWS Amplify](https://aws.amazon.com/amplify/)
-- Custom domain registered with [NameSilo](https://www.namesilo.com/), with a specific subdomain for this project (https://failte.carlmurray.design)
+- Custom domain registered with [NameCheap](https://www.namecheap.com/) (https://failte.app)
 - The [Google Maps JavaScript API]() was used for the Map and Street View functionality.
 - The [Fáilte Ireland OpenData API](https://failteireland.developer.azure-api.net/api-details#api=opendata-api-v1&operation=attractions-csv) was used for attraction data.
 - [EmailJS](https://www.emailjs.com/) was used to add functionality to the Contact form.
@@ -168,7 +167,8 @@ I used the following technologies, platforms and support in building my project:
 - The website was tested on major browsers including Chrome, Safari, Firefox and Edge as detailed in [Testing Process](#testing-process) below.
 - All user flows were tested in depth including navigating through content, entering search queries, clicking CTAs and links, and form submission.
 - All forms were tested to ensure validation was present and that forms could be submitted without error
-- Lighthouse was used to test for Performance, Accessibility, Best Practices and SEO and adjustments were made to improve test results. [Example of Home page test results here]()
+- Lighthouse was used to test for Performance, Accessibility, Best Practices and SEO and adjustments were made to improve test results. ![Lighthouse test results](assets/readme/img/lighthouse-test.png "Lighthouse test")
+
 - Accessibility testing was conducted by navigating the site and performing tasks using keyboard navigation and a screen reader (MacOS VoiceOver)
 
 ## Testing Process
@@ -213,15 +213,15 @@ I used the following technologies, platforms and support in building my project:
 - Improve search function to allow multiple keywords and locations to be entered
 - Add search filter options to allow users to filter attractions by type, location etc.
 - Add game options including difficulty, number of rounds, high score, location boundaries
+- Add Activities and Accomodation datasets from Fáilte Ireland OpenData API
 
 ---
 
 # Deployment
 
-- A DNS record for a subdomain of my portfolio, carlmurray.design, was created for this project.
 - The GitHub repository was connected to AWS Amplify for hosting.
-- Custom domain (https://failte.carlmurray.design) was added with an SSL certificate on AWS Amplify.
-- __The production site is available at https://failte.carlmurray.design OR https://carlmurray.github.io/failte-pp2/
+- Custom domain (https://failte.app) was added with an SSL certificate on AWS Amplify.
+- __The production site is available at https://failte.app OR https://carlmurray.github.io/failte-pp2/
 - Note: Site was deployed to GitHub Pages for project submission and acts as a backup to the AWS/custom domain site. Both sites are identical and are built from the same repo/branch and source code.
 
 ### Google Maps API Key
@@ -229,6 +229,12 @@ I used the following technologies, platforms and support in building my project:
 - Note: The API key in this repository is restricted and will not work outside of the repository.
 - You must sign up to Google Cloud Platform and generate your own API key.
 - Follow instructions [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+### EmailJS
+
+- Note: EmailJS is used for contact form functionality and will not work outside of the repository. 
+- You must sign up to EmailJS and generate your own credentials.
+- Follow instructions [here](https://www.emailjs.com/docs/tutorial/overview/)
 
 ### Steps for deployment on AWS:
 
