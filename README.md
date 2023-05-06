@@ -1,6 +1,6 @@
 ![Cover image](assets/readme/img/cover-img.jpg "Cover image")
 ---
-### The production site is available at https://failte.carlmurray.design
+### The production site is available at https://failte.app
 ---
 # Table of Contents
 TBD
