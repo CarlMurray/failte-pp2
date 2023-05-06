@@ -1,147 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | fáilte</title>
-    <meta name="description" content="Have a question? Want to know more about this site? Have a feature
-    request? Get in touch and we’ll get back to you soonest!">
+    <meta
+      name="description"
+      content="Have a question? Want to know more about this site? Have a feature
+    request? Get in touch and we’ll get back to you soonest!"
+    />
+
+    <!-- META FOR FACEBOOK/LINKEDIN -->
+    <meta property="og:title" content="fáilte" />
+    <meta property="og:description" content="Discover Ireland's hidden gems" />
+    <meta property="og:url" content="https://failte.app/contact.html" />
+    <meta
+      property="og:image"
+      content="https://failte.app/assets/readme/img/cover-img.jpg"
+    />
+
+    <!-- META FOR TWITTER -->
+    <meta name="twitter:title" content="fáilte" />
+    <meta name="twitter:description" content="Discover Ireland's hidden gems" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://failte.app/assets/readme/img/cover-img.jpg"
+    />
 
     <!-- ADD STYLESHEET -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css" />
 
     <!-- ADD FONTAWESOME -->
-    <script src="https://kit.fontawesome.com/ee1bd5fe1b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/ee1bd5fe1b.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- ADD GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- ADD FAVICON -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/faviconfavicon-16x16.png">
-    <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/img/faviconfavicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/img/favicon/site.webmanifest" />
 
     <!-- ADD EMAILJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        (function () {
-            emailjs.init('nAMWVoO4q5WTnV_xg');
-        })();
+      (function () {
+        emailjs.init("nAMWVoO4q5WTnV_xg");
+      })();
     </script>
     <script>
-        window.onload = function () {
-            let errorMsg;
-            document.getElementById('contact-form').addEventListener('submit', function (event) {
-                event.preventDefault();
-                // generate a five digit number for the contact_number variable
-                this.contact_number.value = Math.random() * 100000 | 0;
-                // these IDs from the previous steps
-                emailjs.sendForm('service_u8p34w3', 'template_ilgfd18', this)
-                    .then(function () {
-                        // SHOW SUCCESS FEEDBACK MESSAGE
-                        const submitFeedbackOverlay = document.querySelector('#contact-feedback-overlay')
-                        const submitBtn = document.querySelector('#submit-input')
-                        const formTextInputs = document.querySelector('#input-container')
-                        const formTextarea = document.querySelector('textarea')
-                        submitFeedbackOverlay.classList.add('submit')
-                        submitBtn.style.visibility = 'hidden'
-                        formTextInputs.style.visibility = 'hidden'
-                        formTextarea.style.visibility = 'hidden'
-                    }, function (error) {
-
-                        // IF UNSUCCESSFUL, SHOW ERROR MESSAGE
-                        if (!errorMsg) {
-                            const form = document.querySelector('form');
-                            errorMsg = document.createElement('p')
-                            errorMsg.setAttribute('id', 'search-error-message')
-                            errorMsg.innerText = 'Oops! Something went wrong. Please try again.'
-                            form.append(errorMsg)
-                        }
-                    });
-            });
-        }
+      window.onload = function () {
+        let errorMsg;
+        document
+          .getElementById("contact-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // generate a five digit number for the contact_number variable
+            this.contact_number.value = (Math.random() * 100000) | 0;
+            // these IDs from the previous steps
+            emailjs.sendForm("service_u8p34w3", "template_ilgfd18", this).then(
+              function () {
+                // SHOW SUCCESS FEEDBACK MESSAGE
+                const submitFeedbackOverlay = document.querySelector(
+                  "#contact-feedback-overlay"
+                );
+                const submitBtn = document.querySelector("#submit-input");
+                const formTextInputs =
+                  document.querySelector("#input-container");
+                const formTextarea = document.querySelector("textarea");
+                submitFeedbackOverlay.classList.add("submit");
+                submitBtn.style.visibility = "hidden";
+                formTextInputs.style.visibility = "hidden";
+                formTextarea.style.visibility = "hidden";
+              },
+              function (error) {
+                // IF UNSUCCESSFUL, SHOW ERROR MESSAGE
+                if (!errorMsg) {
+                  const form = document.querySelector("form");
+                  errorMsg = document.createElement("p");
+                  errorMsg.setAttribute("id", "search-error-message");
+                  errorMsg.innerText =
+                    "Oops! Something went wrong. Please try again.";
+                  form.append(errorMsg);
+                }
+              }
+            );
+          });
+      };
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="container">
+      <!-- HEADER -->
+      <header>
+        <div id="container-header-contact-about-page">
+          <div id="nav-logo">
+            <a href="index.html" aria-label="Click to go to Homepage">fáilte</a>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="index.html" aria-label="Go to Map page">Map</a></li>
+              <li>
+                <a href="play.html" aria-label="Go to Geo Game page">Play</a>
+              </li>
+              <li>
+                <a href="about.html" aria-label="Go to About page">About</a>
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="active-page"
+                  aria-label="Go to Contact page"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
 
-        <!-- HEADER -->
-        <header>
-            <div id="container-header-contact-about-page">
-                <div id="nav-logo">
-                    <a href="index.html" aria-label="Click to go to Homepage">fáilte</a>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html" aria-label="Go to Map page">Map</a></li>
-                        <li><a href="play.html" aria-label="Go to Geo Game page">Play</a></li>
-                        <li><a href="about.html" aria-label="Go to About page">About</a></li>
-                        <li><a href="contact.html" class="active-page" aria-label="Go to Contact page">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+      <!-- MAIN CONTENT -->
+      <main>
+        <div id="container-about-contact-page">
+          <div class="about-contact-container">
+            <h1>What's the craic?</h1>
+            <p class="about-contact-paragraph">
+              Have a question? Want to know more about this site? Have a feature
+              request? Get in touch and we’ll get back to you soonest!
+            </p>
 
-        <!-- MAIN CONTENT -->
-        <main>
-            <div id="container-about-contact-page">
-                <div class="about-contact-container">
-                    <h1>What's the craic?</h1>
-                    <p class="about-contact-paragraph">Have a question? Want to know more about this site? Have a feature
-                        request? Get in touch and we’ll get back to you soonest!</p>
+            <!-- CONTACT FORM -->
+            <form id="contact-form">
+              <!-- FEEDBACK MSG TO SHOW ON SUCCESSFUL SUBMIT -->
+              <div id="contact-feedback-overlay">
+                Thank you for your message, keep an eye on your emails!
+              </div>
 
-                    <!-- CONTACT FORM -->
-                    <form id="contact-form">
+              <!-- FLEX CONTAINER FOR NAME/EMAIL INPUT -->
+              <div class="input-container">
+                <input type="hidden" name="contact_number" />
+                <label for="name-input">Name</label>
+                <input
+                  name="user_name"
+                  id="name-input"
+                  class="text-input"
+                  type="text"
+                  placeholder="Name"
+                  required
+                />
+                <label for="email-input">Email</label>
+                <input
+                  name="user_email"
+                  id="email-input"
+                  class="text-input"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <label for="message-input">Message</label>
+              <textarea
+                name="message"
+                class="text-input"
+                id="message-input"
+                cols="30"
+                rows="10"
+                placeholder="Message"
+              ></textarea>
+              <label for="submit-input">Submit</label>
+              <input
+                id="submit-input"
+                type="submit"
+                class="primary-cta"
+                value="Send!"
+              />
+            </form>
+          </div>
+          <!-- IMAGE -->
+          <div id="about-contact-img-container">
+            <img
+              id="about-contact-img"
+              src="assets/img/ireland-img.png"
+              alt="Background image of Ireland map"
+            />
+          </div>
+        </div>
+      </main>
 
-                        <!-- FEEDBACK MSG TO SHOW ON SUCCESSFUL SUBMIT -->
-                        <div id="contact-feedback-overlay">Thank you for your message, keep an eye on your emails!</div>
-
-                        <!-- FLEX CONTAINER FOR NAME/EMAIL INPUT -->
-                        <div class="input-container">
-                            <input type="hidden" name="contact_number">
-                            <label for="name-input">Name</label>
-                            <input name="user_name" id="name-input" class="text-input" type="text" placeholder="Name"
-                                required>
-                            <label for="email-input">Email</label>
-                            <input name="user_email" id="email-input" class="text-input" type="email"
-                                placeholder="Email" required>
-                        </div>
-                        <label for="message-input">Message</label>
-                        <textarea name="message" class="text-input" id="message-input" cols="30" rows="10"
-                            placeholder="Message"></textarea>
-                        <label for="submit-input">Submit</label>
-                        <input id="submit-input" type="submit" class="primary-cta" value="Send!">
-                    </form>
-                </div>
-                <!-- IMAGE -->
-                <div id="about-contact-img-container">
-                    <img id="about-contact-img" src="assets/img/ireland-img.png" alt="Background image of Ireland map">
-                </div>
-            </div>
-        </main>
-
-        <!-- FOOTER -->
-        <footer>
-            <div id="footer-links">
-                <a href="https://github.com/CarlMurray/failte-pp2" target="_blank"
-                    title="See this project's Repo on GitHub" aria-label="See this project's Repo on GitHub"><img
-                        class="footer-icon" src="assets/img/footer/footer-github-icon.svg" alt="GitHub Logo"></a>
-                <a href="https://carlmurray.design" target="_blank" title="View my portfolio of projects"
-                    aria-label="View my portfolio of projects"><img class="footer-icon"
-                        src="assets/img/footer/footer-portfolio-icon.svg" alt="Personal Portfolio Logo"></a>
-                <a href="https://www.linkedin.com/in/carljmurray/" target="_blank" title="Connect with me on LinkedIn"
-                    aria-label="Connect with me on LinkedIn"><img class="footer-icon"
-                        src="assets/img/footer/footer-linkedin-icon.svg" alt="LinkedIn Logo"></a>
-            </div>
-        </footer>
+      <!-- FOOTER -->
+      <footer>
+        <div id="footer-links">
+          <a
+            href="https://github.com/CarlMurray/failte-pp2"
+            target="_blank"
+            title="See this project's Repo on GitHub"
+            aria-label="See this project's Repo on GitHub"
+            ><img
+              class="footer-icon"
+              src="assets/img/footer/footer-github-icon.svg"
+              alt="GitHub Logo"
+          /></a>
+          <a
+            href="https://carlmurray.design"
+            target="_blank"
+            title="View my portfolio of projects"
+            aria-label="View my portfolio of projects"
+            ><img
+              class="footer-icon"
+              src="assets/img/footer/footer-portfolio-icon.svg"
+              alt="Personal Portfolio Logo"
+          /></a>
+          <a
+            href="https://www.linkedin.com/in/carljmurray/"
+            target="_blank"
+            title="Connect with me on LinkedIn"
+            aria-label="Connect with me on LinkedIn"
+            ><img
+              class="footer-icon"
+              src="assets/img/footer/footer-linkedin-icon.svg"
+              alt="LinkedIn Logo"
+          /></a>
+        </div>
+      </footer>
     </div>
-</body>
-
+  </body>
 </html>
