@@ -362,7 +362,6 @@ function registerGuess(event) {
   // CLEAR BTN LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
   controlButton.removeEventListener("click", registerAccessibleGuess);
   roundNumber++;
-  console.log(roundNumber);
 
   // CALL FUNCTION TO CALC DISTANCE AND SCORE
   getDistance();
@@ -378,7 +377,6 @@ function registerAccessibleGuess(event) {
   // CLEAR MAP LISTENERS TO FORCE SINGLE CLICK GUESS ONLY
   google.maps.event.clearInstanceListeners(map);
   roundNumber++;
-  console.log(roundNumber);
 
   // CALL FUNCTION TO CALC DISTANCE AND SCORE
   getDistance();
