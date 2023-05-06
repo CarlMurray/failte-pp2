@@ -22,9 +22,9 @@ The key goals for this project include providing a user-friendly, accessible exp
 ![Mockups of site screens](assets/readme/img/figma-mockups.jpg "Mockups")
 - To guide the development process, mockups of the intended design were created in Figma before starting development. These early designs provided clear direction for development, however the final build may differ as various iterations were explored throughout the development.
 - A simple colour palette was used consisting of a green primary colour, inspired by Ireland's national colour, along with a spectrum of gray to white. 
-- Lilita Pro was the chosen typeface for headings as it conveys a sense of welcome (fáilte) and friendliness, while Roboto was used for body text for its simple and modern appearance.
+- Lilita One was the chosen typeface for headings as it conveys a sense of welcome (fáilte) and friendliness, while Roboto was used for body text for its simple and modern appearance.
 ![Colour palette](assets/readme/img/colour-palette.png "Colour palette")
-![Lilita Pro for headings and Roboto for body](assets/readme/img/fonts.png "Font choices")
+![Lilita One for headings and Roboto for body](assets/readme/img/fonts.png "Font choices")
 
 ## Site Structure
 
