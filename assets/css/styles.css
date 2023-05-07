@@ -82,16 +82,6 @@ header {
     height: 100%;
 }
 
-/* HEADER CONTAINER USED FOR ABOUT/CONTACT PAGES FOR AESTHETIC PURPOSES */
-#container-header-contact-about-page {
-    width: var(--container-width);
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-}
-
 /* MAIN CONTENT */
 main {
     display: flex;
