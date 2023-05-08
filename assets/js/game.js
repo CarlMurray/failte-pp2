@@ -196,6 +196,7 @@ const getDistance = async () => {
     let scoreboard = document.querySelector(".game-scoreboard");
     scoreboard.classList.remove("hidden");
     let btn = document.querySelector(".game-scoreboard .game-play-button");
+    panorama.setVisible(false) //HIDE STRTVW SO NOT KEYBD SELECTABLE
     await changeStreetView();
 
     // START NEXT ROUND ON BUTTON CLICK
@@ -203,6 +204,7 @@ const getDistance = async () => {
       scoreboard.classList.add("hidden"); //HIDE SCOREBOARD
       drawLine.setMap(null); //HIDE LINE
       initMap(); //REFRESH MAP
+      panorama.setVisible(true) //SHOW STRTVW ON PLAY
     });
 
     // SHOW END GAME SCREEN AFTER ROUNDS
@@ -290,7 +292,7 @@ playBtn.addEventListener("click", () => {
   if (isClicked) {
     gameIntroHeader.innerText = "How to play";
     gameIntroText.innerHTML =
-      "You are dropped at a random attraction on the island of Ireland. Guess the location by clicking the map - the closer you are, the more points you get! <br><br><strong>Check the top-left corner of the Map for accessible controls!</strong><br>";
+      "You are dropped at a random attraction on the island of Ireland. Guess the location by clicking the map - the closer you are, the more points you get! <br><br><strong>Check the top-left corner of the Map for keyboard controls!</strong><br>";
     playBtn.innerText = "Play";
   }
 
@@ -300,6 +302,9 @@ playBtn.addEventListener("click", () => {
     gameIntroText.classList.add("hidden");
     playBtn.classList.add("hidden");
     gameIntroOverlay.classList.add("hidden");
+
+    // SHOW GAME ON PLAY
+    document.querySelector("#game-container").classList.remove('hidden')
   }
 });
 
@@ -311,9 +316,9 @@ function createAccessibleControl(map) {
   controlButton.setAttribute("id", "accessible-control-toggle");
   controlButton.setAttribute(
     "aria-label",
-    "click to enable accessible game controls"
+    "click to enable keyboard game controls"
   );
-  controlButton.title = "click to enable accessible game controls";
+  controlButton.title = "click to enable keyboard game controls";
   controlButton.type = "button";
 
   // CREATE MAP CROSSHAIR
@@ -329,6 +334,7 @@ function createAccessibleControl(map) {
   // SHOW GUESS BUTTON ON CLICK
   controlButton.addEventListener("click", () => {
     accessibleIsClicked = !accessibleIsClicked;
+    controlButton.classList.toggle('accessible-control-toggle-on')
     accessibleGuessBtnDiv.classList.toggle("hidden");
     crosshairHorizontal.classList.toggle("hidden");
     crosshairVertical.classList.toggle("hidden");

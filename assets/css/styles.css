@@ -650,12 +650,12 @@ label {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* ACCESSIBLE CTRLS FOR GAME */
 #accessible-control-toggle {
-    background-image: url(/assets/img/icons/wheelchair-solid.svg);
+    background-image: url(/assets/img/icons/keyboard-ctrls-icon.svg);
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 70%;
@@ -667,6 +667,11 @@ label {
     border: 0px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
+/* ADDS BORDER WHEN ENABLED */
+.accessible-control-toggle-on {
+    border: 3px solid var(--colour-primary-teal) !important;
 }
 
 /* ACCESSIBLE CTRL GUESS BTN */

@@ -137,11 +137,12 @@ The key goals for this project include providing a user-friendly, accessible exp
 
 ### Accessibility
 
-- Designing for accessibility was an important goal of this project, and steps were taken to ensure that users of all abilites can enjoy what fáilte has to offer.
+- Designing for users with disabilities was an important goal of this project, and steps were taken to ensure that fáilte can be enjoyed by users of varying abilities. 
 - The Map is navigable with keyboard controls and all attractions on the map and search results can be cycled through with keyboard navigation. 
 - All attraction icons on the Map, along with their associated links, have aria-labels and/or titles so users of screen readers can use the Map.
-- The Geo Guessing Game can be enjoyed by all users too, as it features optional accessible controls which show a red crosshair at the center of the map and allow users to make a guess by using an on-screen button.
-![Game with accessible controls](assets/readme/img/accessible-controls.png "Accessible controls")
+- The Geo Guessing Game can be enjoyed by keyboard users too, as it features optional keyboard controls which show a red crosshair at the center of the map and allow users to make a guess by using an on-screen button.
+- Unfortunately, some aspects of fáilte, such as the Game, are not accessible by all users (such as those with total blindness or significant visual impairment). However, a long term goal is to make fáilte truly accessible for all.
+![Game with keyboard controls](assets/readme/img/keyboard-controls.png "Keyboard controls")
 
 ---
 
@@ -204,8 +205,6 @@ I used the following technologies, platforms and support in building my project:
 - All forms were tested to ensure validation was present and that forms could be submitted without error
 - Lighthouse was used to test for Performance, Accessibility, Best Practices and SEO and adjustments were made to improve test results. ![Lighthouse test results](assets/readme/img/lighthouse-test.png "Lighthouse test")
 
-- Accessibility testing was conducted by navigating the site and performing tasks using keyboard navigation and a screen reader (MacOS VoiceOver)
-
 ## Testing Process
 
 | Test                | Action                   | Success Criteria  |
@@ -240,6 +239,21 @@ I used the following technologies, platforms and support in building my project:
 
 *Testing using ResponsivelyApp:*
 ![Screenshot of responsiveness testing in Responsively App](assets/readme/img/responsiveness-testing.png "Responsiveness testing in Responsively App")
+
+### Accessibility Testing
+
+- Accessibility testing was conducted by navigating the site and performing tasks using keyboard navigation and a screen reader (MacOS VoiceOver)
+- The site was audited using [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) to evaluate implementation of best practices and accessibility guidelines.
+- Informal usability testing of the site was conducted with a legally blind participant using a screenreader (MacOS VoiceOver) and keyboard navigation. 
+##### Key findings and actions taken include:
+
+| Finding | Action |
+| --- | --- |
+| The International Symbol of Access (Wheelchair Symbol) is sometimes seen as a symbol of exclusion rather than inclusion and does not represent a diverse range of disabilities and accessibility needs. | The symbol was changed to a Keyboard symbol to better represent the intent of the feature |
+| The Keyboard controls were initially referred to as "Accessible" controls, however this gave the participant the impression that the feature would enable them to enjoy the game, which was not the case. The word "accessible" means that it should be usable by people of all abilities, and should not exclude people with certain disabilities. | The wording was modified to say "Keyboard Controls" as the feature still requires a certain level of visual ability to play the game. |
+| When using keyboard navigation, certain elements were selectable which should not be. For example, when the first-visit modal is shown, users can tab through the rest of the site in the background. A similar issue occurs on the Game intro page where users can select the Map/StreetView even though it is not visible. | Code modified to ensure only visible/intended elements can be selected with keyboard navigation. |
+
+In general, the participant reported that the site was quite user-friendly for users of keyboard navigation and screen readers as a result of proper semantic markup, use of headers, titles and aria-attributes, which made the site easy to navigate and comprehend.
 
 ---
 
