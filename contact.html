@@ -90,13 +90,17 @@
                   "#contact-feedback-overlay"
                 );
                 const submitBtn = document.querySelector("#submit-input");
-                const formTextInputs =
-                  document.querySelector("#input-container");
+                const formTextInputs = document.querySelector(".input-container");
                 const formTextarea = document.querySelector("textarea");
                 submitFeedbackOverlay.classList.add("submit");
                 submitBtn.style.visibility = "hidden";
                 formTextInputs.style.visibility = "hidden";
                 formTextarea.style.visibility = "hidden";
+
+                // IF ERROR MESSAGE ALREADY VISIBLE, HIDE ON SUCCESSFUL SUBMIT
+                if (errorMsg) {
+                  document.querySelector('#search-error-message').classList.add('hidden')
+                }
               },
               function (error) {
                 // IF UNSUCCESSFUL, SHOW ERROR MESSAGE
