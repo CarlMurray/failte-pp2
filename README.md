@@ -256,8 +256,7 @@ I used the following technologies, platforms and support in building my project:
 
 - The GitHub repository was connected to AWS Amplify for hosting.
 - Custom domain (https://failte.app) was added with an SSL certificate on AWS Amplify.
-- __The production site is available at https://failte.app OR https://carlmurray.github.io/failte-pp2/
-- Note: Site was deployed to GitHub Pages for project submission and acts as a backup to the AWS/custom domain site. Both sites are identical and are built from the same repo/branch and source code.
+- __The production site is available at https://failte.app
 
 ### Google Maps API Key
 
