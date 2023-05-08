@@ -68,9 +68,8 @@
 
   <body>
     <!-- MODAL TO SHOW ON FIRST VISIT -->
-    <div class="modal-overlay"></div>
-    <div class="modal-container">
-      <div class="first-visit-modal">
+    <dialog class="first-visit-modal">
+      <div id="dialog-flex-container">
         <h3 id="first-visit-modal-header">fáilte!</h3>
         <hr class="decorative-line-break" />
         <p id="first-visit-modal-paragraph">
@@ -79,8 +78,17 @@
           out more.
         </p>
         <div id="modal-cta-container">
-          <a class="primary-cta" href="#">Get started</a>
-          <a class="primary-cta secondary-cta" href="about.html"
+          <a
+            id="get-started-modal"
+            class="primary-cta"
+            href="#"
+            aria-label="Click to close dialog window"
+            >Get started</a
+          >
+          <a
+            class="primary-cta secondary-cta"
+            href="about.html"
+            aria-label="Click to go to About page"
             >Tell me more</a
           >
         </div>
@@ -89,7 +97,7 @@
           <strong>fáilte</strong> is not affiliated with Fáilte Ireland.
         </div>
       </div>
-    </div>
+    </dialog>
 
     <div id="container">
       <!-- HEADER -->

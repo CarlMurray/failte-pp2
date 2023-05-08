@@ -58,21 +58,15 @@ const checkIfVisited = () => {
     showFirstTimeVisitModal(); // SHOW MODAL IF FIRST VISIT
   }
 };
+const modalWindow = document.querySelector(".first-visit-modal");
+const modalGetStarted = document.querySelector('#get-started-modal')
 
 // FUNCTION TO SHOW FIRST TIME VISIT MODAL
 const showFirstTimeVisitModal = () => {
-  const modalWindow = document.querySelector(".first-visit-modal");
-  const modalOverlay = document.querySelector(".modal-overlay");
-  const modalContainer = document.querySelector(".modal-container");
-  modalWindow.classList.add("modal-visible");
-  modalOverlay.classList.add("modal-overlay-visible");
-  modalContainer.classList.add("modal-container-visible");
-
+  modalWindow.showModal()
   // HIDE MODAL IF USER CLICKS OUTSIDE
-  modalContainer.addEventListener("click", () => {
-    modalWindow.classList.remove("modal-visible");
-    modalOverlay.classList.remove("modal-overlay-visible");
-    modalContainer.classList.remove("modal-container-visible");
+  modalGetStarted.addEventListener("click", () => {
+    modalWindow.close()
   });
 };
 
