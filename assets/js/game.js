@@ -196,7 +196,7 @@ const getDistance = async () => {
     let scoreboard = document.querySelector(".game-scoreboard");
     scoreboard.classList.remove("hidden");
     let btn = document.querySelector(".game-scoreboard .game-play-button");
-    panorama.setVisible(false) //HIDE STRTVW SO NOT KEYBD SELECTABLE
+    panorama.setVisible(false); //HIDE STRTVW SO NOT KEYBD SELECTABLE
     await changeStreetView();
 
     // START NEXT ROUND ON BUTTON CLICK
@@ -204,7 +204,7 @@ const getDistance = async () => {
       scoreboard.classList.add("hidden"); //HIDE SCOREBOARD
       drawLine.setMap(null); //HIDE LINE
       initMap(); //REFRESH MAP
-      panorama.setVisible(true) //SHOW STRTVW ON PLAY
+      panorama.setVisible(true); //SHOW STRTVW ON PLAY
     });
 
     // SHOW END GAME SCREEN AFTER ROUNDS
@@ -304,7 +304,7 @@ playBtn.addEventListener("click", () => {
     gameIntroOverlay.classList.add("hidden");
 
     // SHOW GAME ON PLAY
-    document.querySelector("#game-container").classList.remove('hidden')
+    document.querySelector("#game-container").classList.remove("hidden");
   }
 });
 
@@ -334,11 +334,11 @@ function createAccessibleControl(map) {
   // SHOW KEYBOARD CTRLS ON CLICK
   controlButton.addEventListener("click", () => {
     accessibleIsClicked = !accessibleIsClicked;
-    controlButton.classList.toggle('accessible-control-toggle-on')
+    controlButton.classList.toggle("accessible-control-toggle-on");
     accessibleGuessBtnDiv.classList.toggle("hidden");
     crosshairHorizontal.classList.toggle("hidden");
     crosshairVertical.classList.toggle("hidden");
-    document.querySelector('[aria-label="Map"]').focus() //FOCUS MAP SO CTRLS WORK
+    document.querySelector('[aria-label="Map"]').focus(); //FOCUS MAP SO CTRLS WORK
   });
   return controlButton;
 }
@@ -399,13 +399,12 @@ const showFetchErrorMessage = () => {
 
 async function main() {
   try {
-  await fetchData(); //GET LOCATION DATA
-  await initMap(); //INIT MAP OBJECT
-  await initStreetView(); //INIT STREET VIEW OBJECT
-  changeStreetView(); //SET INITIAL STREET VIEW
-  }
-  catch {
-    showFetchErrorMessage()
+    await fetchData(); //GET LOCATION DATA
+    await initMap(); //INIT MAP OBJECT
+    await initStreetView(); //INIT STREET VIEW OBJECT
+    changeStreetView(); //SET INITIAL STREET VIEW
+  } catch {
+    showFetchErrorMessage();
   }
 }
 
