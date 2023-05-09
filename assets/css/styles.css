@@ -374,21 +374,6 @@ dialog::backdrop {
     background-image: none;
 }
 
-/* APPLY BELOW CLASSES ON FIRST VISIT TO SHOW MODAL */
-.modal-container-visible {
-    display: flex;
-}
-
-.modal-visible {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-overlay-visible {
-    display: block;
-    opacity: 0.4;
-}
-
 h3 {
     font-family: var(--font-family-header);
     font-size: 2em;
