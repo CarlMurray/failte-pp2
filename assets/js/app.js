@@ -49,6 +49,7 @@ const searchContainer = document.querySelector("#search-container-results"); //V
 let attractionListInfo; //CONTAINER FOR EACH SEARCH RESULT
 let searchQuery; //SEARCH INPUT
 const searchBar = document.querySelector("#search"); //VARIABLE FOR SEARCH BAR DOM ELEMENT
+let errorMsgSpan = document.querySelector("#search-error-message"); //VARIABLE FOR SEARCH ERROR MSG
 
 // CHECKS IS USER IS FIRST TIME VISITOR
 const checkIfVisited = () => {
@@ -189,7 +190,7 @@ const initMarkers = async () => {
 
 const positionMarker = async (searchQuery) => {
   //CLEAR ALL EXISTING MARKERS
-  for (marker of markers) {
+  for (let marker of markers) {
     marker.setMap(null);
   }
   markers.length = 0;
@@ -199,7 +200,7 @@ const positionMarker = async (searchQuery) => {
     ".attractionListInfoDiv"
   );
   if (clearAttractionsList) {
-    for (attractions of clearAttractionsList) {
+    for (let attractions of clearAttractionsList) {
       attractions.remove();
     }
   }
@@ -267,8 +268,7 @@ const positionMarker = async (searchQuery) => {
 
       // CHECK FOR VALID SEARCH, SHOW ERROR MSG
       if (markers.length === 0) {
-        searchBar.classList.add("search-invalid");
-        let errorMsgSpan = document.querySelector("#search-error-message"); //APPLY ERROR STYLES TO SEARCH BAR
+        searchBar.classList.add("search-invalid"); //APPLY ERROR STYLES TO SEARCH BAR
         errorMsgSpan.classList.remove("hidden"); //SHOW ERROR MESSAGE
       } else {
         errorMsgSpan.classList.add("hidden");
@@ -330,11 +330,10 @@ const positionMarker = async (searchQuery) => {
   }
 
   // PLOT EACH MARKER ON MAP
-  for (marker of markers) {
+  for (let marker of markers) {
     marker.setMap(map);
   }
 
-  let errorMsgSpan = document.querySelector("#search-error-message"); //VARIABLE FOR SEARCH ERROR MSG
   //IF NO SEARCH RESULTS
   if (markers.length === 0) {
     searchBar.classList.add("search-invalid"); //APPLY ERROR STYLES TO SEARCH BAR
