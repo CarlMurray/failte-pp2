@@ -43,7 +43,6 @@ const JSON_PATH = "assets/data/attractions.json"; //FILE PATH FOR ATTRACTION DAT
 let map; //GMAPS OBJECT
 let data; //FOR FETCHED LOCATION DATA
 let activeInfoWindow = false; //DEFINE INFOWINDOW STATE
-let linkIcon; //ICON FOR ATTRACTION WEBSITE, PHONE, DIRECTIONS
 let markerIcon; //MAP ICON FOR ATTRACTION
 const markers = []; //TO STORE MARKERS IN ARRAY
 const searchContainer = document.querySelector("#search-container-results"); //VARIABLE FOR SEARCH RESULTS CONTAINER
@@ -59,14 +58,14 @@ const checkIfVisited = () => {
   }
 };
 const modalWindow = document.querySelector(".first-visit-modal");
-const modalGetStarted = document.querySelector('#get-started-modal')
+const modalGetStarted = document.querySelector("#get-started-modal");
 
 // FUNCTION TO SHOW FIRST TIME VISIT MODAL
 const showFirstTimeVisitModal = () => {
-  modalWindow.showModal()
+  modalWindow.showModal();
   // HIDE MODAL IF USER CLICKS OUTSIDE
   modalGetStarted.addEventListener("click", () => {
-    modalWindow.close()
+    modalWindow.close();
   });
 };
 
@@ -110,7 +109,6 @@ const initMarkers = async () => {
   // ITERATE THROUGH ALL DATA POINTS, DEFINE VARIABLES,
   // DEFINE MARKER ICONS, DEFINE CONTENT
   for (let i = 0; i < data.length; i++) {
-
     // DETRUCTURE OBJ TO DEFINE VARIABLES
     const {
       Latitude: lat,
@@ -284,7 +282,6 @@ const positionMarker = async (searchQuery) => {
       Name.toLowerCase().includes(searchQuery) ||
       markerAddress.toLowerCase().includes(searchQuery)
     ) {
-      const markerPos = { lat, lng };
       const { Marker } = await google.maps.importLibrary("marker");
       const marker = new Marker({
         position: { lat: lat, lng: lng },
