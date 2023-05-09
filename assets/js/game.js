@@ -331,13 +331,14 @@ function createAccessibleControl(map) {
   crosshairVertical.classList.add("map-crosshair");
   crosshairVertical.style.transform = "rotate(90deg)"; //ROTATE FOR VERTICAL CROSSHAIR
 
-  // SHOW GUESS BUTTON ON CLICK
+  // SHOW KEYBOARD CTRLS ON CLICK
   controlButton.addEventListener("click", () => {
     accessibleIsClicked = !accessibleIsClicked;
     controlButton.classList.toggle('accessible-control-toggle-on')
     accessibleGuessBtnDiv.classList.toggle("hidden");
     crosshairHorizontal.classList.toggle("hidden");
     crosshairVertical.classList.toggle("hidden");
+    document.querySelector('[aria-label="Map"]').focus() //FOCUS MAP SO CTRLS WORK
   });
   return controlButton;
 }
