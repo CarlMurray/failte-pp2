@@ -27,6 +27,7 @@
   - [Overview](#overview)
   - [Testing Process](#testing-process)
   - [Responsiveness](#responsiveness)
+  - [Accessibility Testing](#accessibility-testing)
 - [Roadmap](#roadmap)
 - [Deployment](#deployment)
   - [Google Maps API Key](#google-maps-api-key)
@@ -46,7 +47,7 @@ fáilte is a site that aims to make it easy for users to find and discover attra
 
 With the rising popularity of staycations, people require easy access to information that helps them make the most of their trips and explore their surroundings. The project's primary objectives include creating a user-friendly platform for browsing various attractions in Ireland, such as historic sites, nature reserves, museums, art galleries, and other points of interest. Additionally, it aims to provide information about specific attractions and directions to navigate to them.
 
-The key goals for this project include providing a user-friendly, accessible experience for browsing attractions in Ireland, including historic sites, nature reserves, museums, art galleries and other points of interest. Additionally it aims to make it easy for users to find out more about an attraction of interest and find directions to navigate to the attraction.
+The key goals for this project include providing a user-friendly experience for browsing attractions in Ireland, including historic sites, nature reserves, museums, art galleries and other points of interest. Additionally it aims to make it easy for users to find out more about an attraction of interest and find directions to navigate to the attraction.
 
 ---
 
@@ -107,7 +108,7 @@ The key goals for this project include providing a user-friendly, accessible exp
 - fáilte features a Geo Guessing Game that provides users a fun way to discover Ireland's attractions.
 - Users are dropped at a random Street View of a popular attraction in Ireland and must guess the location by clicking on the map. 
 - The closer the user's guess, the more points they win, over the course of a five round game.
-- The game can be enjoyed by users of all abilities as it features accessible controls ([see Accessibility](#accessibility)).
+- The game can be enjoyed by users of various abilities as it features keyboard controls ([see Accessibility](#accessibility)).
 
 ### About
 
@@ -187,7 +188,7 @@ I used the following technologies, platforms and support in building my project:
 
 ## Unresolved
 
-1. On initial load of the Geo Guessing Game, if the user enables the Accessibility Controls, the "Guess" button initially displays off-center. I could not diagnose the issue, however the button shifts to it's intended position once the user interacts with the Map (pan/zoom) and as such, does not have any significant impact on performance, usability or functionality.
+1. On initial load of the Geo Guessing Game, if the user enables the Keyboard Controls, the "Guess" button initially displays off-center. I could not diagnose the issue, however the button shifts to it's intended position once the user interacts with the Map (pan/zoom) and as such, does not have any significant impact on performance, usability or functionality.
 ![Screenshot of game showing off-center button](assets/readme/img/bug-game-off-center-btn.png "'Guess' button showing off-center on initial load only")
 
 ---
@@ -217,7 +218,7 @@ I used the following technologies, platforms and support in building my project:
 | Successful Contact form submission     | Complete contact form and submit | Form successfully submits, feedback message shown |
 | Unsuccessful Contact form submission     | Complete contact form, disable network connection and submit | Form submission fails, error message shown |
 | Responsiveness      | Resize viewport window from 320px upwards with Chrome Dev Tools. Test devices as detailed in [Testing Process](#testing-process) | Page layout remains intact and adapts to screen size as intended |
-| Accessibility       | Navigate the site with keyboard and screen reader | Tab index works in correct order, map is navigable, game is playable with accessible controls enabled, content/aria-labels read aloud |
+| Accessibility       | Navigate the site with keyboard and screen reader | Tab index works in correct order, map is navigable, game is playable with keyboard controls enabled, content/aria-labels read aloud |
 | Lighthouse          | Perform Lighthouse test on each page | Score of > 89 on Performance, Accessibility, Best Practices, SEO |
 | Browser compatibility | Test links, layout, appearance, functionality and above Tests on Chrome, Safari, Firefox and Edge. | Website looks and functions as intended and passes all tests above
 
@@ -245,11 +246,12 @@ I used the following technologies, platforms and support in building my project:
 - Accessibility testing was conducted by navigating the site and performing tasks using keyboard navigation and a screen reader (MacOS VoiceOver)
 - The site was audited using [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) to evaluate implementation of best practices and accessibility guidelines.
 - Informal usability testing of the site was conducted with a legally blind participant using a screenreader (MacOS VoiceOver) and keyboard navigation. 
+
 ##### Key findings and actions taken include:
 
 | Finding | Action |
 | --- | --- |
-| The International Symbol of Access (Wheelchair Symbol) is sometimes seen as a symbol of exclusion rather than inclusion and does not represent a diverse range of disabilities and accessibility needs. | The symbol was changed to a Keyboard symbol to better represent the intent of the feature |
+| The International Symbol of Access (Wheelchair Symbol) is sometimes seen as a symbol of exclusion rather than inclusion, particularly for people with disabilites that do not use a wheelchair, and the symbol does not represent a diverse range of disabilities and accessibility needs. ([reference](https://svknyc.com/journal/2017/06/wheelchair-icon-not-symbol-accessibility/)) | The symbol was changed to a Keyboard symbol to better represent the intent of the feature |
 | The Keyboard controls were initially referred to as "Accessible" controls, however this gave the participant the impression that the feature would enable them to enjoy the game, which was not the case. The word "accessible" means that it should be usable by people of all abilities, and should not exclude people with certain disabilities. | The wording was modified to say "Keyboard Controls" as the feature still requires a certain level of visual ability to play the game. |
 | When using keyboard navigation, certain elements were selectable which should not be. For example, when the first-visit modal is shown, users can tab through the rest of the site in the background. A similar issue occurs on the Game intro page where users can select the Map/StreetView even though it is not visible. | Code modified to ensure only visible/intended elements can be selected with keyboard navigation. |
 
