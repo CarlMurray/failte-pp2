@@ -257,6 +257,10 @@ I used the following technologies, platforms and support in building my project:
 
 In general, the participant reported that the site was quite user-friendly for users of keyboard navigation and screen readers as a result of proper semantic markup, use of headers, titles and aria-attributes, which made the site easy to navigate and comprehend.
 
+##### Accessibility Testing Highlight Reel
+https://github.com/CarlMurray/failte-pp2/assets/12576409/7e17072f-958e-46dd-9fea-5f5126a23bbe
+
+
 ---
 
 # Roadmap
