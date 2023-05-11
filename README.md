@@ -171,10 +171,10 @@ I used the following technologies, platforms and support in building my project:
 
 ## Resolved
 
-1. During the initial stage of development, when fetching the Attraction Data from the Fáilte Ireland API, it would only return a maximum of 50 results as results are paginated. Documentation for the API is non-existant/inaccessible at time of writing and I could not determine a solution. However, I was able to download the full dataset in CSV format which I could then parse to JSON using [CSVtoJSON](https://csvjson.com/csv2json) and `fetch` the file locally which turned out to be a simpler and better solution.
-2. The biggest challenge was implementing the search feature so that it functions as desired. During development, I was able to make Attractions which matched the search query appear on the map, however when I cleared or editted the search input, the Attractions remained on the map as I had not told the program to clear the map when a new search query is made. Drawing up a flowchart helped me think through the logic of my code and the issue and solution became obvious after doing this.
+1. During the initial stage of development, when fetching the Attraction Data from the Fáilte Ireland API, it would only return a maximum of 50 results as results are paginated. Documentation for the API is non-existent/inaccessible at time of writing and I could not determine a solution. However, I was able to download the full dataset in CSV format which I could then parse to JSON using [CSVtoJSON](https://csvjson.com/csv2json) and `fetch` the file locally which turned out to be a simpler and better solution.
+2. The biggest challenge was implementing the search feature so that it functions as desired. During development, I was able to make Attractions which matched the search query appear on the map, however when I cleared or edited the search input, the Attractions remained on the map as I had not told the program to clear the map when a new search query is made. Drawing up a flowchart helped me think through the logic of my code and the issue and solution became obvious after doing this.
 ![Flowchart showing incorrect code logic](assets/readme/img/flowchart.png "Flowchart")
-3. When testing on an iPhone XS Max, it was noted that the site did not fit within the viewport as intended. This was due to `vh` units not taking into account the native browser UI elements such as the toolbar etc. I found a solution on [Stack Overflow](https://stackoverflow.com/questions/58886797/how-to-access-the-real-100vh-on-ios-in-css): a newer CSS unit - `dvh` (Dynamic Viewport Units) - takes into account the browser UI and changing any `vh` units in my CSS to `dvh` fixed this issue and the site now displays as intended. This was tested on all major mobile browsers (Chrome, Edge, Safari, Firefox, Opera, DuckDuckGo) wihtout issue.
+3. When testing on an iPhone XS Max, it was noted that the site did not fit within the viewport as intended. This was due to `vh` units not taking into account the native browser UI elements such as the toolbar etc. I found a solution on [Stack Overflow](https://stackoverflow.com/questions/58886797/how-to-access-the-real-100vh-on-ios-in-css): a newer CSS unit - `dvh` (Dynamic Viewport Units) - takes into account the browser UI and changing any `vh` units in my CSS to `dvh` fixed this issue and the site now displays as intended. This was tested on all major mobile browsers (Chrome, Edge, Safari, Firefox, Opera, DuckDuckGo) without issue.
 ![Before and after screenshots of adding dvh units](assets/readme/img/bug-dvh.png "vh to dvh big fix")
 4. After implementing the search functionality, I tested it on an iPhone XS Max and it would not return any search results. I found that the iPhone keyboard was automatically setting the first character to uppercase, and I had not made the search query function case-insensitive. This was fixed by simply adding `.toLowerCase()` to the `searchQuery` argument in my app.
 ![Code snippet showing bug fix](assets/readme/img/bug-search.png "Fixing search bug with .toLowerCase()")
@@ -251,7 +251,7 @@ I used the following technologies, platforms and support in building my project:
 
 | Finding | Action |
 | --- | --- |
-| The International Symbol of Access (Wheelchair Symbol) is sometimes seen as a symbol of exclusion rather than inclusion, particularly for people with disabilites that do not use a wheelchair, and the symbol does not represent a diverse range of disabilities and accessibility needs. ([reference](https://svknyc.com/journal/2017/06/wheelchair-icon-not-symbol-accessibility/)) | The symbol was changed to a Keyboard symbol to better represent the intent of the feature |
+| The International Symbol of Access (Wheelchair Symbol) is sometimes seen as a symbol of exclusion rather than inclusion, particularly for people with disabilities that do not use a wheelchair, and the symbol does not represent a diverse range of disabilities and accessibility needs. ([reference](https://svknyc.com/journal/2017/06/wheelchair-icon-not-symbol-accessibility/)) | The symbol was changed to a Keyboard symbol to better represent the intent of the feature |
 | The Keyboard controls were initially referred to as "Accessible" controls, however this gave the participant the impression that the feature would enable them to enjoy the game, which was not the case. The word "accessible" means that it should be usable by people of all abilities, and should not exclude people with certain disabilities. | The wording was modified to say "Keyboard Controls" as the feature still requires a certain level of visual ability to play the game. |
 | When using keyboard navigation, certain elements were selectable which should not be. For example, when the first-visit modal is shown, users can tab through the rest of the site in the background. A similar issue occurs on the Game intro page where users can select the Map/StreetView even though it is not visible. | Code modified to ensure only visible/intended elements can be selected with keyboard navigation. |
 
@@ -264,7 +264,7 @@ In general, the participant reported that the site was quite user-friendly for u
 - Improve search function to allow multiple keywords and locations to be entered
 - Add search filter options to allow users to filter attractions by type, location etc.
 - Add game options including difficulty, number of rounds, high score, location boundaries
-- Add Activities and Accomodation datasets from Fáilte Ireland OpenData API
+- Add Activities and Accommodation datasets from Fáilte Ireland OpenData API
 
 ---
 
@@ -272,7 +272,7 @@ In general, the participant reported that the site was quite user-friendly for u
 
 - The GitHub repository was connected to AWS Amplify for hosting.
 - Custom domain (https://failte.app) was added with an SSL certificate on AWS Amplify.
-- __The production site is available at https://failte.app
+- The production site is available at https://failte.app
 
 ### Google Maps API Key
 
@@ -324,6 +324,12 @@ In general, the participant reported that the site was quite user-friendly for u
 6. Push your changes to the forked repository on GitHub using the "git push" command.
 7. If you want to contribute your changes back to the original repository, create a pull request by going to the original repository's page and clicking the "New pull request" button. From there, you can compare your changes to the original repository and request that they be merged.
 8. You should now have a forked copy of the GitHub repository in your account, and you can make changes to it and contribute back to the original repository if desired.
+
+---
+
+# Acknowledgements
+
+This project was completed as my Portfolio Project 2 submission for the Full Stack Web Developer (eCommerce) Diploma at the Code Institute. I would like to thank my site accessibility testing participant, Aziz Zeidieh (http://maximusaccess.com/), for his valued input and feedback which helped to inform the design and development of **fáilte** from an accessibility standpoint.
 
 ---
 
