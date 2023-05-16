@@ -282,6 +282,7 @@ https://github.com/CarlMurray/failte-pp2/assets/12576409/7e17072f-958e-46dd-9fea
 
 - Note: The API key in this repository is restricted and will not work outside of the repository.
 - You must sign up to Google Cloud Platform and generate your own API key.
+- Insert your API key on `line 37` of `app.js` and `game.js`
 - Follow instructions [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ### EmailJS
