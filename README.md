@@ -1,6 +1,10 @@
+<img src="assets/readme/img/datagovie.png" alt= “data.gov.ie” width="300px" height="value">
+
+# As seen in the **data.gov.ie** [Showcase](https://data.gov.ie/showcase/failte-discover-ireland-s-hidden-gems)!
+
 ![Cover image](assets/readme/img/cover-img.jpg "Cover image")
 ---
-### The production site is available at https://failte.app
+# The production site is available at https://failte.app
 ---
 # Table of Contents
 
@@ -143,7 +147,19 @@ The key goals for this project include providing a user-friendly experience for 
 - All attraction icons on the Map, along with their associated links, have aria-labels and/or titles so users of screen readers can use the Map.
 - The Geo Guessing Game can be enjoyed by keyboard users too, as it features optional keyboard controls which show a red crosshair at the center of the map and allow users to make a guess by using an on-screen button.
 - Unfortunately, some aspects of fáilte, such as the Game, are not accessible by all users (such as those with total blindness or significant visual impairment). However, a long term goal is to make fáilte truly accessible for all.
+- Accessibility (usability) testing was carried out with a visually impaired participant - see [Accessibility Testing](#accessibility-testing)
+
 ![Game with keyboard controls](assets/readme/img/keyboard-controls.png "Keyboard controls")
+
+---
+
+# Roadmap
+- Add more popular attractions to game dataset
+- Improve search function to allow multiple keywords and locations to be entered
+- Add search filter options to allow users to filter attractions by type, location etc.
+- Add game options including difficulty, number of rounds, high score, location boundaries
+- Add Activities and Accommodation datasets from Fáilte Ireland OpenData API
+- Further improve accessibility of fáilte
 
 ---
 
@@ -247,7 +263,7 @@ I used the following technologies, platforms and support in building my project:
 - The site was audited using [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) to evaluate implementation of best practices and accessibility guidelines.
 - Informal usability testing of the site was conducted with a legally blind participant using a screenreader (MacOS VoiceOver) and keyboard navigation. 
 
-##### Key findings and actions taken include:
+#### Key findings and actions taken include:
 
 | Finding | Action |
 | --- | --- |
@@ -263,15 +279,6 @@ https://github.com/CarlMurray/failte-pp2/assets/12576409/7e17072f-958e-46dd-9fea
 
 ---
 
-# Roadmap
-- Add more popular attractions to game dataset
-- Improve search function to allow multiple keywords and locations to be entered
-- Add search filter options to allow users to filter attractions by type, location etc.
-- Add game options including difficulty, number of rounds, high score, location boundaries
-- Add Activities and Accommodation datasets from Fáilte Ireland OpenData API
-
----
-
 # Deployment
 
 - The GitHub repository was connected to AWS Amplify for hosting.
@@ -280,15 +287,15 @@ https://github.com/CarlMurray/failte-pp2/assets/12576409/7e17072f-958e-46dd-9fea
 
 ### Google Maps API Key
 
-- Note: The API key in this repository is restricted and will not work outside of the repository.
+- Note: The API key in this repository is restricted and will not work outside of the original deployment.
 - You must sign up to Google Cloud Platform and generate your own API key.
 - Insert your API key on `line 37` of `app.js` and `game.js`
 - Follow instructions [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ### EmailJS
 
-- Note: EmailJS is used for contact form functionality and will not work outside of the repository. 
-- You must sign up to EmailJS and generate your own credentials.
+- Note: EmailJS is used for contact form functionality and will not work outside of the original deployment. 
+- You must sign up to EmailJS, generate your own credentials and insert them into `contact.html`
 - Follow instructions [here](https://www.emailjs.com/docs/tutorial/overview/)
 
 ### Steps for deployment on AWS:
@@ -334,7 +341,7 @@ https://github.com/CarlMurray/failte-pp2/assets/12576409/7e17072f-958e-46dd-9fea
 
 # Acknowledgements
 
-This project was completed as my Portfolio Project 2 submission for the Full Stack Web Developer (eCommerce) Diploma at the Code Institute. I would like to thank my site accessibility testing participant, Aziz Zeidieh (http://maximusaccess.com/), for his valued input and feedback which helped to inform the design and development of **fáilte** from an accessibility standpoint.
+This project was completed as my Portfolio Project 2 submission for the Full Stack Web Development (eCommerce) Diploma at the Code Institute. I would like to thank my site accessibility testing participant, Aziz Zeidieh (http://maximusaccess.com/), for his valued input and feedback which helped to inform the design and development of **fáilte** from an accessibility standpoint.
 
 ---
 
