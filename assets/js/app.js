@@ -137,7 +137,7 @@ const initMarkers = async () => {
       position: { lat: lat, lng: lng },
       title: Name,
       icon: markerIcon,
-      optimized: false, //REQUIRED FOR KEYBOARD NAVIGATION
+      optimized: true, //SET TO TRUE FOR PERFORMANCE
     });
 
     // URL STRUCTURE TO GET DIRECTIONS ON GMAPS
@@ -287,7 +287,7 @@ const positionMarker = async (searchQuery) => {
         position: { lat: lat, lng: lng },
         title: Name,
         icon: markerIcon,
-        optimized: false, //REQUIRED FOR KEYBOARD NAVIGATION
+        optimized: true, //SET TO TRUE FOR PERFORMANCE
       });
       // URL STRUCTURE TO GET DIRECTIONS ON GMAPS
       const directionsURL = `"https://www.google.com/maps?saddr=My+Location&daddr=${Name}, ${markerAddress}"`;
